@@ -5,28 +5,47 @@
   "main": "index.js",
   "scripts": {
     "watch": "gulp watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "gulp build",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@storybook/react": "^3.2.8",
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.0",
     "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
+    "chai": "^4.1.2",
     "gulp": "^3.9.1",
+    "gulp-ejs": "^3.0.1",
+    "inline-environment-variables-webpack-plugin": "^1.2.1",
     "lodash": "^4.17.4",
+    "mocha": "^3.5.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "styled-components": "^2.1.2",
     "webpack-stream": "^4.0.0"
+  },
+  "eslint": {
+    "parser": "babel-eslint"
+  },
+  "dependencies": {
+    "rut.js": "^0.3.3"
   }
 }

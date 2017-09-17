@@ -1,4 +1,6 @@
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const InlineEnvironmentVariablesPlugin = require('inline-environment-variables-webpack-plugin')
+const webpack = require('webpack')
 
 const moduleBabel = {
   rules: [
@@ -8,9 +10,11 @@ const moduleBabel = {
       loader: 'babel-loader',
       options: {
         presets: [
-          'env',
+          ['env', {
+            exclude: ['transform-regenerator']
+          }],
           'stage-0',
-          'react',
+          'react'
         ]
       }
     }
@@ -26,7 +30,8 @@ const bs = new BrowserSyncPlugin({
 })
 
 const plugins = [
-bs
+  bs,
+  new InlineEnvironmentVariablesPlugin()
 ]
 
 module.exports.config = [
