@@ -12,7 +12,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "@storybook/react": "^3.2.8",
     "babel-core": "^6.26.0",
@@ -47,5 +46,17 @@
   },
   "dependencies": {
     "rut.js": "^0.3.3"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonDotsoy/otecnya-questions-offline.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JonDotsoy/otecnya-questions-offline/issues"
+  },
+  "homepage": "https://github.com/JonDotsoy/otecnya-questions-offline#readme",
+  "description": ""
 }
