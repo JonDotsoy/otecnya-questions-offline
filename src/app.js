@@ -2,24 +2,26 @@ console.info(`${process.env.npm_package_name} v${process.env.npm_package_version
 
 require('./registerServiceWorker')
 
+const sample = require('lodash/sample')
 const React = require('react')
 const ReactDOM = require('react-dom')
 const {injectGlobal} = require('styled-components')
-const {createStore, combineReducers, applyMiddleware} = require('redux')
+const {createStore, combineReducers, applyMiddleware, compose} = require('redux')
 const reducers = require('./reducer')
 const {Provider} = require('react-redux')
 const {HashRouter: Router, Route, Switch} = require('react-router-dom')
 const {Quest} = require('./Quest/Quest')
 const {Session} = require('./Session/Session')
+const {Result} = require('./Result/Result')
 const {default: thunk} = require('redux-thunk')
-const {formatQuestion, sampleQuestions} = require('./util/samples')
+const {loadQuestions} = require('./util/lodasSamples')
 const questions = require('./questions')
+const {default: persistState} = require('redux-localstorage')
 
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Roboto');
 
   html {
-    padding: 10px 20px;
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
   }
@@ -30,13 +32,57 @@ injectGlobal`
   }
 `
 
+const _sampleQuestions = loadQuestions()
+
+let n = 0
+
 const store = createStore(
   combineReducers({...reducers}),
-  {
+  false ? undefined : {
     quest: {
       currentQuestion: 0,
-      questions: sampleQuestions(questions),
+      finishQuestionary: true,
+      questions: _sampleQuestions,
       responses: [],
+      responses: [
+        {
+          question: _sampleQuestions[++n],
+          response: _sampleQuestions[n].optionCorrect,
+        },
+        {
+          question: _sampleQuestions[++n],
+          // response: _sampleQuestions[n].optionCorrect,
+          response: `_sampleQuestions[n].optionCorrect`,
+        },
+        {
+          question: _sampleQuestions[++n],
+          response: _sampleQuestions[n].optionCorrect,
+        },
+        {
+          question: _sampleQuestions[++n],
+          response: _sampleQuestions[n].optionCorrect,
+        },
+        {
+          question: _sampleQuestions[++n],
+          response: _sampleQuestions[n].optionCorrect,
+        },
+        {
+          question: _sampleQuestions[++n],
+          response: _sampleQuestions[n].optionCorrect,
+        },
+        {
+          question: _sampleQuestions[++n],
+          response: _sampleQuestions[n].optionCorrect,
+        },
+        {
+          question: _sampleQuestions[++n],
+          response: _sampleQuestions[n].optionCorrect,
+        },
+        {
+          question: _sampleQuestions[++n],
+          response: _sampleQuestions[n].optionCorrect,
+        },
+      ],
     },
     session: {
       id: '111111111',
@@ -53,6 +99,7 @@ ReactDOM.render((
         <Switch>
           <Route exact path='/' component={Quest} />
           <Route exact path='/session' component={Session} />
+          <Route exact path='/results' component={Result} />
         </Switch>
       </Router>
     </Provider>

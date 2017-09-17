@@ -43,22 +43,22 @@ const HeaderContent = styled.div`
   display: block;
 `
 
-const IDRUTLabelHeader = styled.div `
+const IDRUTLabelHeader = styled.div`
 `
 
-const BodyQuestion = styled.div `
+const BodyQuestion = styled.div`
   
 `
 
-const TitleQuestion = styled.h1 `
+const TitleQuestion = styled.h1`
   font-size: 20px;
 `
 
-const BodyResponses = styled.div `
+const BodyResponses = styled.div`
   padding: 10px 0px;
 `
 
-const BTNResponse = styled.button `
+const BTNResponse = styled.button`
   display: block;
   width: 100%;
   border: none;
@@ -72,23 +72,28 @@ const BTNResponse = styled.button `
   }
 `
 
-const Quest = ({rut, rut_format, question, currentQuestion, countQuestions, nextQuestion}) => (
-  !rut ? <Redirect to='/session' />
-  : <Container>
-    <ContainerBody>
-      <HeaderContent>
-        RUT {rut_format} — {currentQuestion + 1} de {countQuestions} preguntas.
-      </HeaderContent>
-      <BodyQuestion>
-        <TitleQuestion>{question.title}</TitleQuestion>
-        <BodyResponses>
-          {question.options.map((option, index) => (
-            <BTNResponse key={`${question.title}-${option}`} onClick={nextQuestion} data-nrequest={index} data-value={option}>{option}</BTNResponse>
-          ))}
-        </BodyResponses>
-      </BodyQuestion>
-    </ContainerBody>
-  </Container>
+const Quest = ({finishQuestionary, rut, rut_format, question, currentQuestion, countQuestions, nextQuestion}) => (
+  !rut
+  ? <Redirect to='/session' />
+    : finishQuestionary === true
+  ? <Redirect to='/results' />
+      : (
+        <Container>
+          <ContainerBody>
+            <HeaderContent>
+            RUT {rut_format} — {currentQuestion + 1} de {countQuestions} preguntas.
+          </HeaderContent>
+            <BodyQuestion>
+              <TitleQuestion>{question.title}</TitleQuestion>
+              <BodyResponses>
+                {question.options.map((option, index) => (
+                  <BTNResponse key={`${question.title}-${option}`} onClick={nextQuestion} data-nrequest={index} data-value={option}>{option}</BTNResponse>
+              ))}
+              </BodyResponses>
+            </BodyQuestion>
+          </ContainerBody>
+        </Container>
+      )
 )
 
 module.exports.Quest = connect(
@@ -98,6 +103,7 @@ module.exports.Quest = connect(
     question: props.quest.questions[props.quest.currentQuestion],
     currentQuestion: props.quest.currentQuestion,
     countQuestions: props.quest.questions.length,
+    finishQuestionary: props.quest.finishQuestionary
   }),
   (dispatch, props) => ({
     nextQuestion: ({target: {dataset: {value, nrequest}}}) => {

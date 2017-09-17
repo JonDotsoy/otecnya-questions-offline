@@ -44,7 +44,7 @@ const LabelToInput = styled.div`
   padding-bottom: 5px;
 `
 
-const BTNLogin = styled(Link)`
+const styledButton = `
   padding: 10px 20px;
   font-family: 'Roboto', sans-serif;
   border: solid 1px #aaa;
@@ -59,6 +59,18 @@ const BTNLogin = styled(Link)`
   }
 `
 
+const LabelDonwloadReports = styled.button `
+  font-size: 12px;
+  text-decoration: underline;
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+`
+
+const BTNLoginOFF = styled.button`${styledButton}`
+const BTNLoginON = styled(Link)`${styledButton}`
+
 const RenderSesssion = ({tmp_rut_valid, handleChangeRut, rut, handleOnClickLogin}) => (
   rut
   ? <Redirect to='/' />
@@ -68,12 +80,15 @@ const RenderSesssion = ({tmp_rut_valid, handleChangeRut, rut, handleOnClickLogin
         <LabelToInput>Ingresa tu RUT a continuación</LabelToInput>
         <Input data-validate={tmp_rut_valid} onChange={handleChangeRut} />
       </ContainerInput>
-      <ContainerInput align='right'>
+      <ContainerInput>
         {
           tmp_rut_valid
-          ? <BTNLogin to='/' disabled={!tmp_rut_valid} onClick={handleOnClickLogin}>Ingresar</BTNLogin>
-          : null
+          ? <BTNLoginON to='/' disabled={!tmp_rut_valid} onClick={handleOnClickLogin}>Ingresar</BTNLoginON>
+          : <BTNLoginOFF disabled={!tmp_rut_valid}>Ingresar</BTNLoginOFF>
         }
+      </ContainerInput>
+      <ContainerInput>
+        <LabelDonwloadReports>Descargar todo el reporte</LabelDonwloadReports>
       </ContainerInput>
     </ContainerBodyLogin>
   </ContainerSession>
@@ -94,5 +109,5 @@ module.exports.Session = connect(
     handleChangeRut: ({target: {value: tmp_rut}}) => {
       dispatch({type: 'memory_rut', tmp_rut})
     }
-  }),
+  })
 )(RenderSesssion)

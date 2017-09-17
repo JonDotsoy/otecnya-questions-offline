@@ -40,6 +40,7 @@ module.exports.config = [
     entry: './src/app.js',
     module: moduleBabel,
     plugins,
+    devtool: 'source-map',
     output: {
       filename: 'app.js'
     }
@@ -49,6 +50,7 @@ module.exports.config = [
     entry: './src/sw.js',
     module: moduleBabel,
     plugins,
+    devtool: 'source-map',
     output: {
       filename: 'sw.js'
     }

@@ -37,6 +37,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^4.0.8",
     "redux": "^3.7.2",
+    "redux-localstorage": "^0.4.1",
     "redux-thunk": "^2.2.0",
     "styled-components": "^2.1.2",
     "webpack-stream": "^4.0.0"
@@ -45,6 +46,7 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
+    "dexie": "^1.5.1",
     "rut.js": "^0.3.3"
   },
   "directories": {
