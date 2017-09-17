@@ -15228,7 +15228,7 @@ var _sampleQuestions = loadQuestions();
 
 var n = 0;
 
-var store = createStore(combineReducers(_extends({}, reducers)), false ? undefined : {
+var store = createStore(combineReducers(_extends({}, reducers)), true ? undefined : {
   quest: _defineProperty({
     currentQuestion: 0,
     finishQuestionary: true,

@@ -38,7 +38,7 @@ let n = 0
 
 const store = createStore(
   combineReducers({...reducers}),
-  false ? undefined : {
+  true ? undefined : {
     quest: {
       currentQuestion: 0,
       finishQuestionary: true,
