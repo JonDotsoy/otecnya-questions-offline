@@ -14,7 +14,7 @@ gulp.task('watch', ['static-files:watch'], () => (
   .pipe(gulp.dest('./www'))
 ))
 
-gulp.task('build', ['static-files'], () => (
+gulp.task('build_prev', ['static-files'], () => (
   gulp
   .src(['./src/app.js', './src/sw.js'])
   .pipe(
@@ -40,4 +40,8 @@ gulp.task('static-files', () => (
   })
   .pipe(gulp.dest('./www'))
   .pipe(webpackConfig.browserSync.stream())
+))
+
+gulp.task('build', ['build_prev'], () => (
+  gulp.src(['www/*']).pipe(gulp.dest('./docs'))
 ))
