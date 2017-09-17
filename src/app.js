@@ -13,6 +13,8 @@ const {HashRouter: Router, Route, Switch} = require('react-router-dom')
 const {Quest} = require('./Quest/Quest')
 const {Session} = require('./Session/Session')
 const {Result} = require('./Result/Result')
+const {Register} = require('./Register/Register')
+const {RegisterDetaills} = require('./Register/RegisterDetaills')
 const {default: thunk} = require('redux-thunk')
 const {loadQuestions} = require('./util/lodasSamples')
 const questions = require('./questions')
@@ -47,49 +49,49 @@ const store = createStore(
       responses: [
         {
           question: _sampleQuestions[++n],
-          response: _sampleQuestions[n].optionCorrect,
+          response: _sampleQuestions[n].optionCorrect
         },
         {
           question: _sampleQuestions[++n],
           // response: _sampleQuestions[n].optionCorrect,
-          response: `_sampleQuestions[n].optionCorrect`,
+          response: `_sampleQuestions[n].optionCorrect`
         },
         {
           question: _sampleQuestions[++n],
-          response: _sampleQuestions[n].optionCorrect,
+          response: _sampleQuestions[n].optionCorrect
         },
         {
           question: _sampleQuestions[++n],
-          response: _sampleQuestions[n].optionCorrect,
+          response: _sampleQuestions[n].optionCorrect
         },
         {
           question: _sampleQuestions[++n],
-          response: _sampleQuestions[n].optionCorrect,
+          response: _sampleQuestions[n].optionCorrect
         },
         {
           question: _sampleQuestions[++n],
-          response: _sampleQuestions[n].optionCorrect,
+          response: _sampleQuestions[n].optionCorrect
         },
         {
           question: _sampleQuestions[++n],
-          response: _sampleQuestions[n].optionCorrect,
+          response: _sampleQuestions[n].optionCorrect
         },
         {
           question: _sampleQuestions[++n],
-          response: _sampleQuestions[n].optionCorrect,
+          response: _sampleQuestions[n].optionCorrect
         },
         {
           question: _sampleQuestions[++n],
-          response: _sampleQuestions[n].optionCorrect,
-        },
-      ],
+          response: _sampleQuestions[n].optionCorrect
+        }
+      ]
     },
     session: {
       id: '111111111',
-      id_format: '11.111.111-1',
-    },
+      id_format: '11.111.111-1'
+    }
   },
-  applyMiddleware(thunk),
+  applyMiddleware(thunk)
 )
 
 ReactDOM.render((
@@ -100,6 +102,8 @@ ReactDOM.render((
           <Route exact path='/' component={Quest} />
           <Route exact path='/session' component={Session} />
           <Route exact path='/results' component={Result} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/register/:idRegistre' component={RegisterDetaills} />
         </Switch>
       </Router>
     </Provider>

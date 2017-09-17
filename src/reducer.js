@@ -1,6 +1,53 @@
 
 const {loadQuestions} = require('./util/lodasSamples')
 const RUT = require('rut.js')
+
+const initialStateRegistre = {
+  state: 'no_load',
+  responses: [],
+  showReport: {
+    state: 'no_load',
+    registre_id: null,
+  },
+}
+module.exports.registre = function (state = initialStateRegistre, action) {
+  switch (action.type) {
+    case 'pulling_registre': {
+      return {
+        ...state,
+        showReport: {
+          ...state.showReport,
+          state: 'pulling',
+        }
+      }
+    }
+    case 'pulled_registre': {
+      return {
+        ...state,
+        showReport: {
+          ...state.showReport,
+          state: 'pulled',
+          registre: action.registre,
+        }
+      }
+    }
+    case 'pulling_registers': {
+      return {
+        ...state,
+        state: 'pulling',
+      }
+    }
+    case 'end_pulling_registers': {
+      return {
+        ...state,
+        state: 'pulled',
+        responses: action.responses,
+      }
+    }
+    default: return state
+  }
+}
+
 const initialStateQuest = {
   currentQuestion: 0,
   questions: loadQuestions(),

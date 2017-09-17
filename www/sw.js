@@ -82,7 +82,7 @@ self.addEventListener('install', function (event) {
     var _ref = _asyncToGenerator(function* () {
       var cache = yield caches.open(versionCache);
 
-      yield cache.addAll(['/', '/app.js']);
+      yield cache.addAll(['/otecnya-questions-offline/', '/otecnya-questions-offline/index.html', '/otecnya-questions-offline/app.js']);
     });
 
     return function waitRun() {
@@ -103,20 +103,7 @@ self.addEventListener('fetch', function (event) {
       var _url$parse = url.parse(request.url),
           pathname = _url$parse.pathname;
 
-      return yield fetch(request);
-
-      try {
-        switch (pathname) {
-          case '/':
-          case '/app.js':
-            {
-              return yield fetch(request);
-              break;
-            }
-        }
-      } catch (err) {
-        console.log('prefere');
-      }
+      // return await fetch(request)
 
       var response = yield cache.match(request);
 

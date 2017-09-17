@@ -59,12 +59,13 @@ const styledButton = `
   }
 `
 
-const LabelDonwloadReports = styled.button `
+const LabelDonwloadReports = styled(Link) `
   font-size: 12px;
   text-decoration: underline;
   border: none;
   background-color: transparent;
   padding: 0px;
+  color: black;
   margin: 0px;
 `
 
@@ -88,7 +89,7 @@ const RenderSesssion = ({tmp_rut_valid, handleChangeRut, rut, handleOnClickLogin
         }
       </ContainerInput>
       <ContainerInput>
-        <LabelDonwloadReports>Descargar todo el reporte</LabelDonwloadReports>
+        <LabelDonwloadReports to="/register">Registros</LabelDonwloadReports>
       </ContainerInput>
     </ContainerBodyLogin>
   </ContainerSession>

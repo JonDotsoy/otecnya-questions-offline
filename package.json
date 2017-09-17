@@ -28,6 +28,7 @@
     "gulp": "^3.9.1",
     "gulp-ejs": "^3.0.1",
     "inline-environment-variables-webpack-plugin": "^1.2.1",
+    "json2csv": "^3.11.2",
     "lodash": "^4.17.4",
     "mocha": "^3.5.3",
     "react": "^15.6.1",

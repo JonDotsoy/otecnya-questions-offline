@@ -1,4 +1,5 @@
 
+const {ready: dbready, db} = require('../db')
 const Dexie = require('dexie')
 const {Redirect, Link} = require('react-router-dom')
 const {connect} = require('react-redux')
@@ -87,13 +88,9 @@ module.exports.Result = connect(
       dispatch(async (dispatch, getState) => {
         const state = getState()
 
-        const db = new Dexie('responses')
-
         dispatch({type: 'save_response_saving'})
 
-        await db.version('1').stores({
-          responses: `++id,rut,date,responses`
-        })
+        await dbready
 
         await db.responses.put({
           rut: state.session.id,

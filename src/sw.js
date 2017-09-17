@@ -8,8 +8,9 @@ self.addEventListener('install', function (event) {
     const cache = await caches.open(versionCache)
 
     await cache.addAll([
-      '/',
-      '/app.js'
+      '/otecnya-questions-offline/',
+      '/otecnya-questions-offline/index.html',
+      '/otecnya-questions-offline/app.js',
     ])
   }
 
@@ -25,19 +26,7 @@ self.addEventListener('fetch', function (event) {
     const {request} = event
     const {pathname} = url.parse(request.url)
 
-    return await fetch(request)
-
-    try {
-      switch (pathname) {
-        case '/':
-        case '/app.js': {
-          return await fetch(request)
-          break
-        }
-      }
-    } catch (err) {
-      console.log('prefere')
-    }
+    // return await fetch(request)
 
     const response = await cache.match(request)
 
