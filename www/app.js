@@ -20141,7 +20141,7 @@ ReactDOM.render(React.createElement(
 
 var registerServiceWorker = function () {
   var _ref = _asyncToGenerator(function* () {
-    var registration = yield navigator.serviceWorker.register('/sw.js');
+    var registration = yield navigator.serviceWorker.register('/otecnya-questions-offline/sw.js');
   });
 
   return function registerServiceWorker() {
