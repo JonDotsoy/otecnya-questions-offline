@@ -1,5 +1,11 @@
 ## [Unreleased][]
 
+## [1.0.1][] — 2017-09-18
+### Added
+
+- ([e2fc8db][]) Added Name field
+
+
 ## [1.0.0][] — 2017-09-17
 ### Added
 
@@ -16,4 +22,6 @@
 
 [Unreleased]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/9e5068f...v1.0.0
+[1.0.1]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.0...v1.0.1
 [d4e3880]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/d4e3880
+[e2fc8db]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/d4e3880
