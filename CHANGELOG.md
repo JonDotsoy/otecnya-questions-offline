@@ -1,18 +1,19 @@
 ## [Unreleased][]
 
-## [1.0.0][] — 2017-09-18
+## [1.0.0][] — 2017-09-17
 ### Added
 
-- Architecture of APP
-- Session control with RUT
-- Exam form with random questions
-- Download registres
-- Show registries
-- Evaluation page
-- Session page
-- Report page
-- Registries page
+- ([d4e3880][]) Architecture of APP
+- ([d4e3880][]) Session control with RUT
+- ([d4e3880][]) Exam form with random questions
+- ([d4e3880][]) Download registres
+- ([d4e3880][]) Show registries
+- ([d4e3880][]) Evaluation page
+- ([d4e3880][]) Session page
+- ([d4e3880][]) Report page
+- ([d4e3880][]) Registries page
 
 
 [Unreleased]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/9e5068f...v1.0.0
+[d4e3880]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/d4e3880
