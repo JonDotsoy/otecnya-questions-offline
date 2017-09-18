@@ -70,23 +70,41 @@
 "use strict";
 
 
+var cacheDeleteSegure = function () {
+  var _ref = _asyncToGenerator(function* () {
+    try {
+      var _caches;
+
+      yield (_caches = caches).delete.apply(_caches, arguments);
+    } catch (ex) {
+      console.info(ex);
+    }
+  });
+
+  return function cacheDeleteSegure() {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+// self.skipWaiting()
+
+
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var url = __webpack_require__(1);
 
-var versionCache = 'v7';
+var versionCache = 'v11';
 
-self.skipWaiting();
 self.addEventListener('install', function (event) {
   var waitRun = function () {
-    var _ref = _asyncToGenerator(function* () {
+    var _ref2 = _asyncToGenerator(function* () {
       var cache = yield caches.open(versionCache);
 
       yield cache.addAll(['/otecnya-questions-offline/', '/otecnya-questions-offline/index.html', '/otecnya-questions-offline/app.js']);
     });
 
     return function waitRun() {
-      return _ref.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
 
@@ -95,7 +113,7 @@ self.addEventListener('install', function (event) {
 
 self.addEventListener('fetch', function (event) {
   var respondFetch = function () {
-    var _ref2 = _asyncToGenerator(function* () {
+    var _ref3 = _asyncToGenerator(function* () {
       var cache = yield caches.open(versionCache);
 
       var request = event.request;
@@ -119,7 +137,7 @@ self.addEventListener('fetch', function (event) {
     });
 
     return function respondFetch() {
-      return _ref2.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
 

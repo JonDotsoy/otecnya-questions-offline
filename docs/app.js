@@ -20010,7 +20010,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-console.info("question" + ' v' + "1.0.0");
+console.info("question" + ' v' + "1.0.1");
 
 __webpack_require__(135);
 
@@ -35607,7 +35607,8 @@ var initialStateSession = {
   id: undefined,
   id_format: undefined,
   tmp_rut: undefined,
-  tmp_rut_valid: false
+  tmp_rut_valid: false,
+  tmp_name: undefined
 };
 
 module.exports.session = function () {
@@ -35618,6 +35619,12 @@ module.exports.session = function () {
     case 'reset_all':
       {
         return _extends({}, initialStateSession);
+      }
+    case 'memory_update_name':
+      {
+        return _extends({}, state, {
+          tmp_name: action.name
+        });
       }
     case 'memory_rut':
       {
@@ -39409,6 +39416,7 @@ var BTNLoginON = styled(Link)(_templateObject6, styledButton);
 
 var RenderSesssion = function RenderSesssion(_ref2) {
   var tmp_rut_valid = _ref2.tmp_rut_valid,
+      handleChangeName = _ref2.handleChangeName,
       handleChangeRut = _ref2.handleChangeRut,
       rut = _ref2.rut,
       handleOnClickLogin = _ref2.handleOnClickLogin;
@@ -39418,6 +39426,16 @@ var RenderSesssion = function RenderSesssion(_ref2) {
     React.createElement(
       ContainerBodyLogin,
       null,
+      React.createElement(
+        ContainerInput,
+        null,
+        React.createElement(
+          LabelToInput,
+          null,
+          'Nombre'
+        ),
+        React.createElement(Input, { 'data-secondType': 'name', onChange: handleChangeName })
+      ),
       React.createElement(
         ContainerInput,
         null,
@@ -39472,6 +39490,11 @@ module.exports.Session = connect(function (state, props) {
       var tmp_rut = _ref3.target.value;
 
       dispatch({ type: 'memory_rut', tmp_rut: tmp_rut });
+    },
+    handleChangeName: function handleChangeName(_ref4) {
+      var name = _ref4.target.value;
+
+      dispatch({ type: 'memory_update_name', name: name });
     }
   };
 })(RenderSesssion);
@@ -39483,7 +39506,7 @@ module.exports.Session = connect(function (state, props) {
 "use strict";
 
 
-var _templateObject = _taggedTemplateLiteral(['\n  width: 100%;\n  border: solid 1px #CCC;\n  border-radius: 5px;\n  padding: 20px 10px;\n  box-sizing: border-box;\n\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n\n  &:hover,\n  &:focus {\n    border-color: #999;\n  }\n\n  ', '\n'], ['\n  width: 100%;\n  border: solid 1px #CCC;\n  border-radius: 5px;\n  padding: 20px 10px;\n  box-sizing: border-box;\n\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n\n  &:hover,\n  &:focus {\n    border-color: #999;\n  }\n\n  ', '\n']);
+var _templateObject = _taggedTemplateLiteral(['\n  width: 100%;\n  border: solid 1px #CCC;\n  border-radius: 5px;\n  padding: 20px 10px;\n  box-sizing: border-box;\n\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n\n  &:hover,\n  &:focus {\n    border-color: #999;\n  }\n\n  ', '\n  ', '\n'], ['\n  width: 100%;\n  border: solid 1px #CCC;\n  border-radius: 5px;\n  padding: 20px 10px;\n  box-sizing: border-box;\n\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n\n  &:hover,\n  &:focus {\n    border-color: #999;\n  }\n\n  ', '\n  ', '\n']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -39492,9 +39515,14 @@ var React = __webpack_require__(4);
 var _require = __webpack_require__(21),
     styled = _require.default;
 
+var nameInputStyle = '\n  text-transform: capitalize;\n';
+
 var Input = styled.input(_templateObject, function (_ref) {
   var validate = _ref['data-validate'];
-  return validate ? '' : 'border: solid 1px red;';
+  return validate === false ? 'border: solid 1px red;' : '';
+}, function (_ref2) {
+  var secondType = _ref2['data-secondType'];
+  return secondType === 'name' ? nameInputStyle : '';
 });
 
 module.exports.Input = function (props) {
@@ -39616,6 +39644,7 @@ module.exports.Result = connect(function (state, props) {
           yield dbready;
 
           yield db.responses.put({
+            name: state.session.tmp_name,
             rut: state.session.id,
             date: new Date(),
             responses: state.quest.responses
@@ -40079,14 +40108,16 @@ module.exports.Register = connect(function (state, props) {
         var responses = yield db.responses.toArray();
 
         var bodyfile = json2csv({
-          fields: ['rut', 'date', 'corrects', 'total'].concat(_toConsumableArray(questions.map(function (e) {
+          fields: ['rut', 'name', 'date', 'corrects', 'total'].concat(_toConsumableArray(questions.map(function (e) {
             return e.title;
           }))),
           data: responses.map(function (_ref5) {
             var rut = _ref5.rut,
+                name = _ref5.name,
                 date = _ref5.date,
                 responses = _ref5.responses;
             return _extends({
+              name: name,
               rut: rut,
               date: date,
               total: responses.length,
