@@ -11,7 +11,7 @@ gulp.task('watch', ['static-files:watch'], () => (
       watch: true
     })
   )
-  .pipe(gulp.dest('./www'))
+  .pipe(gulp.dest('./www/otecnya-questions-offline'))
 ))
 
 gulp.task('build_prev', ['static-files'], () => (
@@ -22,7 +22,7 @@ gulp.task('build_prev', ['static-files'], () => (
       config: webpackConfig.config,
     })
   )
-  .pipe(gulp.dest('./www'))
+  .pipe(gulp.dest('./www/otecnya-questions-offline'))
 ))
 
 gulp.task('static-files:watch', ['static-files'], () => {
@@ -38,10 +38,10 @@ gulp.task('static-files', () => (
     console.log(err.toString())
     this.emit('end')
   })
-  .pipe(gulp.dest('./www'))
+  .pipe(gulp.dest('./www/otecnya-questions-offline'))
   .pipe(webpackConfig.browserSync.stream())
 ))
 
 gulp.task('build', ['build_prev'], () => (
-  gulp.src(['www/*']).pipe(gulp.dest('./docs'))
+  gulp.src(['./www/otecnya-questions-offline/*']).pipe(gulp.dest('./docs'))
 ))

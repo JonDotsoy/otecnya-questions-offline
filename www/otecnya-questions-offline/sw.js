@@ -93,20 +93,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var url = __webpack_require__(1);
 
-var versionCache = 'v8';
+var versionCache = 'v11';
 
 self.addEventListener('install', function (event) {
   var waitRun = function () {
     var _ref2 = _asyncToGenerator(function* () {
       var cache = yield caches.open(versionCache);
-
-      yield cacheDeleteSegure('v1');
-      yield cacheDeleteSegure('v2');
-      yield cacheDeleteSegure('v3');
-      yield cacheDeleteSegure('v4');
-      yield cacheDeleteSegure('v5');
-      yield cacheDeleteSegure('v6');
-      yield cacheDeleteSegure('v7');
 
       yield cache.addAll(['/otecnya-questions-offline/', '/otecnya-questions-offline/index.html', '/otecnya-questions-offline/app.js']);
     });

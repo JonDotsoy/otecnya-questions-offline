@@ -111,11 +111,12 @@ module.exports.Register = connect(
       const responses = await db.responses.toArray()
 
       const bodyfile = json2csv({
-        fields: ['rut', 'date', 'corrects', 'total', ...questions.map(e => e.title)],
+        fields: ['rut', 'name', 'date', 'corrects', 'total', ...questions.map(e => e.title)],
         data: responses.map(
-          ({rut, date, responses}) =>
+          ({rut, name, date, responses}) =>
           (
             {
+              name,
               rut,
               date,
               total: responses.length,

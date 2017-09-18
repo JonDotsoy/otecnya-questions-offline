@@ -1,4 +1,5 @@
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const url = require('url')
 const InlineEnvironmentVariablesPlugin = require('inline-environment-variables-webpack-plugin')
 const webpack = require('webpack')
 
@@ -26,7 +27,9 @@ const bs = new BrowserSyncPlugin({
   port: '3000',
   server: {
     baseDir: 'www'
-  }
+  },
+  middleware: [],
+  startPath: '/otecnya-questions-offline'
 })
 
 const plugins = [

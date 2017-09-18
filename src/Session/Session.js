@@ -72,11 +72,15 @@ const LabelDonwloadReports = styled(Link) `
 const BTNLoginOFF = styled.button`${styledButton}`
 const BTNLoginON = styled(Link)`${styledButton}`
 
-const RenderSesssion = ({tmp_rut_valid, handleChangeRut, rut, handleOnClickLogin}) => (
+const RenderSesssion = ({tmp_rut_valid, handleChangeName, handleChangeRut, rut, handleOnClickLogin}) => (
   rut
   ? <Redirect to='/' />
   : <ContainerSession>
     <ContainerBodyLogin>
+      <ContainerInput>
+        <LabelToInput>Nombre</LabelToInput>
+        <Input data-secondType="name" onChange={handleChangeName} />
+      </ContainerInput>
       <ContainerInput>
         <LabelToInput>Ingresa tu RUT a continuación</LabelToInput>
         <Input data-validate={tmp_rut_valid} onChange={handleChangeRut} />
@@ -107,8 +111,11 @@ module.exports.Session = connect(
         dispatch({type: 'sessin_login', rut: state.session.tmp_rut})
       })
     },
-    handleChangeRut: ({target: {value: tmp_rut}}) => {
-      dispatch({type: 'memory_rut', tmp_rut})
+    handleChangeRut: ({target: {value: tmp_rut}}) => { 
+     dispatch({type: 'memory_rut', tmp_rut})
+    },
+    handleChangeName: ({target: {value: name}}) => {
+      dispatch({type: 'memory_update_name', name})
     }
   })
 )(RenderSesssion)

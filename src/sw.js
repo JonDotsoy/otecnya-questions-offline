@@ -1,8 +1,16 @@
 const url = require('url')
 
-const versionCache = 'v7'
+const versionCache = 'v11'
 
-self.skipWaiting()
+async function cacheDeleteSegure (...args) {
+  try {
+    await caches.delete(...args)
+  } catch (ex) {
+    console.info(ex)
+  }
+}
+
+// self.skipWaiting()
 self.addEventListener('install', function (event) {
   async function waitRun () {
     const cache = await caches.open(versionCache)

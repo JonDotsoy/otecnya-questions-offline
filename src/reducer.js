@@ -113,7 +113,8 @@ const initialStateSession = {
   id: undefined,
   id_format: undefined,
   tmp_rut: undefined,
-  tmp_rut_valid: false
+  tmp_rut_valid: false,
+  tmp_name: undefined,
 }
 
 module.exports.session = function (state = initialStateSession, action) {
@@ -121,6 +122,12 @@ module.exports.session = function (state = initialStateSession, action) {
     case 'reset_all': {
       return {
         ...initialStateSession,
+      }
+    }
+    case 'memory_update_name': {
+      return {
+        ...state,
+        tmp_name: action.name,
       }
     }
     case 'memory_rut': {

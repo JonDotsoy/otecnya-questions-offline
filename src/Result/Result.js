@@ -93,6 +93,7 @@ module.exports.Result = connect(
         await dbready
 
         await db.responses.put({
+          name: state.session.tmp_name,
           rut: state.session.id,
           date: new Date(),
           responses: state.quest.responses,

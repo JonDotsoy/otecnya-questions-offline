@@ -1,6 +1,10 @@
 const React = require('react')
 const {default: styled} = require('styled-components')
 
+const nameInputStyle = `
+  text-transform: capitalize;
+`
+
 const Input = styled.input `
   width: 100%;
   border: solid 1px #CCC;
@@ -16,7 +20,8 @@ const Input = styled.input `
     border-color: #999;
   }
 
-  ${({'data-validate':validate}) => (validate) ? ``: `border: solid 1px red;`}
+  ${({'data-validate': validate}) => (validate === false) ? `border: solid 1px red;`: ``}
+  ${({'data-secondType': secondType}) => (secondType === 'name') ? nameInputStyle: ``}
 `
 
 module.exports.Input = (props) => (
