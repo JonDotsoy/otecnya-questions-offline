@@ -20010,7 +20010,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-console.info("question" + ' v' + "1.0.1");
+console.info("question" + ' v' + "1.0.2");
 
 __webpack_require__(135);
 
@@ -39371,10 +39371,12 @@ module.exports.Quest = connect(function (props) {
 
 var _templateObject = _taggedTemplateLiteral(['\n  min-height: 100vh;\n  background-color: #F0F0F0;\n  width: 100%;\n\n  @media (min-width: 401px) {\n    padding: 20px 0px;\n  }\n\n  @media (max-width: 400px) {\n    background-color: white;\n  }\n'], ['\n  min-height: 100vh;\n  background-color: #F0F0F0;\n  width: 100%;\n\n  @media (min-width: 401px) {\n    padding: 20px 0px;\n  }\n\n  @media (max-width: 400px) {\n    background-color: white;\n  }\n']),
     _templateObject2 = _taggedTemplateLiteral(['\n  background-color: white;\n\n  @media (min-width: 401px) {\n    border-radius: 6px;\n    margin: auto;\n    width: 400px;\n    box-shadow:\n      0px 0px 6px 0px rgba(0, 0, 0, 0.24),\n      0px 4px 6px 0px rgba(0, 0, 0, 0.12);\n  }\n'], ['\n  background-color: white;\n\n  @media (min-width: 401px) {\n    border-radius: 6px;\n    margin: auto;\n    width: 400px;\n    box-shadow:\n      0px 0px 6px 0px rgba(0, 0, 0, 0.24),\n      0px 4px 6px 0px rgba(0, 0, 0, 0.12);\n  }\n']),
-    _templateObject3 = _taggedTemplateLiteral(['\n  ', '\n  padding: 20px;\n'], ['\n  ', '\n  padding: 20px;\n']),
-    _templateObject4 = _taggedTemplateLiteral(['\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n  padding-bottom: 5px;\n'], ['\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n  padding-bottom: 5px;\n']),
-    _templateObject5 = _taggedTemplateLiteral(['\n  font-size: 12px;\n  text-decoration: underline;\n  border: none;\n  background-color: transparent;\n  padding: 0px;\n  color: black;\n  margin: 0px;\n'], ['\n  font-size: 12px;\n  text-decoration: underline;\n  border: none;\n  background-color: transparent;\n  padding: 0px;\n  color: black;\n  margin: 0px;\n']),
-    _templateObject6 = _taggedTemplateLiteral(['', ''], ['', '']);
+    _templateObject3 = _taggedTemplateLiteral(['\n  ', '\n  padding: 20px;\n  ', '\n'], ['\n  ', '\n  padding: 20px;\n  ', '\n']),
+    _templateObject4 = _taggedTemplateLiteral(['\n  color: black;\n  text-decoration: none;\n'], ['\n  color: black;\n  text-decoration: none;\n']),
+    _templateObject5 = _taggedTemplateLiteral(['\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n  padding-bottom: 5px;\n'], ['\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n  padding-bottom: 5px;\n']),
+    _templateObject6 = _taggedTemplateLiteral(['\n  font-size: 11px;\n'], ['\n  font-size: 11px;\n']),
+    _templateObject7 = _taggedTemplateLiteral(['\n  font-size: 12px;\n  text-decoration: underline;\n  border: none;\n  background-color: transparent;\n  padding: 0px;\n  color: black;\n  margin: 0px;\n'], ['\n  font-size: 12px;\n  text-decoration: underline;\n  border: none;\n  background-color: transparent;\n  padding: 0px;\n  color: black;\n  margin: 0px;\n']),
+    _templateObject8 = _taggedTemplateLiteral(['', ''], ['', '']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -39403,23 +39405,30 @@ var ContainerInput = styled.div(_templateObject3, function (_ref) {
   var _ref$align = _ref.align,
       align = _ref$align === undefined ? 'left' : _ref$align;
   return 'text-align: ' + align + ';';
+}, function (_ref2) {
+  var maxWidth = _ref2.maxWidth;
+  return maxWidth && 'margin: auto; max-width: ' + maxWidth + ';';
 });
 
-var LabelToInput = styled.div(_templateObject4);
+var LinkToCommit = styled.a(_templateObject4);
+
+var LabelToInput = styled.div(_templateObject5);
 
 var styledButton = '\n  padding: 10px 20px;\n  font-family: \'Roboto\', sans-serif;\n  border: solid 1px #aaa;\n  background-color: #ddd;\n  color: #333;\n  text-decoration: none;\n\n  &[disabled] {\n    border: solid 1px #eee;\n    background-color: #eee;\n    color: #aaa;\n  }\n';
 
-var LabelDonwloadReports = styled(Link)(_templateObject5);
+var InfoMetaDataLine = styled.div(_templateObject6);
 
-var BTNLoginOFF = styled.button(_templateObject6, styledButton);
-var BTNLoginON = styled(Link)(_templateObject6, styledButton);
+var LabelDonwloadReports = styled(Link)(_templateObject7);
 
-var RenderSesssion = function RenderSesssion(_ref2) {
-  var tmp_rut_valid = _ref2.tmp_rut_valid,
-      handleChangeName = _ref2.handleChangeName,
-      handleChangeRut = _ref2.handleChangeRut,
-      rut = _ref2.rut,
-      handleOnClickLogin = _ref2.handleOnClickLogin;
+var BTNLoginOFF = styled.button(_templateObject8, styledButton);
+var BTNLoginON = styled(Link)(_templateObject8, styledButton);
+
+var RenderSesssion = function RenderSesssion(_ref3) {
+  var tmp_rut_valid = _ref3.tmp_rut_valid,
+      handleChangeName = _ref3.handleChangeName,
+      handleChangeRut = _ref3.handleChangeRut,
+      rut = _ref3.rut,
+      handleOnClickLogin = _ref3.handleOnClickLogin;
   return rut ? React.createElement(Redirect, { to: '/' }) : React.createElement(
     ContainerSession,
     null,
@@ -39468,6 +39477,24 @@ var RenderSesssion = function RenderSesssion(_ref2) {
           'Registros'
         )
       )
+    ),
+    React.createElement(
+      ContainerInput,
+      { maxWidth: '400px' },
+      React.createElement(
+        InfoMetaDataLine,
+        null,
+        'Version v',
+        "1.0.2",
+        ' ',
+        "d8d9c2581ab112d9dc66cb275f07dffba8717a28" && React.createElement(
+          LinkToCommit,
+          { target: '_blank', href: 'https://github.com/JonDotsoy/otecnya-questions-offline/commit/' + "d8d9c2581ab112d9dc66cb275f07dffba8717a28" },
+          '(',
+          "d8d9c2581ab112d9dc66cb275f07dffba8717a28".slice(0, 9),
+          ')'
+        )
+      )
     )
   );
 };
@@ -39486,13 +39513,13 @@ module.exports.Session = connect(function (state, props) {
       });
     },
 
-    handleChangeRut: function handleChangeRut(_ref3) {
-      var tmp_rut = _ref3.target.value;
+    handleChangeRut: function handleChangeRut(_ref4) {
+      var tmp_rut = _ref4.target.value;
 
       dispatch({ type: 'memory_rut', tmp_rut: tmp_rut });
     },
-    handleChangeName: function handleChangeName(_ref4) {
-      var name = _ref4.target.value;
+    handleChangeName: function handleChangeName(_ref5) {
+      var name = _ref5.target.value;
 
       dispatch({ type: 'memory_update_name', name: name });
     }
