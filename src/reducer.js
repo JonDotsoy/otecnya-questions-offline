@@ -12,6 +12,18 @@ const initialStateRegistre = {
 }
 module.exports.registre = function (state = initialStateRegistre, action) {
   switch (action.type) {
+    case 'download_data_loading': {
+      return {
+        ...state,
+        state: 'downloading_data',
+      }
+    }
+    case 'download_data_loaded': {
+      return {
+        ...state,
+        state: '',
+      }
+    }
     case 'pulling_registre': {
       return {
         ...state,

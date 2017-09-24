@@ -65,7 +65,11 @@ class Register extends React.Component {
   }
 
   render () {
-    const {state, responses, downloadRegistre} = this.props
+    const {state, responses, downloadRegistre, downloadLiteRegistre} = this.props
+
+    if (state === 'downloading_data') {
+      return <Container><div>Descargando datos...</div></Container>
+    }
 
     if (state === 'pulling') {
       return <Container><div>Cargando...</div></Container>
@@ -76,7 +80,7 @@ class Register extends React.Component {
         <ContainerRegistre>
 
           <BTNBack to='/session'>Volver</BTNBack>
-          <BTNLink onClick={downloadRegistre}>Descargar CVS</BTNLink>
+          <BTNLink onClick={downloadLiteRegistre}>Descargar CVS</BTNLink>
 
           <div>Existen {responses.length} respuestas</div>
 
@@ -102,9 +106,30 @@ class Register extends React.Component {
 module.exports.Register = connect(
   (state, props) => ({
     state: state.registre.state,
-    responses: state.registre.responses
+    responses: state.registre.responses,
   }),
   (dispatch, props) => ({
+    downloadLiteRegistre: () => {
+      dispatch(async (dispatch, getState) => {
+        dispatch({type: 'download_data_loading'})
+        await dbready
+        const responses = await db.responses.toArray()
+
+        const bodyfile = json2csv({
+          fields: ['name', 'rut', 'date', 'corrects'],
+          data: responses.map(({rut, name, date, responses}) => ({
+            name,
+            rut: RUT.format(rut),
+            date: date.toLocaleString(),
+            corrects: `${Math.floor((responses.filter(({question, response}) => question.optionCorrect === response).length / responses.length) * 100)}%`,
+          }))
+        })
+
+        console.log(bodyfile)
+
+        dispatch({type: 'download_data_loaded'})
+      })
+    },
     downloadRegistre: async () => {
       await dbready
 
@@ -130,7 +155,6 @@ module.exports.Register = connect(
         )
       })
 
-
       const fl = new Blob([bodyfile], {type: 'text/csv'})
 
       const linkFile = window.URL.createObjectURL(fl)
@@ -145,7 +169,6 @@ module.exports.Register = connect(
       document.body.removeChild(htmla)
 
       return
-
     },
     pullData: () => {
       dispatch(async (dispatch, getState) => {
