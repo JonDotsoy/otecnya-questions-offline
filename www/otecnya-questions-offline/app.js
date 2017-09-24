@@ -20010,7 +20010,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-console.info("question" + ' v' + "1.0.5");
+console.info("question" + ' v' + "1.0.6");
 
 __webpack_require__(135);
 
@@ -39497,13 +39497,13 @@ var RenderSesssion = function RenderSesssion(_ref3) {
         InfoMetaDataLine,
         null,
         'Version v',
-        "1.0.5",
+        "1.0.6",
         ' ',
-        "0ccff6156ae3ca89eb8dfe185f17d883b5a84b34" && React.createElement(
+        "4464189593883afdd47f0db6d56f7631a64b332a" && React.createElement(
           LinkToCommit,
-          { target: '_blank', href: 'https://github.com/JonDotsoy/otecnya-questions-offline/commit/' + "0ccff6156ae3ca89eb8dfe185f17d883b5a84b34" },
+          { target: '_blank', href: 'https://github.com/JonDotsoy/otecnya-questions-offline/commit/' + "4464189593883afdd47f0db6d56f7631a64b332a" },
           '(',
-          "0ccff6156ae3ca89eb8dfe185f17d883b5a84b34".slice(0, 9),
+          "4464189593883afdd47f0db6d56f7631a64b332a".slice(0, 9),
           ')'
         )
       )
