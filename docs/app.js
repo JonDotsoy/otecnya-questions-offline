@@ -20010,7 +20010,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-console.info("question" + ' v' + "1.0.2");
+console.info("question" + ' v' + "1.0.3");
 
 __webpack_require__(135);
 
@@ -35510,6 +35510,18 @@ module.exports.registre = function () {
   var action = arguments[1];
 
   switch (action.type) {
+    case 'download_data_loading':
+      {
+        return _extends({}, state, {
+          state: 'downloading_data'
+        });
+      }
+    case 'download_data_loaded':
+      {
+        return _extends({}, state, {
+          state: ''
+        });
+      }
     case 'pulling_registre':
       {
         return _extends({}, state, {
@@ -39485,13 +39497,13 @@ var RenderSesssion = function RenderSesssion(_ref3) {
         InfoMetaDataLine,
         null,
         'Version v',
-        "1.0.2",
+        "1.0.3",
         ' ',
-        "d8d9c2581ab112d9dc66cb275f07dffba8717a28" && React.createElement(
+        "028c0dcebe3fb5bedf06bf16e717e1fbf5853739" && React.createElement(
           LinkToCommit,
-          { target: '_blank', href: 'https://github.com/JonDotsoy/otecnya-questions-offline/commit/' + "d8d9c2581ab112d9dc66cb275f07dffba8717a28" },
+          { target: '_blank', href: 'https://github.com/JonDotsoy/otecnya-questions-offline/commit/' + "028c0dcebe3fb5bedf06bf16e717e1fbf5853739" },
           '(',
-          "d8d9c2581ab112d9dc66cb275f07dffba8717a28".slice(0, 9),
+          "028c0dcebe3fb5bedf06bf16e717e1fbf5853739".slice(0, 9),
           ')'
         )
       )
@@ -40028,8 +40040,21 @@ var Register = function (_React$Component) {
       var _props = this.props,
           state = _props.state,
           responses = _props.responses,
-          downloadRegistre = _props.downloadRegistre;
+          downloadRegistre = _props.downloadRegistre,
+          downloadLiteRegistre = _props.downloadLiteRegistre;
 
+
+      if (state === 'downloading_data') {
+        return React.createElement(
+          Container,
+          null,
+          React.createElement(
+            'div',
+            null,
+            'Descargando datos...'
+          )
+        );
+      }
 
       if (state === 'pulling') {
         return React.createElement(
@@ -40056,7 +40081,7 @@ var Register = function (_React$Component) {
           ),
           React.createElement(
             BTNLink,
-            { onClick: downloadRegistre },
+            { onClick: downloadLiteRegistre },
             'Descargar CVS'
           ),
           React.createElement(
@@ -40128,8 +40153,45 @@ module.exports.Register = connect(function (state, props) {
   };
 }, function (dispatch, props) {
   return {
+    downloadLiteRegistre: function downloadLiteRegistre() {
+      dispatch(function () {
+        var _ref4 = _asyncToGenerator(function* (dispatch, getState) {
+          dispatch({ type: 'download_data_loading' });
+          yield dbready;
+          var responses = yield db.responses.toArray();
+
+          var bodyfile = json2csv({
+            fields: ['name', 'rut', 'date', 'corrects'],
+            data: responses.map(function (_ref5) {
+              var rut = _ref5.rut,
+                  name = _ref5.name,
+                  date = _ref5.date,
+                  responses = _ref5.responses;
+              return {
+                name: name,
+                rut: RUT.format(rut),
+                date: date.toLocaleString(),
+                corrects: Math.floor(responses.filter(function (_ref6) {
+                  var question = _ref6.question,
+                      response = _ref6.response;
+                  return question.optionCorrect === response;
+                }).length / responses.length * 100) + '%'
+              };
+            })
+          });
+
+          console.log(bodyfile);
+
+          dispatch({ type: 'download_data_loaded' });
+        });
+
+        return function (_x, _x2) {
+          return _ref4.apply(this, arguments);
+        };
+      }());
+    },
     downloadRegistre: function () {
-      var _ref4 = _asyncToGenerator(function* () {
+      var _ref7 = _asyncToGenerator(function* () {
         yield dbready;
 
         var responses = yield db.responses.toArray();
@@ -40138,19 +40200,19 @@ module.exports.Register = connect(function (state, props) {
           fields: ['rut', 'name', 'date', 'corrects', 'total'].concat(_toConsumableArray(questions.map(function (e) {
             return e.title;
           }))),
-          data: responses.map(function (_ref5) {
-            var rut = _ref5.rut,
-                name = _ref5.name,
-                date = _ref5.date,
-                responses = _ref5.responses;
+          data: responses.map(function (_ref8) {
+            var rut = _ref8.rut,
+                name = _ref8.name,
+                date = _ref8.date,
+                responses = _ref8.responses;
             return _extends({
               name: name,
               rut: rut,
               date: date,
               total: responses.length,
-              corrects: responses.filter(function (_ref6) {
-                var response = _ref6.response,
-                    optionCorrect = _ref6.question.optionCorrect;
+              corrects: responses.filter(function (_ref9) {
+                var response = _ref9.response,
+                    optionCorrect = _ref9.question.optionCorrect;
                 return optionCorrect === response;
               }).length
             }, [{}].concat(_toConsumableArray(responses)).reduce(function (c, next) {
@@ -40177,12 +40239,12 @@ module.exports.Register = connect(function (state, props) {
       });
 
       return function downloadRegistre() {
-        return _ref4.apply(this, arguments);
+        return _ref7.apply(this, arguments);
       };
     }(),
     pullData: function pullData() {
       dispatch(function () {
-        var _ref7 = _asyncToGenerator(function* (dispatch, getState) {
+        var _ref10 = _asyncToGenerator(function* (dispatch, getState) {
           dispatch({ type: 'pulling_registers' });
 
           yield dbready;
@@ -40196,8 +40258,8 @@ module.exports.Register = connect(function (state, props) {
           dispatch({ type: 'end_pulling_registers', responses: responses });
         });
 
-        return function (_x, _x2) {
-          return _ref7.apply(this, arguments);
+        return function (_x3, _x4) {
+          return _ref10.apply(this, arguments);
         };
       }());
     }

@@ -116,7 +116,7 @@ self.addEventListener('fetch', function (event) {
     var _url$parse = url.parse(request.url),
         pathname = _url$parse.pathname;
 
-    return yield fetch(request);
+    // return await fetch(request)
 
     var response = yield cache.match(request);
 
