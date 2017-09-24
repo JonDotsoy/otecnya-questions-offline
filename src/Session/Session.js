@@ -36,6 +36,12 @@ const ContainerBodyLogin = styled.div`
 const ContainerInput = styled.div`
   ${({align = 'left'}) => `text-align: ${align};`}
   padding: 20px;
+  ${({maxWidth}) => maxWidth && `margin: auto; max-width: ${maxWidth};`}
+`
+
+const LinkToCommit = styled.a `
+  color: black;
+  text-decoration: none;
 `
 
 const LabelToInput = styled.div`
@@ -57,6 +63,10 @@ const styledButton = `
     background-color: #eee;
     color: #aaa;
   }
+`
+
+const InfoMetaDataLine = styled.div `
+  font-size: 11px;
 `
 
 const LabelDonwloadReports = styled(Link) `
@@ -96,6 +106,12 @@ const RenderSesssion = ({tmp_rut_valid, handleChangeName, handleChangeRut, rut, 
         <LabelDonwloadReports to="/register">Registros</LabelDonwloadReports>
       </ContainerInput>
     </ContainerBodyLogin>
+    <ContainerInput maxWidth="400px">
+      <InfoMetaDataLine>Version v{process.env.npm_package_version} {
+        process.env.npm_package_gitHead &&
+        <LinkToCommit target="_blank" href={`https://github.com/JonDotsoy/otecnya-questions-offline/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 9)})</LinkToCommit>}
+      </InfoMetaDataLine>
+    </ContainerInput>
   </ContainerSession>
 )
 

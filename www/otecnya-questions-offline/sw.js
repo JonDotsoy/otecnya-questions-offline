@@ -70,78 +70,66 @@
 "use strict";
 
 
-var cacheDeleteSegure = function () {
-  var _ref = _asyncToGenerator(function* () {
-    try {
-      var _caches;
-
-      yield (_caches = caches).delete.apply(_caches, arguments);
-    } catch (ex) {
-      console.info(ex);
-    }
-  });
-
-  return function cacheDeleteSegure() {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-// self.skipWaiting()
-
-
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+/* global self, caches, fetch, Response */
 
 var url = __webpack_require__(1);
 
-var versionCache = 'v11';
+var versionCache = 'v13';
 
+self.addEventListener('activate', function (event) {
+  var cacheWhitelist = [versionCache];
+
+  event.waitUntil(_asyncToGenerator(function* () {
+    var cacheNames = yield caches.keys();
+
+    yield Promise.all(cacheNames.map(function () {
+      var _ref2 = _asyncToGenerator(function* (cacheName) {
+        if (cacheWhitelist.indexOf(cacheName) === -1) {
+          return caches.delete(cacheName);
+        }
+      });
+
+      return function (_x) {
+        return _ref2.apply(this, arguments);
+      };
+    }()));
+  })());
+});
+
+// self.skipWaiting()
 self.addEventListener('install', function (event) {
-  var waitRun = function () {
-    var _ref2 = _asyncToGenerator(function* () {
-      var cache = yield caches.open(versionCache);
+  event.waitUntil(_asyncToGenerator(function* () {
+    var cache = yield caches.open(versionCache);
 
-      yield cache.addAll(['/otecnya-questions-offline/', '/otecnya-questions-offline/index.html', '/otecnya-questions-offline/app.js']);
-    });
-
-    return function waitRun() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-
-  event.waitUntil(waitRun());
+    yield cache.addAll(['/otecnya-questions-offline/', '/otecnya-questions-offline/index.html', '/otecnya-questions-offline/app.js']);
+  })());
 });
 
 self.addEventListener('fetch', function (event) {
-  var respondFetch = function () {
-    var _ref3 = _asyncToGenerator(function* () {
-      var cache = yield caches.open(versionCache);
+  event.respondWith(_asyncToGenerator(function* () {
+    var cache = yield caches.open(versionCache);
 
-      var request = event.request;
+    var request = event.request;
 
-      var _url$parse = url.parse(request.url),
-          pathname = _url$parse.pathname;
+    var _url$parse = url.parse(request.url),
+        pathname = _url$parse.pathname;
 
-      // return await fetch(request)
+    return yield fetch(request);
 
-      var response = yield cache.match(request);
+    var response = yield cache.match(request);
 
-      if (response) {
-        return response;
-      } else {
-        try {
-          return yield fetch(request);
-        } catch (err) {
-          return new Response('is not posible load ' + pathname);
-        }
+    if (response) {
+      return response;
+    } else {
+      try {
+        return yield fetch(request);
+      } catch (err) {
+        return new Response('is not posible load ' + pathname);
       }
-    });
-
-    return function respondFetch() {
-      return _ref3.apply(this, arguments);
-    };
-  }();
-
-  event.respondWith(respondFetch());
+    }
+  })());
 });
 
 /***/ }),
