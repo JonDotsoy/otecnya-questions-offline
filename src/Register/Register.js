@@ -125,7 +125,18 @@ module.exports.Register = connect(
           }))
         })
 
-        console.log(bodyfile)
+        const fl = new Blob([bodyfile], {type: 'text/csv'})
+
+        const linkFile = window.URL.createObjectURL(fl)
+
+        const htmla = window.document.createElement('a')
+        htmla.href = linkFile
+
+        htmla.download = `registry_${(new Date()).toLocaleString().replace(/[^a-z0-9]/ig, '-')}.csv`
+
+        document.body.appendChild(htmla)
+        htmla.click()
+        document.body.removeChild(htmla)
 
         dispatch({type: 'download_data_loaded'})
       })

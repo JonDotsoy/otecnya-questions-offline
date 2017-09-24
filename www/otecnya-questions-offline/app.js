@@ -20010,7 +20010,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-console.info("question" + ' v' + "1.0.3");
+console.info("question" + ' v' + "1.0.4");
 
 __webpack_require__(135);
 
@@ -39497,13 +39497,13 @@ var RenderSesssion = function RenderSesssion(_ref3) {
         InfoMetaDataLine,
         null,
         'Version v',
-        "1.0.3",
+        "1.0.4",
         ' ',
-        "028c0dcebe3fb5bedf06bf16e717e1fbf5853739" && React.createElement(
+        "1b4023d23bb2d23456bc9a2e9acab64a42188653" && React.createElement(
           LinkToCommit,
-          { target: '_blank', href: 'https://github.com/JonDotsoy/otecnya-questions-offline/commit/' + "028c0dcebe3fb5bedf06bf16e717e1fbf5853739" },
+          { target: '_blank', href: 'https://github.com/JonDotsoy/otecnya-questions-offline/commit/' + "1b4023d23bb2d23456bc9a2e9acab64a42188653" },
           '(',
-          "028c0dcebe3fb5bedf06bf16e717e1fbf5853739".slice(0, 9),
+          "1b4023d23bb2d23456bc9a2e9acab64a42188653".slice(0, 9),
           ')'
         )
       )
@@ -40180,7 +40180,18 @@ module.exports.Register = connect(function (state, props) {
             })
           });
 
-          console.log(bodyfile);
+          var fl = new Blob([bodyfile], { type: 'text/csv' });
+
+          var linkFile = window.URL.createObjectURL(fl);
+
+          var htmla = window.document.createElement('a');
+          htmla.href = linkFile;
+
+          htmla.download = 'registry_' + new Date().toLocaleString().replace(/[^a-z0-9]/ig, '-') + '.csv';
+
+          document.body.appendChild(htmla);
+          htmla.click();
+          document.body.removeChild(htmla);
 
           dispatch({ type: 'download_data_loaded' });
         });

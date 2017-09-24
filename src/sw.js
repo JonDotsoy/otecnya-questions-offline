@@ -2,7 +2,7 @@
 
 const url = require('url')
 
-const versionCache = 'v13'
+const versionCache = `v13-${process.env.npm_package_version}`
 
 self.addEventListener('activate', function (event) {
   const cacheWhitelist = [versionCache]
