@@ -1,4 +1,6 @@
 ## [Unreleased][]
+### Changed
+- Update react@15 to react@16
 
 ## [1.0.7][] — 2017-09-23
 ### Added
