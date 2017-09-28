@@ -1,9 +1,19 @@
 ## [Unreleased][]
 
+## [1.0.7][] — 2017-09-23
+### Added
+
+- ([3943869][]) Show the version in Session section
+
+### Changed
+
+- ([3943869][]) Format to export with "Name", "Rut", "Date", and "evaluation"
+
+
 ## [1.0.1][] — 2017-09-18
 ### Added
 
-- ([e2fc8db][]) Added Name field
+- ([e2fc8db][]) Added Name field into start session
 
 
 ## [1.0.0][] — 2017-09-17
@@ -23,5 +33,7 @@
 [Unreleased]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/9e5068f...v1.0.0
 [1.0.1]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.0...v1.0.1
+[1.0.7]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.1...v1.0.7
 [d4e3880]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/d4e3880
-[e2fc8db]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/d4e3880
+[e2fc8db]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/e2fc8db
+[3943869]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/3943869
