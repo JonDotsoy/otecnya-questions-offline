@@ -11,6 +11,7 @@ const {HashRouter: Router, Route, Switch} = require('react-router-dom')
 const {Quest} = require('./Quest/Quest')
 const {Session} = require('./Session/Session')
 const {Result} = require('./Result/Result')
+const {Logger} = require('./components/Logger/Logger')
 const {Register} = require('./Register/Register')
 const {RegisterDetaills} = require('./Register/RegisterDetaills')
 const {default: thunk} = require('redux-thunk')
@@ -101,15 +102,18 @@ require('./registerServiceWorker')({
 ReactDOM.render((
   <div>
     <Provider store={store}>
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Quest} />
-          <Route exact path='/session' component={Session} />
-          <Route exact path='/results' component={Result} />
-          <Route exact path='/register' component={Register} />
-          <Route exact path='/register/:idRegistre' component={RegisterDetaills} />
-        </Switch>
-      </Router>
+      <div>
+        <Logger />
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Quest} />
+            <Route exact path='/session' component={Session} />
+            <Route exact path='/results' component={Result} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/register/:idRegistre' component={RegisterDetaills} />
+          </Switch>
+        </Router>
+      </div>
     </Provider>
   </div>
   ),

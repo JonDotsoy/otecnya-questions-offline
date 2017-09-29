@@ -2,6 +2,28 @@
 const {loadQuestions} = require('./util/lodasSamples')
 const RUT = require('rut.js')
 
+const initialStateAppStatus = {
+  state: 'unchange'
+}
+
+module.exports.appStatus = function (state = initialStateAppStatus, action) {
+  switch (action.type) {
+    case 'APP_STEP_DISCARD': {
+      return {
+        ...state,
+        ...initialStateAppStatus,
+      }
+    }
+    case 'APP_STEP_WAITING': {
+      return {
+        ...state,
+        state: 'waiting',
+      }
+    }
+    default: return state
+  }
+}
+
 const initialStateRegistre = {
   state: 'no_load',
   responses: [],
