@@ -44,7 +44,7 @@ const ContainerLogger = styled.div`
 const ResolveMessageLogger = ({appState}) => {
   switch (appState) {
     // case 'waiting': return <span>Existe una actualización por favor actualiza la app. <LinkOfAction>Actualizar Ahora</LinkOfAction></span>
-    case 'waiting': return <span>Existe una actualización, pro favor cierra y vuelva a abrir la aplicación.</span>
+    case 'waiting': return <span>Tenemos nuevos cambios en la aplicación, por favor cierra y vuelva a abrir esta aplicación.</span>
     default: return appState
   }
 }

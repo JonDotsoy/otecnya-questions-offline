@@ -1,4 +1,8 @@
 ## [Unreleased][]
+
+### Added
+- ([e563014][]) Show a message with new version disponible
+
 ### Changed
 - ([e709cb9][]) Update react@15 to react@16
 
@@ -39,4 +43,4 @@
 [3943869]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/3943869
 [e709cb9]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/e709cb9
 [8056e7d]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/8056e7d
-
+[e563014]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/e563014
