@@ -5,7 +5,16 @@ module.exports = async function registerServiceWorker ({store}) {
   storeInspectWaiting(store, registration)
 
   registration.addEventListener('updatefound', (event) => {
-    storeInspectWaiting(store, registration)
+    if (registration.installing !== null) {
+      const intervalProsess = setInterval(() => {
+        if (registration.installing === null) {
+          clearInterval(intervalProsess)
+          storeInspectWaiting(store, registration)
+        }
+      }, 100)
+    } else {
+      storeInspectWaiting(store, registration)
+    }
   })
 }
 

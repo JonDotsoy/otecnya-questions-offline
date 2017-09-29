@@ -2,7 +2,7 @@
 
 const url = require('url')
 
-const versionCache = `${process.env.npm_package_name}-${process.env.npm_package_version}-1`
+const versionCache = `${process.env.npm_package_name}-${process.env.npm_package_version}-6`
 const filesOnCache = [
   '/otecnya-questions-offline/',
   '/otecnya-questions-offline/app.js'
