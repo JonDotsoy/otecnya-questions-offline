@@ -2,6 +2,9 @@
 ### Changed
 - ([e709cb9][]) Update react@15 to react@16
 
+### Fixed
+- ([8056e7d][]) Fix warning of react
+
 ## [1.0.7][] — 2017-09-23
 ### Added
 - ([3943869][]) Show the version in Session section
@@ -35,3 +38,5 @@
 [e2fc8db]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/e2fc8db
 [3943869]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/3943869
 [e709cb9]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/e709cb9
+[8056e7d]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/8056e7d
+
