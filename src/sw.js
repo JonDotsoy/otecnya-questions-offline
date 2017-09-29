@@ -13,7 +13,7 @@ self.addEventListener('activate', function (event) {
 
   event.waitUntil(
     (async () => {
-      const cacheNames = (await caches.keys()).filter(cacheName => cacheName.indexOf(`${process.env.npm_package_name}`) === 0)
+      const cacheNames = (await caches.keys()).filter((cacheName) => (cacheName.indexOf(`${process.env.npm_package_name}`) === 0 || cacheName.indexOf('files') === 0))
 
       await Promise.all(
         cacheNames.map(async (cacheName) => {
