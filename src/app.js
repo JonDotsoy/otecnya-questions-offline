@@ -1,4 +1,4 @@
-console.info(`${process.env.npm_package_name} v${process.env.npm_package_version}`)
+console.info(`${process.env.npm_package_name} v${process.env.npm_package_version} ${process.env.npm_package_gitHead && `(${process.env.npm_package_gitHead.slice(0, 7)})`}`)
 
 const sample = require('lodash/sample')
 const React = require('react')

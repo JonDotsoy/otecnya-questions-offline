@@ -62,6 +62,7 @@ const styledButton = `
     border: solid 1px #eee;
     background-color: #eee;
     color: #aaa;
+
   }
 `
 
@@ -109,7 +110,7 @@ const RenderSesssion = ({tmp_rut_valid, handleChangeName, handleChangeRut, rut, 
     <ContainerInput maxWidth="400px">
       <InfoMetaDataLine>Version v{process.env.npm_package_version} {
         process.env.npm_package_gitHead &&
-        <LinkToCommit target="_blank" href={`https://github.com/JonDotsoy/otecnya-questions-offline/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 9)})</LinkToCommit>}
+        <LinkToCommit target="_blank" href={`https://github.com/JonDotsoy/otecnya-questions-offline/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 7)})</LinkToCommit>}
       </InfoMetaDataLine>
     </ContainerInput>
   </ContainerSession>
