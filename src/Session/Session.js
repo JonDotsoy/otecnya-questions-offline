@@ -89,7 +89,7 @@ const RenderSesssion = ({tmp_rut_valid, handleChangeName, handleChangeRut, rut, 
     <ContainerBodyLogin>
       <ContainerInput>
         <LabelToInput>Nombre</LabelToInput>
-        <Input data-secondType="name" onChange={handleChangeName} />
+        <Input data-secondtype="name" onChange={handleChangeName} />
       </ContainerInput>
       <ContainerInput>
         <LabelToInput>Ingresa tu RUT a continuación</LabelToInput>

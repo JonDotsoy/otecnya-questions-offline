@@ -1,7 +1,5 @@
 console.info(`${process.env.npm_package_name} v${process.env.npm_package_version}`)
 
-require('./registerServiceWorker')
-
 const sample = require('lodash/sample')
 const React = require('react')
 const ReactDOM = require('react-dom')
@@ -93,6 +91,12 @@ const store = createStore(
   },
   applyMiddleware(thunk)
 )
+
+// Load service worker
+require('./registerServiceWorker')({
+  store
+})
+.catch(console.error)
 
 ReactDOM.render((
   <div>

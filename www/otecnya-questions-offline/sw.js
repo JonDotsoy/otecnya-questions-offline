@@ -76,7 +76,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var url = __webpack_require__(1);
 
-var versionCache = 'files-13-' + "1.0.7";
+var versionCache = "question" + '-' + "1.0.7" + '-0';
 
 self.addEventListener('activate', function (event) {
   var cacheWhitelist = [versionCache];
