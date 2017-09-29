@@ -39,7 +39,7 @@ const ContainerInput = styled.div`
   ${({maxWidth}) => maxWidth && `margin: auto; max-width: ${maxWidth};`}
 `
 
-const LinkToCommit = styled.a `
+const LinkToCommit = styled.a`
   color: black;
   text-decoration: none;
 `
@@ -66,11 +66,11 @@ const styledButton = `
   }
 `
 
-const InfoMetaDataLine = styled.div `
+const InfoMetaDataLine = styled.div`
   font-size: 11px;
 `
 
-const LabelDonwloadReports = styled(Link) `
+const LabelDonwloadReports = styled(Link)`
   font-size: 12px;
   text-decoration: underline;
   border: none;
@@ -83,56 +83,71 @@ const LabelDonwloadReports = styled(Link) `
 const BTNLoginOFF = styled.button`${styledButton}`
 const BTNLoginON = styled(Link)`${styledButton}`
 
-const RenderSesssion = ({tmp_rut_valid, handleChangeName, handleChangeRut, rut, handleOnClickLogin}) => (
+const RenderSesssion = ({tmp_rut_valid, handleChangeName, generalHandleChange, handleChangeRut, rut, handleOnClickLogin}) => (
   rut
   ? <Redirect to='/' />
   : <ContainerSession>
     <ContainerBodyLogin>
-      <ContainerInput>
-        <LabelToInput>Nombre</LabelToInput>
-        <Input data-secondtype="name" onChange={handleChangeName} />
-      </ContainerInput>
-      <ContainerInput>
-        <LabelToInput>Ingresa tu RUT a continuación</LabelToInput>
-        <Input data-validate={tmp_rut_valid} onChange={handleChangeRut} />
-      </ContainerInput>
-      <ContainerInput>
-        {
-          tmp_rut_valid
-          ? <BTNLoginON to='/' disabled={!tmp_rut_valid} onClick={handleOnClickLogin}>Ingresar</BTNLoginON>
-          : <BTNLoginOFF disabled={!tmp_rut_valid}>Ingresar</BTNLoginOFF>
-        }
-      </ContainerInput>
-      <ContainerInput>
-        <LabelDonwloadReports to="/register">Registros</LabelDonwloadReports>
-      </ContainerInput>
+      <form name="credentials" onSubmit={handleOnClickLogin}>
+        <ContainerInput>
+          <LabelToInput>Identificador del curso</LabelToInput>
+          <Input name='idCourse' onChange={generalHandleChange} />
+        </ContainerInput>
+        <ContainerInput>
+          <LabelToInput>Nombre</LabelToInput>
+          <Input name='name' onChange={generalHandleChange} />
+        </ContainerInput>
+        <ContainerInput>
+          <LabelToInput>RUT</LabelToInput>
+          <Input name='rut' data-validate={tmp_rut_valid} onChange={generalHandleChange} />
+        </ContainerInput>
+        <ContainerInput>
+          <LabelToInput>Ingresa la localidad</LabelToInput>
+          <Input name='location' onChange={generalHandleChange} />
+        </ContainerInput>
+        <ContainerInput>
+          <LabelToInput>Ingresa una empresa</LabelToInput>
+          <Input name='business' onChange={generalHandleChange} />
+        </ContainerInput>
+        <ContainerInput>
+          {
+            tmp_rut_valid
+            ? <BTNLoginON to='/' disabled={!tmp_rut_valid} onClick={handleOnClickLogin}>Ingresar</BTNLoginON>
+            : <BTNLoginOFF disabled={!tmp_rut_valid}>Ingresar</BTNLoginOFF>
+          }
+        </ContainerInput>
+        <ContainerInput>
+          <LabelDonwloadReports to='/register'>Registros</LabelDonwloadReports>
+        </ContainerInput>
+      </form>
     </ContainerBodyLogin>
-    <ContainerInput maxWidth="400px">
+    <ContainerInput maxWidth='400px'>
       <InfoMetaDataLine>Version v{process.env.npm_package_version} {
         process.env.npm_package_gitHead &&
-        <LinkToCommit target="_blank" href={`https://github.com/JonDotsoy/otecnya-questions-offline/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 7)})</LinkToCommit>}
+        <LinkToCommit target='_blank' href={`https://github.com/JonDotsoy/otecnya-questions-offline/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 7)})</LinkToCommit>}
       </InfoMetaDataLine>
     </ContainerInput>
   </ContainerSession>
 )
 
 module.exports.Session = connect(
-  (state, props) => ({
+  (state, props) => (console.log(state.forms_memory.fields), {
     rut: state.session.id,
-    tmp_rut_valid: state.session.tmp_rut_valid
+    tmp_rut_valid: state.session.tmp_rut_valid,
   }),
   (dispatch, props) => ({
     handleOnClickLogin () {
       dispatch((dispatch, getState) => {
         const state = getState()
-        dispatch({type: 'sessin_login', rut: state.session.tmp_rut})
+        dispatch({type: 'sessin_login', rut: state.forms_memory.fields.credentials_rut})
       })
     },
-    handleChangeRut: ({target: {value: tmp_rut}}) => { 
-     dispatch({type: 'memory_rut', tmp_rut})
-    },
-    handleChangeName: ({target: {value: name}}) => {
-      dispatch({type: 'memory_update_name', name})
+    generalHandleChange: (event) => {
+      const name = event.target.name
+      const value = event.target.value
+      const form = event.target.form && event.target.form.getAttribute('name')
+
+      dispatch({type: 'form_memory_update', value, name, form})
     }
   })
 )(RenderSesssion)

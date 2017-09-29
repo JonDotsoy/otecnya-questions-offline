@@ -21,7 +21,6 @@ const Input = styled.input `
   }
 
   ${({'data-validate': validate}) => (validate === false) ? `border: solid 1px red;`: ``}
-  ${({'data-secondtype': secondType}) => (secondType === 'name') ? nameInputStyle: ``}
 `
 
 module.exports.Input = (props) => (
