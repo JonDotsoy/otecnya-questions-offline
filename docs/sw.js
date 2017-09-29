@@ -76,14 +76,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var url = __webpack_require__(1);
 
-var versionCache = "question" + '-' + "1.0.7" + '-0';
+var versionCache = "question" + '-' + "1.0.7" + '-6';
+var filesOnCache = ['/otecnya-questions-offline/', '/otecnya-questions-offline/app.js'];
 
 self.addEventListener('activate', function (event) {
   var cacheWhitelist = [versionCache];
 
   event.waitUntil(_asyncToGenerator(function* () {
     var cacheNames = (yield caches.keys()).filter(function (cacheName) {
-      return cacheName.indexOf('' + "question") === 0;
+      return cacheName.indexOf('' + "question") === 0 || cacheName.indexOf('files') === 0;
     });
 
     yield Promise.all(cacheNames.map(function () {
@@ -101,16 +102,18 @@ self.addEventListener('activate', function (event) {
 });
 
 // self.skipWaiting()
+
 self.addEventListener('install', function (event) {
   event.waitUntil(_asyncToGenerator(function* () {
     var cache = yield caches.open(versionCache);
 
-    yield cache.addAll(['/otecnya-questions-offline/', '/otecnya-questions-offline/index.html', '/otecnya-questions-offline/app.js']);
+    yield cache.addAll(filesOnCache);
   })());
 });
 
 self.addEventListener('fetch', function (event) {
   event.respondWith(_asyncToGenerator(function* () {
+
     var cache = yield caches.open(versionCache);
 
     var request = event.request;
@@ -128,7 +131,7 @@ self.addEventListener('fetch', function (event) {
       try {
         return yield fetch(request);
       } catch (err) {
-        return new Response('is not posible load ' + pathname);
+        return new Response('Not found "' + pathname + '".', { status: 404 });
       }
     }
   })());
