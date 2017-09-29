@@ -56,7 +56,7 @@ self.addEventListener('fetch', function (event) {
       try {
         return await fetch(request)
       } catch (err) {
-        return new Response(`is not posible load ${pathname}`)
+        return new Response(`Not found "${pathname}".`, {status: 404})
       }
     }
 
