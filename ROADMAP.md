@@ -14,3 +14,19 @@ Mejorar el recurso de la plataforma permitiendo que los usuarios puedan agregar 
 
 El service worker intentara actualizar los datos en todo momento, apoyado un un ente externo. Que sera el relator a cargo del curso
 
+### new changes
+- Control de Version
+    + Interface que se conecta al store para actualiar la UI
+        * Se conecta con el sw para manejar control el state local
+- Sessión agregar nuevos campos
+    + Modificar el esquema de la DB
+    + Aplicar documento de migración
+    + Campo de texto con autocompletado
+    + mecanismo de aprendisaje para reusar los nombres a usados
+    + Actualizar UI con nuevos campos de texto
+    + Recordar seción anterior
+    + Logout de la Sesión
+- Actualizar pagina Registros
+    + Agregar información al registro a mostrar en la UI
+    + Agregar información al registro a mostrar en el SCV a exportar
+
