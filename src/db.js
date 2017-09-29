@@ -2,11 +2,13 @@ const Dexie = require('dexie')
 
 const db = new Dexie('responses')
 
-const dbReadyV1 = db.version('1').stores({
+const dbReadyV1 = db.version(1)
+.stores({
   responses: `++id,rut,date,responses`
 })
 
-const dbReadyV2 = db.version('2').stores({
+const dbReadyV2 = db.version(2)
+.stores({
   responses: `++id,rut,date,responses,location,business`
 })
 .upgrade(function (trans) {
@@ -16,6 +18,19 @@ const dbReadyV2 = db.version('2').stores({
   })
 })
 
-module.exports.ready = Promise.all([dbReadyV1, dbReadyV2])
+const dbReadyV3 = db.version(3)
+.stores({
+  responses: `++id,rut,date,responses,location,business`
+})
+.upgrade(function (trans) {
+  trans.responses.toCollection().modify(function (response) {
+    response.location = null
+    response.business = null
+    console.log('migrate it db')
+    console.log(response)
+  })
+})
+
+module.exports.ready = Promise.all([dbReadyV1, dbReadyV2, dbReadyV3])
 
 module.exports.db = db
