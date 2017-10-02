@@ -8,7 +8,8 @@
 - ([e709cb9][]) Update react@15 to react@16
 
 ### Fixed
-- ([8056e7d][]) Fix warning of react
+- ([8056e7d][]) Warning of react
+- ([58c3215][]) Questions: revisions and corrections with Lionel, and logic to sorter
 
 ## [1.0.7][] — 2017-09-23
 ### Added
@@ -46,3 +47,5 @@
 [8056e7d]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/8056e7d
 [f06b6d9]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/f06b6d9
 [dfe5117]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/dfe5117
+[58c3215]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/, and logic to sorter58c3215, and logic to sorter
+
