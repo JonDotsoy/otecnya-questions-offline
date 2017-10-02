@@ -27,7 +27,8 @@ module.exports = [
     ]
   },
   {
-    title: 'Las siguientes opciones muestra condiciones de trabajo asociadas al manejo manual de carga ¿Cuál de estas acciones está prohibida según la ley Nº 20.001?',
+    // 
+    title: 'Las siguientes opciones muestran condiciones de trabajo asociadas al manejo manual de carga ¿Cuál de estas acciones está prohibida según la ley Nº 20.001?',
     options: [
       'Que una trabajadora cargue bultos de más de 20 kg.',
       'Que un trabajador mueva sacos de cemento apoyados en el hombro.',
@@ -45,7 +46,7 @@ module.exports = [
     ]
   },
   {
-    title: 'Una trabajadora debe mover varias bolsas voluminosas de un extremo a otro del piso de una tienda de retail. ¿Cuál de las siguientes es una condición de riesgo asociado la tarea a realizar?',
+    title: 'Una trabajadora debe mover varias bolsas voluminosas de un extremo a otro del piso de una tienda de retail. ¿Cuál de las siguientes es una condición de riesgo asociado a la tarea a realizar?',
     options: [
       'El trayecto presenta escaleras y obstáculos.',
       'Transporta la carga procurando que las bolsas tengan el mismo peso.',
@@ -95,8 +96,8 @@ module.exports = [
       'El volumen de la carga y si la carga está en equilibrio.',
       'Si la carga se maneja pegada al tronco y sin torsión.',
       'Si la forma y consistencia de la carga puede ocasionar lesiones al trabajador, en particular golpes.'
-
-    ]
+    ],
+    sort: ['always end', 'Todas las anteriores.']
   },
   {
     title: 'Es una buena práctica  en el levantamiento de carga:',
@@ -131,7 +132,7 @@ module.exports = [
       'Que requiera ser transportado, no importando su peso.'
     ]
   }, {
-    title: 'Las siguientes opciones muestran factores de riesgo asociadas al movimiento manual de carga ¿Cuál de estas acciones está prohibida según la ley Nº 20.001?',
+    title: 'Las siguientes opciones muestran factores de riesgos asociados al movimiento manual de carga ¿Cuál de estas acciones está prohibida según la ley Nº 20.001?',
     options: [
       'Que una trabajadora cargue paquetes de más de 20 kg.',
       'Que un trabajador mueva sacos de cemento apoyados en el hombro.',
@@ -178,37 +179,34 @@ module.exports = [
       'Capacitar a los trabajadores en los riesgos asociados a la manipulación manual de carga y los procedimientos para prevención.',
       'Implementar ayudas mecánicas para reducir el esfuerzo realizado por el trabajador cuando sea posible.',
       'Realizar un registro de las tareas que implican manejo manual de carga y de los trabajadores expuestos.'
-    ]
+    ],
+    sort: ['always end', 'Todas las anteriores.'],
   }, {
     title: 'Para poder minimizar otros riesgos que pueden estar asociados a la tarea de manejo manual de cargas se debe considerar los siguientes aspectos:',
     options: [
-
       'Todas las anteriores.',
-      'Los suelos son un factor influyente, sobretodo en el caso de existir ramplas.',
+      'Los suelos son un factor influyente, sobretodo en el caso de existir rampas.',
       'Evitar maniobrar cargas en suelos resbaladizos.',
-      'Usar calzado seguro independiente de la adherencia de éstos al suelo.'
-
-    ]
+      'Usar calzado antideslizante.'
+    ],
+    sort: ['always end', 'Todas las anteriores.'],
   },
   {
     title: 'En las actividades relacionadas con el manejo manual de cargas es necesario establecer rutinas de pausas activas, para:',
     options: [
-
       'Todas las anteriores.',
-      'Fomentar la compensación de los sobreesfuerzos e inadecuadas posturas que se generan.',
+      'Fomentar la compensación de los sobre esfuerzos e inadecuadas posturas que se generan.',
       'Regular el peso de las cargas transportadas.',
       'Mejorar la postura.'
-
-    ]
+    ],
+    sort: ['always end', 'Todas las anteriores.'],
   }, {
     title: 'La Ley N° 20.001 comúnmente conocida como Ley del Saco, tiene como propósito principal:',
     options: [
-
-      'La protección de la salud de los trabajadores, estableciendo las medidas preventivas para minimizar los riesgos derivados del manejo manual de cargas y la promulgación de mecanismo adecuados.',
+      'La protección de la salud de los trabajadores, estableciendo las medidas preventivas para minimizar los riesgos derivados del manejo manual de cargas y la utilización de mecanismos adecuados.',
       'La regulación de los mecanismos que influyen en el transporte de mecanismos pesados',
       'Establecer medidas que regulen el peso máximo que pueden transportar vehículos motorizados o de tracción animal.',
       'La protección de la salud de los trabajadores, estableciendo ejercicios preventivos para mantener la salud en condición óptima.'
-
     ]
   }, {
     title: '¿Qué factores intervienen en el proceso de manipulación de una carga?',
@@ -219,19 +217,21 @@ module.exports = [
       'Esfuerzo físico.',
       'Características del medio de trabajo.'
 
-    ]
+    ],
+    sort: ['always end', 'Todas las anteriores.'],
   }, {
     title: '¿Cuáles pueden ser las causas de lesiones por un incorrecto MMC?',
     options: [
-      'Todos los anteriores',
+      'Todas las anteriores.',
       'La magnitud de los esfuerzos (peso o volumen de la carga excesivos).',
       'Alta frecuencia de los esfuerzos (repetición de movimientos para tareas de manipulación manual de cargas, durante la jornada de trabajo).',
       'Entorno ambiental (falta de espacio, superﬁcie deslizantes, iluminación insuﬁciente, aire, humedad, o temperatura inadecuada, vibraciones y ruido excesivo, etc.).'
-    ]
+    ],
+    sort: ['always end', 'Todas las anteriores.'],
   },
   {
     stag: 'VERDADERO O FALSO',
-    title: 'Existen 3 tipos de manejo manual de cargas; el levantamiento y descenso, el transporte o traslado, y el empuje y arrastre.',
+    title: 'Existen 3 tipos de manejo manual de cargas; el levantamiento y descenso, el transporte, empuje y arrastre.',
     options: [
       'Verdadero',
       'Falso'
@@ -247,7 +247,7 @@ module.exports = [
   },
   {
     stag: 'VERDADERO O FALSO',
-    title: 'Los principales riesgos asociados al esfuerzo físico dependen de, por ejemplo, si es esfuerzo es intenso, repetitivo o prolongado.',
+    title: 'Los principales riesgos asociados al esfuerzo físico dependen de por ejemplo, si es esfuerzo es intenso, repetitivo o prolongado.',
     options: [
       'Verdadero',
       'Falso'
@@ -255,7 +255,7 @@ module.exports = [
   },
   {
     stag: 'VERDADERO O FALSO',
-    title: 'Al momento de realizar empuje y arrastre, es necesario evaluar, por ejemplo, la pesa de la carga y la distancia de traslado.',
+    title: 'Al momento de realizar empuje y arrastre, es necesario evaluar, por ejemplo, el peso de la carga y la distancia de traslado.',
     options: [
       'Verdadero',
       'Falso'
@@ -303,7 +303,7 @@ module.exports = [
   },
   {
     stag: 'VERDADERO O FALSO',
-    title: 'En la organización del trabajo se debe acomodar el material donde hay espacio para levantarlo con seguridad, sin tener que alcanzarlo o doblarse.',
+    title: 'En la organización del trabajo se debe acomodar el material donde hay espacio para levantarlo con seguridad, sin que al tener que alcanzarlo deba doblarse.',
     options: [
       'Verdadero',
       'Falso'
