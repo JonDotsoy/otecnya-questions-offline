@@ -1,25 +1,48 @@
 
+const util = require('util')
 const {expect} = require('chai')
-
 const questions = require('../src/questions')
-
 const {formatQuestion, sampleQuestions} = require('../src/util/samples')
 
 describe('Load questions', () => {
-  it('formatQuestion', () => {
-    const q = questions[3]
-    const qp = formatQuestion(q)
+  // Util format question
+  describe('formatQuestion', () => {
+    const utilGetTestQuestion = (indexQuestion) => {
+      const questionBrute = questions[indexQuestion]
+      const question = formatQuestion(questionBrute)
 
-    for (const indexOP in q.options) {
-      const op = q.options[indexOP]
+      for (const indexOption in questionBrute.options) {
+        const option = questionBrute.options[indexOption]
 
-      expect(qp.options).include(op)
+        expect(question.options).include(option)
+      }
+
+      expect(questionBrute.title).is.equal(question.title)
+
+      expect(questionBrute.options).include(question.optionCorrect)
+
+      return {questionBrute, question}
     }
 
-    expect(q.title).is.equal(qp.title)
-    expect(q.options).include(qp.optionCorrect)
+    // Test default questions
+    it('default question', () => {
+      const {questionBrute, question} = utilGetTestQuestion(3)
+    })
+
+    it('question with asc', () => {
+      const {questionBrute, question} = utilGetTestQuestion(13)
+
+      expect(question.options).to.be.eql([ '10 kilos.', '15 kilos.', '20 kilos.', '25 kilos.' ])
+    })
+
+    it('question with allways end', () => {
+      const {questionBrute, question} = utilGetTestQuestion(21)
+
+      expect(question.options[question.options.length - 1]).to.be.equal(question.optionCorrect)
+    })
   })
 
+  // Obtiene una pregunta de forma aleatoria y compara la respuesta correcta
   it('get questions', () => {
     const samples = sampleQuestions(questions)
 
