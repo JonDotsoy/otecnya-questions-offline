@@ -66,11 +66,23 @@ const BTNResponse = styled.button`
   padding: 10px;
   background-color: #eee;
   cursor: pointer;
+  margin-bottom: 5px;
 
   &:hover {
     background-color: #ddd;
   }
 `
+
+export const Question = ({title, options, onClickOption}) => (
+  <BodyQuestion>
+    <TitleQuestion>{title}</TitleQuestion>
+    <BodyResponses>
+      {Array.isArray(options) && options.map((option, index) => (
+        <BTNResponse key={`${title}-${option}`} onClick={onClickOption} data-nrequest={index} data-value={option}>{option}</BTNResponse>
+    ))}
+    </BodyResponses>
+  </BodyQuestion>
+)
 
 const Quest = ({finishQuestionary, rut, rut_format, question, currentQuestion, countQuestions, nextQuestion}) => (
   !rut

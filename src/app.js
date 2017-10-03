@@ -12,6 +12,7 @@ const {Quest} = require('./Quest/Quest')
 const {Session} = require('./Session/Session')
 const {Result} = require('./Result/Result')
 const {Logger} = require('./components/Logger/Logger')
+const {Questions} = require('./Questions/Questions')
 const {Register} = require('./Register/Register')
 const {RegisterDetaills} = require('./Register/RegisterDetaills')
 const {default: thunk} = require('redux-thunk')
@@ -107,6 +108,7 @@ ReactDOM.render((
         <Router>
           <Switch>
             <Route exact path='/' component={Quest} />
+            <Route exact path='/questions' component={Questions} />
             <Route exact path='/session' component={Session} />
             <Route exact path='/results' component={Result} />
             <Route exact path='/register' component={Register} />
