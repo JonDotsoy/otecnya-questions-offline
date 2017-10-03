@@ -7,6 +7,7 @@
 
 ### Changed
 - ([e709cb9][]) Update react@15 to react@16
+- ([b771814][]) Use sessión with name, rut, location, business and id course
 
 ### Fixed
 - ([8056e7d][]) Warning of react
@@ -50,4 +51,4 @@
 [dfe5117]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/dfe5117
 [58c3215]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/58c3215
 [ac5b4a2]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/ac5b4a2
-
+[b771814]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/b771814
