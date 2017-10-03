@@ -35,7 +35,7 @@ const ContainerBodyLogin = styled.div`
 
 const ContainerInput = styled.div`
   ${({align = 'left'}) => `text-align: ${align};`}
-  padding: 20px;
+  padding: 10px 20px;
   ${({maxWidth}) => maxWidth && `margin: auto; max-width: ${maxWidth};`}
 `
 
@@ -59,10 +59,10 @@ const styledButton = `
   text-decoration: none;
 
   &[disabled] {
+    padding: 10px 20px;
     border: solid 1px #eee;
     background-color: #eee;
     color: #aaa;
-
   }
 `
 
@@ -80,40 +80,44 @@ const LabelDonwloadReports = styled(Link)`
   margin: 0px;
 `
 
-const BTNLoginOFF = styled.button`${styledButton}`
+const BTNLoginOFF = styled.a`${styledButton}`
 const BTNLoginON = styled(Link)`${styledButton}`
 
-const RenderSesssion = ({tmp_rut_valid, handleChangeName, generalHandleChange, handleChangeRut, rut, handleOnClickLogin}) => (
+const disableSubmitForm = (event) => {
+  event.preventDefault()
+}
+
+const RenderSesssion = ({tmp_location_valid, tmp_business_valid, tmp_rut_valid, tmp_name_valid, isValidToContinue, handleChangeName, generalHandleChange, handleChangeRut, rut, handleOnClickLogin}) => (
   rut
   ? <Redirect to='/' />
   : <ContainerSession>
     <ContainerBodyLogin>
-      <form name="credentials" onSubmit={handleOnClickLogin}>
-        <ContainerInput>
-          <LabelToInput>Identificador del curso</LabelToInput>
-          <Input name='idCourse' onChange={generalHandleChange} />
-        </ContainerInput>
+      <form name='credentials' onSubmit={disableSubmitForm}>
         <ContainerInput>
           <LabelToInput>Nombre</LabelToInput>
-          <Input name='name' onChange={generalHandleChange} />
+          <Input name='name' data-validate={tmp_name_valid} onChange={generalHandleChange} />
         </ContainerInput>
         <ContainerInput>
           <LabelToInput>RUT</LabelToInput>
           <Input name='rut' data-validate={tmp_rut_valid} onChange={generalHandleChange} />
         </ContainerInput>
         <ContainerInput>
-          <LabelToInput>Ingresa la localidad</LabelToInput>
-          <Input name='location' onChange={generalHandleChange} />
+          <LabelToInput>Identificador del Curso</LabelToInput>
+          <Input name='idCourse' type='number' min='0' onChange={generalHandleChange} />
         </ContainerInput>
         <ContainerInput>
-          <LabelToInput>Ingresa una empresa</LabelToInput>
-          <Input name='business' onChange={generalHandleChange} />
+          <LabelToInput>Localidad Actual</LabelToInput>
+          <Input name='location' data-validate={tmp_location_valid} onChange={generalHandleChange} />
+        </ContainerInput>
+        <ContainerInput>
+          <LabelToInput>Empresa</LabelToInput>
+          <Input name='business' data-validate={tmp_business_valid} onChange={generalHandleChange} />
         </ContainerInput>
         <ContainerInput>
           {
-            tmp_rut_valid
-            ? <BTNLoginON to='/' disabled={!tmp_rut_valid} onClick={handleOnClickLogin}>Ingresar</BTNLoginON>
-            : <BTNLoginOFF disabled={!tmp_rut_valid}>Ingresar</BTNLoginOFF>
+            isValidToContinue
+            ? <BTNLoginON to='/'>Ingresar</BTNLoginON>
+            : <BTNLoginOFF disabled>Ingresar</BTNLoginOFF>
           }
         </ContainerInput>
         <ContainerInput>
@@ -131,15 +135,32 @@ const RenderSesssion = ({tmp_rut_valid, handleChangeName, generalHandleChange, h
 )
 
 module.exports.Session = connect(
-  (state, props) => (console.log(state.forms_memory.fields), {
+  (state, props) => ({
     rut: state.session.id,
+    isValidToContinue: (
+      state.session.tmp_rut_valid &&
+      state.session.tmp_name_valid &&
+      state.session.tmp_location_valid &&
+      state.session.tmp_business_valid
+    ),
+    tmp_name_valid: state.session.tmp_name_valid,
     tmp_rut_valid: state.session.tmp_rut_valid,
+    tmp_location_valid: state.session.tmp_location_valid,
+    tmp_business_valid: state.session.tmp_business_valid
   }),
   (dispatch, props) => ({
     handleOnClickLogin () {
       dispatch((dispatch, getState) => {
         const state = getState()
-        dispatch({type: 'sessin_login', rut: state.forms_memory.fields.credentials_rut})
+
+        dispatch({
+          type: 'sessin_login',
+          name: state.forms_memory.fields.credentials_name,
+          idCourse: state.forms_memory.fields.credentials_idCourse,
+          location: state.forms_memory.fields.credentials_location,
+          business: state.forms_memory.fields.credentials_business,
+          rut: state.forms_memory.fields.credentials_rut
+        })
       })
     },
     generalHandleChange: (event) => {

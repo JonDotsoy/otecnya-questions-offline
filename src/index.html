@@ -14,16 +14,18 @@
         <div class="message-wait" style="display: none"><i>i</i> Please wait a moment.</div>
         
         <script>
-            setTimeout(() => {
-                for (const el of document.querySelectorAll('.message-wait')) {
-                    el.style.display = "block"
-                }
-            }, 2000)
+            // setTimeout(() => {
+            //     for (const el of document.querySelectorAll('.message-wait')) {
+            //         el.style.display = "block"
+            //     }
+            // }, 2000)
+            "use strict";setTimeout(function(){var _iteratorNormalCompletion=!0,_didIteratorError=!1,_iteratorError=void 0;try{for(var b,c,a=document.querySelectorAll(".message-wait")[Symbol.iterator]();!(_iteratorNormalCompletion=(b=a.next()).done);_iteratorNormalCompletion=!0)c=b.value,c.style.display="block"}catch(d){_didIteratorError=!0,_iteratorError=d}finally{try{!_iteratorNormalCompletion&&a.return&&a.return()}finally{if(_didIteratorError)throw _iteratorError}}},2e3);
         </script>
 
         <hr>
 
         <div><i><%= process.env.npm_package_name%> v<%= process.env.npm_package_version %> <%= process.env.npm_package_gitHead && `(${process.env.npm_package_gitHead.slice(0, 7)})` %></i></div>
+
     </div>
     <script src="app.js"></script>
 </body>

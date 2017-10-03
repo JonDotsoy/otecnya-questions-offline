@@ -4,14 +4,20 @@ const sample = require('lodash/sample')
 module.exports.formatQuestion = formatQuestion
 module.exports.sampleQuestions = sampleQuestions
 
-function formatQuestion ({stag, options, title}) {
+function formatQuestion ({stag, options, title, sort}) {
   const optionCorrect = options[0]
+
+  let optionsOut = [...options].sort(() => sample([-1, 1])).sort(() => sample([-1, 1]))
+
+  if (sort) {
+    optionsOut.sort(sort)
+  }
 
   return {
     stag,
     title,
     optionCorrect,
-    options: [...options].sort(() => sample([-1, 1])).sort(() => sample([-1, 1])),
+    options: optionsOut,
   }
 }
 

@@ -10,6 +10,9 @@ const Container = styled.div `
   background-color: white;
   width: 100%;
   height: 100vh;
+  max-width: 800px;
+  margin: auto;
+  position: relative;
 `
 
 const QuestionContainer = styled.div `
@@ -29,6 +32,8 @@ const GoodOption = styled.span`
 const PanelControl = styled.div `
   position: fixed;
   width: 100%;
+  top: 0px;
+  left: 0px;
   padding: 20px;
   background-color: white;
   box-shadow:
@@ -43,7 +48,7 @@ class Questions extends React.Component {
   }
 
   render () {
-    const {state, questions, pullQuestions, checkShowCorrectResponse, showCorrect} = this.props
+    const {goToHome, state, questions, pullQuestions, checkShowCorrectResponse, showCorrect} = this.props
 
     if (state === 'loading') {
       return <div>Cargando...</div>
@@ -51,6 +56,7 @@ class Questions extends React.Component {
 
     return <Container>
       <PanelControl>
+        <button onClick={goToHome}>Volver al Inicio</button>
         <button onClick={pullQuestions}>Reload</button>
         <span>
           <input type="checkbox" onClick={checkShowCorrectResponse}/>
@@ -94,6 +100,9 @@ module.exports.Questions = connect(
       } else {
         dispatch({type:'HIDE_CORRECT_OPTION'})
       }
-    }
+    },
+    goToHome: (event) => {
+      props.history.replace('/')
+    },
   })
 )(Questions)

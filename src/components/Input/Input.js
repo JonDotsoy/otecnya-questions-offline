@@ -9,8 +9,9 @@ const Input = styled.input `
   width: 100%;
   border: solid 1px #CCC;
   border-radius: 5px;
-  padding: 20px 10px;
+  padding: 10px 10px;
   box-sizing: border-box;
+  outline: none;
 
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
@@ -18,9 +19,10 @@ const Input = styled.input `
   &:hover,
   &:focus {
     border-color: #999;
+    ${({'data-validate': validate}) => (validate === false) ? `border-color: red;`: ``}
   }
 
-  ${({'data-validate': validate}) => (validate === false) ? `border: solid 1px red;`: ``}
+  ${({'data-validate': validate}) => (validate === false) ? `border-color: red;`: ``}
 `
 
 module.exports.Input = (props) => (

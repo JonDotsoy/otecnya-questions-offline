@@ -148,6 +148,9 @@ const initialStateSession = {
   id_format: undefined,
   tmp_rut: undefined,
   tmp_rut_valid: false,
+  tmp_name_valid: false,
+  tmp_location_valid: false,
+  tmp_business_valid: false,
   // tmp_name: undefined
 }
 
@@ -159,19 +162,36 @@ module.exports.session = function (state = initialStateSession, action) {
       }
     }
     case 'form_memory_update': {
-      if (action.form === 'credentials' && action.name === 'rut') {
-        return {
-          ...state,
-          tmp_rut_valid: RUT.validate(RUT.clean(action.value))
+      if (action.form === 'credentials') {
+        switch (action.name) {
+          case 'rut': {
+            return {
+              ...state,
+              tmp_rut_valid: RUT.validate(RUT.clean(action.value))
+            }
+          }
+          case 'location':
+          case 'business':
+          case 'name': {
+            return {
+              ...state,
+              [`tmp_${action.name}_valid`]: action.value !== ''
+            }
+          }
         }
       }
+
       return state
     }
     case 'sessin_login': {
       return {
         ...state,
         id: RUT.clean(action.rut),
-        id_format: RUT.format(RUT.clean(action.rut))
+        id_format: RUT.format(RUT.clean(action.rut)),
+        name: action.name,
+        idCourse: action.idCourse,
+        location: action.location,
+        business: action.business,
       }
     }
     default: return state
@@ -181,7 +201,7 @@ module.exports.session = function (state = initialStateSession, action) {
 const initialStateFormMemory = {
   fields: {}
 }
-module.exports.forms_memory = function (state = initialStateFormMemory, action) {
+export function forms_memory (state = initialStateFormMemory, action) {
   switch (action.type) {
     case 'form_memory_update': {
       const {name, value, form} = action
@@ -197,3 +217,43 @@ module.exports.forms_memory = function (state = initialStateFormMemory, action) 
     default: return state
   }
 }
+
+const initialStateQuestions = {
+  state: null,
+  questions: [],
+  showCorrect: false,
+}
+
+export function questions (state = initialStateQuestions, action) {
+  switch (action.type) {
+    case 'PULL_QUESTIONS': {
+      return {
+        ...state,
+        state: 'loading',
+      }
+    }
+    case 'SHOW_CORRECT_OPTION': {
+      return {
+        ...state,
+        showCorrect: true,
+      }
+    }
+    case 'HIDE_CORRECT_OPTION': {
+      return {
+        ...state,
+        showCorrect: false,
+      }
+    }
+    case 'SET_QUESTIONS': {
+      if (!Array.isArray(action.questions)) throw new TypeError(`action.questions is no a array`)
+
+      return {
+        ...state,
+        state: 'with_questions',
+        questions: action.questions
+      }
+    }
+    default: return state
+  }
+}
+

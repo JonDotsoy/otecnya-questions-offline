@@ -92,12 +92,20 @@ module.exports.Result = connect(
 
         await dbready
 
-        await db.responses.put({
-          name: state.session.tmp_name,
+        console.log(state)
+
+        const data = {
+          name: state.forms_memory.fields.credentials_name,
           rut: state.session.id,
           date: new Date(),
+          // location,
+          // business,
           responses: state.quest.responses,
-        })
+        }
+
+        console.dir(data)
+
+        await db.responses.put(data)
 
         dispatch({type: 'save_response_saved'})
 
