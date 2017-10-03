@@ -3,6 +3,7 @@
 ### Added
 - ([f06b6d9][]) Show a message with new version available
 - ([dfe5117][]) Update the cache control to not remove cache under similar domains on Github.
+- ([ac5b4a2][]) Page to show all questions
 
 ### Changed
 - ([e709cb9][]) Update react@15 to react@16
@@ -47,5 +48,6 @@
 [8056e7d]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/8056e7d
 [f06b6d9]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/f06b6d9
 [dfe5117]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/dfe5117
-[58c3215]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/, and logic to sorter58c3215, and logic to sorter
+[58c3215]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/58c3215
+[ac5b4a2]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/ac5b4a2
 
