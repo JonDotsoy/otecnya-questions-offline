@@ -11385,7 +11385,7 @@ var _templateObject = _taggedTemplateLiteral(['\n  @import url(\'https://fonts.g
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-console.info("question" + ' v' + "2.0.0" + ' ' + ("5d775d4237a64d7299b8675b4b2ad3b32d43d79d" && '(' + "5d775d4237a64d7299b8675b4b2ad3b32d43d79d".slice(0, 7) + ')'));
+console.info("question" + ' v' + "2.0.0" + ' ' + ("063c928eff72e1ae5d96bde41364c3a86bf6d292" && '(' + "063c928eff72e1ae5d96bde41364c3a86bf6d292".slice(0, 7) + ')'));
 
 var React = __webpack_require__(1);
 var ReactDOM = __webpack_require__(82);
@@ -39707,11 +39707,11 @@ var RenderSesssion = function RenderSesssion(_ref3) {
         'Version v',
         "2.0.0",
         ' ',
-        "5d775d4237a64d7299b8675b4b2ad3b32d43d79d" && React.createElement(
+        "063c928eff72e1ae5d96bde41364c3a86bf6d292" && React.createElement(
           LinkToCommit,
-          { target: '_blank', href: 'https://github.com/JonDotsoy/otecnya-questions-offline/commit/' + "5d775d4237a64d7299b8675b4b2ad3b32d43d79d" },
+          { target: '_blank', href: 'https://github.com/JonDotsoy/otecnya-questions-offline/commit/' + "063c928eff72e1ae5d96bde41364c3a86bf6d292" },
           '(',
-          "5d775d4237a64d7299b8675b4b2ad3b32d43d79d".slice(0, 7),
+          "063c928eff72e1ae5d96bde41364c3a86bf6d292".slice(0, 7),
           ')'
         )
       )
