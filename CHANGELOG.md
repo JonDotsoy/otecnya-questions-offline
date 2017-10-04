@@ -1,5 +1,7 @@
 ## [Unreleased][]
 
+## [2.0.0][] — 2017-10-04
+
 ### Added
 - ([f06b6d9][]) Show a message with new version available
 - ([dfe5117][]) Update the cache control to not remove cache under similar domains on Github.
@@ -42,10 +44,11 @@
 - ([d4e3880][]) Registries page
 
 
-[Unreleased]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v2.0.0...HEAD
 [1.0.0]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/9e5068f...v1.0.0
 [1.0.1]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.0...v1.0.1
 [1.0.7]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.1...v1.0.7
+[2.0.0]: https://github.com/JonDotsoy/otecnya-questions-offline/compare/v1.0.7...v2.0.0
 [d4e3880]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/d4e3880
 [e2fc8db]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/e2fc8db
 [3943869]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/3943869
