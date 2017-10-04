@@ -4,10 +4,12 @@
 - ([f06b6d9][]) Show a message with new version available
 - ([dfe5117][]) Update the cache control to not remove cache under similar domains on Github.
 - ([ac5b4a2][]) Page to show all questions
+- ([fd08633][]) Added karma to run test
 
 ### Changed
 - ([e709cb9][]) Update react@15 to react@16
-- ([b771814][]) Use sessión with name, rut, location, business and id course
+- ([fd08633][]) Use sessión with name, rut, location, business and id course
+- ([fd08633][]) Use control to sessión
 
 ### Fixed
 - ([8056e7d][]) Warning of react
@@ -52,3 +54,4 @@
 [58c3215]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/58c3215
 [ac5b4a2]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/ac5b4a2
 [b771814]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/b771814
+[fd08633]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/fd08633
