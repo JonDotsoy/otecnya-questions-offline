@@ -26,7 +26,26 @@ module.exports = function (config) {
       'test/**/*.js': ['webpack']
     },
 
-    webpack: {},
+    webpack: {
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['env', {
+                  exclude: ['transform-regenerator']
+                }],
+                'stage-0',
+                'react'
+              ]
+            }
+          }
+        ]
+      }
+    },
 
     webpackMiddleware: {
       stats: 'errors-only'

@@ -5,7 +5,7 @@ const ReactDOM = require('react-dom')
 const {injectGlobal} = require('styled-components')
 const {store} = require('./store')
 const {Provider} = require('react-redux')
-const {HashRouter: Router, Route, Switch} = require('react-router-dom')
+const {HashRouter: Router, Route, Switch, Redirect} = require('react-router-dom')
 const {Quest} = require('./Quest/Quest')
 const {Session} = require('./Session/Session')
 const {Result} = require('./Result/Result')
@@ -37,6 +37,15 @@ require('./registerServiceWorker')({
 })
 .catch(console.error)
 
+store.dispatch({
+  type: 'sessin_login',
+  rut: '111111111',
+  name: 'John',
+  location: 'atacama',
+  business: 'achs',
+  idCourse: '12345'
+})
+
 ReactDOM.render((
   <div>
     <Provider store={store}>
@@ -44,7 +53,8 @@ ReactDOM.render((
         <Logger />
         <Router>
           <Switch>
-            <Route exact path='/' component={Quest} />
+            <Route exact path='/' component={() => <Redirect to='/session' />} />
+            <Route exact path='/quest' component={Quest} />
             <Route exact path='/questions' component={Questions} />
             <Route exact path='/session' component={Session} />
             <Route exact path='/results' component={Result} />

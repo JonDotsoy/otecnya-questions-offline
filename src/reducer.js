@@ -144,14 +144,18 @@ module.exports.quest = function (state = initialStateQuest, action) {
 }
 
 const initialStateSession = {
-  id: undefined,
-  id_format: undefined,
-  tmp_rut: undefined,
+  id: null,
+  id_format: null,
+  name: null,
+  idCourse: null,
+  location: null,
+  business: null,
+  tmp_rut: null,
   tmp_rut_valid: false,
   tmp_name_valid: false,
   tmp_location_valid: false,
   tmp_business_valid: false,
-  // tmp_name: undefined
+  // tmp_name: null
 }
 
 module.exports.session = function (state = initialStateSession, action) {
@@ -182,6 +186,17 @@ module.exports.session = function (state = initialStateSession, action) {
       }
 
       return state
+    }
+    case 'session_logout': {
+      return {
+        ...state,
+        id: null,
+        id_format: null,
+        name: null,
+        idCourse: null,
+        location: null,
+        business: null,
+      }
     }
     case 'sessin_login': {
       return {

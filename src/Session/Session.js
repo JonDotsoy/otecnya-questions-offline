@@ -3,6 +3,7 @@ const {connect} = require('react-redux')
 const {default: styled} = require('styled-components')
 const RUT = require('rut.js')
 
+const {isLogin} = require('../util/sessionControl')
 const {Redirect, Link} = require('react-router-dom')
 const {Input} = require('../components/Input/Input')
 
@@ -20,7 +21,7 @@ const ContainerSession = styled.div`
   }
 `
 
-const ContainerBodyLogin = styled.div`
+const ContainerBody = styled.div`
   background-color: white;
 
   @media (min-width: 401px) {
@@ -33,7 +34,7 @@ const ContainerBodyLogin = styled.div`
   }
 `
 
-const ContainerInput = styled.div`
+const ContainerFieldElement = styled.div`
   ${({align = 'left'}) => `text-align: ${align};`}
   padding: 10px 20px;
   ${({maxWidth}) => maxWidth && `margin: auto; max-width: ${maxWidth};`}
@@ -57,8 +58,18 @@ const styledButton = `
   background-color: #ddd;
   color: #333;
   text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  
+  &:hover {
+    box-shadow:
+      0px 0px 4px rgba(0, 0, 0, 0.24),
+      0px 2px 4px rgba(0, 0, 0, 0.12)
+    ;
+  }
 
   &[disabled] {
+    cursor: default;
     padding: 10px 20px;
     border: solid 1px #eee;
     background-color: #eee;
@@ -80,63 +91,101 @@ const LabelDonwloadReports = styled(Link)`
   margin: 0px;
 `
 
-const BTNLoginOFF = styled.a`${styledButton}`
-const BTNLoginON = styled(Link)`${styledButton}`
+const BTN = styled.a `${styledButton}`
+const BTNLink = styled(Link) `${styledButton}`
+const BTNLoginOFF = styled.a `${styledButton}`
+const BTNLoginON = styled.a `${styledButton}`
 
 const disableSubmitForm = (event) => {
   event.preventDefault()
 }
 
-const RenderSesssion = ({tmp_location_valid, tmp_business_valid, tmp_rut_valid, tmp_name_valid, isValidToContinue, handleChangeName, generalHandleChange, handleChangeRut, rut, handleOnClickLogin}) => (
-  rut
-  ? <Redirect to='/' />
-  : <ContainerSession>
-    <ContainerBodyLogin>
-      <form name='credentials' onSubmit={disableSubmitForm}>
-        <ContainerInput>
-          <LabelToInput>Nombre</LabelToInput>
-          <Input name='name' data-validate={tmp_name_valid} onChange={generalHandleChange} />
-        </ContainerInput>
-        <ContainerInput>
-          <LabelToInput>RUT</LabelToInput>
-          <Input name='rut' data-validate={tmp_rut_valid} onChange={generalHandleChange} />
-        </ContainerInput>
-        <ContainerInput>
-          <LabelToInput>Identificador del Curso</LabelToInput>
-          <Input name='idCourse' type='number' min='0' onChange={generalHandleChange} />
-        </ContainerInput>
-        <ContainerInput>
-          <LabelToInput>Localidad Actual</LabelToInput>
-          <Input name='location' data-validate={tmp_location_valid} onChange={generalHandleChange} />
-        </ContainerInput>
-        <ContainerInput>
-          <LabelToInput>Empresa</LabelToInput>
-          <Input name='business' data-validate={tmp_business_valid} onChange={generalHandleChange} />
-        </ContainerInput>
-        <ContainerInput>
-          {
-            isValidToContinue
-            ? <BTNLoginON to='/'>Ingresar</BTNLoginON>
-            : <BTNLoginOFF disabled>Ingresar</BTNLoginOFF>
-          }
-        </ContainerInput>
-        <ContainerInput>
-          <LabelDonwloadReports to='/register'>Registros</LabelDonwloadReports>
-        </ContainerInput>
-      </form>
-    </ContainerBodyLogin>
-    <ContainerInput maxWidth='400px'>
-      <InfoMetaDataLine>Version v{process.env.npm_package_version} {
-        process.env.npm_package_gitHead &&
-        <LinkToCommit target='_blank' href={`https://github.com/JonDotsoy/otecnya-questions-offline/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 7)})</LinkToCommit>}
-      </InfoMetaDataLine>
-    </ContainerInput>
-  </ContainerSession>
+const RenderSesssion = ({logged, handleLogout, tmp_location_valid, tmp_business_valid, tmp_rut_valid, tmp_name_valid, isValidToContinue, handleChangeName, generalHandleChange, handleChangeRut, id, handleLogin, name, rut, idCourse, location, business}) => (
+  logged
+  ?
+    <ContainerSession>
+      <ContainerBody>
+        <ContainerFieldElement>
+          <h3>Sesión Actual</h3>
+        </ContainerFieldElement>
+
+        <ContainerFieldElement>
+            <LabelToInput>Nombre</LabelToInput>
+            <Input name='name' disabled defaultValue={name}/>
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            <LabelToInput>RUT</LabelToInput>
+            <Input name='rut' disabled defaultValue={rut}/>
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            <LabelToInput>Identificador del Curso</LabelToInput>
+            <Input name='idCourse' disabled defaultValue={idCourse}/>
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            <LabelToInput>Localidad Actual</LabelToInput>
+            <Input name='location' data-decorator='text-titlecase' disabled defaultValue={location}/>
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            <LabelToInput>Empresa</LabelToInput>
+            <Input name='business' disabled defaultValue={business}/>
+          </ContainerFieldElement>
+
+        <ContainerFieldElement>
+          <BTNLink to='/quest'>Ir a las preguntas</BTNLink>
+          <BTN onClick={handleLogout}>Cerrar Sesión</BTN>
+        </ContainerFieldElement>
+      </ContainerBody>
+    </ContainerSession>
+  :
+    <ContainerSession>
+      <ContainerBody>
+        <form name='credentials' onSubmit={disableSubmitForm}>
+          <ContainerFieldElement>
+            <LabelToInput>Nombre</LabelToInput>
+            <Input name='name' data-validate={tmp_name_valid} onChange={generalHandleChange} defaultValue={name}/>
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            <LabelToInput>RUT</LabelToInput>
+            <Input name='rut' data-validate={tmp_rut_valid} onChange={generalHandleChange} defaultValue={rut}/>
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            <LabelToInput>Identificador del Curso</LabelToInput>
+            <Input name='idCourse' type='number' min='0' onChange={generalHandleChange} defaultValue={idCourse}/>
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            <LabelToInput>Localidad Actual</LabelToInput>
+            <Input name='location' data-decorator='text-titlecase' data-validate={tmp_location_valid} onChange={generalHandleChange} defaultValue={location}/>
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            <LabelToInput>Empresa</LabelToInput>
+            <Input name='business' data-validate={tmp_business_valid} onChange={generalHandleChange} defaultValue={business}/>
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            {
+              isValidToContinue
+              ? <BTN onClick={handleLogin}>Ingresar</BTN>
+              : <BTN disabled>Ingresar</BTN>
+            }
+          </ContainerFieldElement>
+          <ContainerFieldElement>
+            <LabelDonwloadReports to='/register'>Registros</LabelDonwloadReports>
+          </ContainerFieldElement>
+        </form>
+      </ContainerBody>
+      <ContainerFieldElement maxWidth='400px'>
+        <InfoMetaDataLine>Version v{process.env.npm_package_version} {
+          process.env.npm_package_gitHead &&
+          <LinkToCommit target='_blank' href={`https://github.com/JonDotsoy/otecnya-questions-offline/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 7)})</LinkToCommit>}
+        </InfoMetaDataLine>
+      </ContainerFieldElement>
+    </ContainerSession>
 )
 
 module.exports.Session = connect(
-  (state, props) => ({
-    rut: state.session.id,
+  (state, props) => ( /* console.log(isLogin(state)), */ {
+    logged: isLogin(state),
+    id: state.session.id,
+    rut: state.session.id_format,
     isValidToContinue: (
       state.session.tmp_rut_valid &&
       state.session.tmp_name_valid &&
@@ -146,20 +195,27 @@ module.exports.Session = connect(
     tmp_name_valid: state.session.tmp_name_valid,
     tmp_rut_valid: state.session.tmp_rut_valid,
     tmp_location_valid: state.session.tmp_location_valid,
-    tmp_business_valid: state.session.tmp_business_valid
+    tmp_business_valid: state.session.tmp_business_valid,
+    name: state.session.name,
+    idCourse: state.session.idCourse,
+    location: state.session.location,
+    business: state.session.business,
   }),
   (dispatch, props) => ({
-    handleOnClickLogin () {
+    handleLogout: () => dispatch({
+      type: 'session_logout',
+    }),
+    handleLogin () {
       dispatch((dispatch, getState) => {
         const state = getState()
 
         dispatch({
           type: 'sessin_login',
+          rut: state.forms_memory.fields.credentials_rut,
           name: state.forms_memory.fields.credentials_name,
-          idCourse: state.forms_memory.fields.credentials_idCourse,
           location: state.forms_memory.fields.credentials_location,
           business: state.forms_memory.fields.credentials_business,
-          rut: state.forms_memory.fields.credentials_rut
+          idCourse: state.forms_memory.fields.credentials_idCourse,
         })
       })
     },
