@@ -4,6 +4,7 @@ const {ready: dbready, db} = require('../db')
 const React = require('react')
 const {connect} = require('react-redux')
 const RUT = require('rut.js')
+const kebabCase = require('lodash/kebabCase')
 const {Link} = require('react-router-dom')
 const {default: styled} = require('styled-components')
 
@@ -86,7 +87,7 @@ class Register extends React.Component {
 
           {
             responses.map((response, n) => (
-              <ROW key={`${response.rut}—${response.date}`}>
+              <ROW key={n}>
                 <DataLavel flex='1'><span>{RUT.format(response.rut)}</span></DataLavel>
                 <DataLavel flex='1'><span>{response.date.toLocaleString()}</span></DataLavel>
                 <DataLavel flex='2'><span>Respuesta correctas: {response.responses.filter(({question, response}) => question.optionCorrect === response).length} de {response.responses.length} ({Math.floor((response.responses.filter(({question, response}) => question.optionCorrect === response).length / response.responses.length) * 100)}%)</span></DataLavel>
@@ -116,10 +117,12 @@ module.exports.Register = connect(
         const responses = await db.responses.toArray()
 
         const bodyfile = json2csv({
-          fields: ['name', 'rut', 'date', 'corrects'],
-          data: responses.map(({rut, name, date, responses}) => ({
+          fields: ['name', 'rut', 'location' ,'business', 'date', 'corrects'],
+          data: responses.map(({rut, name, location, business, date, responses}) => ({
             name,
             rut: RUT.format(rut),
+            location,
+            business,
             date: date.toLocaleString(),
             corrects: `${Math.floor((responses.filter(({question, response}) => question.optionCorrect === response).length / responses.length) * 100)}%`,
           }))
