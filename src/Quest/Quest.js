@@ -39,6 +39,10 @@ const ContainerBody = styled.div`
   }
 `
 
+const ShowName = styled.span `
+  text-transform: capitalize;
+`
+
 const HeaderContent = styled.div`
   display: block;
 `
@@ -84,7 +88,7 @@ export const Question = ({title, options, onClickOption}) => (
   </BodyQuestion>
 )
 
-const Quest = ({finishQuestionary, rut, rut_format, question, currentQuestion, countQuestions, nextQuestion}) => (
+const Quest = ({finishQuestionary, rut, rut_format, question, currentQuestion, countQuestions, nextQuestion, name}) => (
   !rut
   ? <Redirect to='/session' />
     : finishQuestionary === true
@@ -93,7 +97,7 @@ const Quest = ({finishQuestionary, rut, rut_format, question, currentQuestion, c
         <Container>
           <ContainerBody>
             <HeaderContent>
-            RUT {rut_format} — {currentQuestion + 1} de {countQuestions} preguntas.
+            <ShowName>{name}</ShowName> — RUT {rut_format} — {currentQuestion + 1} de {countQuestions} preguntas.
           </HeaderContent>
             <BodyQuestion>
               <TitleQuestion>{question.title}</TitleQuestion>
@@ -111,6 +115,7 @@ const Quest = ({finishQuestionary, rut, rut_format, question, currentQuestion, c
 module.exports.Quest = connect(
   (props) => ({
     rut: props.session.id,
+    name: props.session.name,
     rut_format: props.session.id_format,
     question: props.quest.questions[props.quest.currentQuestion],
     currentQuestion: props.quest.currentQuestion,

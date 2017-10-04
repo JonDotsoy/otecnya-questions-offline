@@ -160,11 +160,11 @@ const initialStateSession = {
 
 module.exports.session = function (state = initialStateSession, action) {
   switch (action.type) {
-    case 'reset_all': {
+    /*case 'reset_all': {
       return {
         ...initialStateSession
       }
-    }
+    }*/
     case 'form_memory_update': {
       if (action.form === 'credentials') {
         switch (action.name) {

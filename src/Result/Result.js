@@ -31,6 +31,10 @@ const LabelData = styled.div`
   
 `
 
+const ShowName = styled.span `
+  text-transform: capitalize;
+`
+
 const styleBtn = `
   display: inline-block;
   border: none;
@@ -59,17 +63,29 @@ const styleBtn = `
 const BtnSave = styled.button`${styleBtn}`
 const BtnReset = styled(Link)`${styleBtn}`
 
-const Result = ({correctAvg, saved, rut_format, finishQuestionary, saveResponses, saving, resetSession}) => (
+const Result = ({correctAvg, saved, rut_format, finishQuestionary, saveResponses, saving, resetSession, name}) => (
   finishQuestionary === false ? <Redirect to='/' />
   : (
-    saving ? <div>Guardando...</div>:
-    <ContainerResult>
-      <BodyResult>
-        <LabelData>RUT: {rut_format}</LabelData>
-        <LabelData>Porcentage correcto: {Math.floor(correctAvg * 100)}%</LabelData>
-        <BtnSave disabled={saved === true} onClick={saveResponses}>{saved ? 'Ya a sido guardado' : 'Guardar Registro'}</BtnSave>
-        <BtnReset to="/" onClick={resetSession}>Comenzar de Nuevo</BtnReset>
-      </BodyResult>
+    saving ? <div>Guardando...</div>
+    : <ContainerResult>
+      {
+        !saved
+        ? (
+          <BodyResult>
+            <LabelData><ShowName>{name}</ShowName> — RUT: {rut_format}</LabelData>
+            <LabelData>Porcentage correcto: {Math.floor(correctAvg * 100)}%</LabelData>
+            <BtnSave disabled={saved === true} onClick={saveResponses}>{saved ? 'Ya a sido guardado' : 'Guardar Registro'}</BtnSave>
+            <BtnReset to='/quest' onClick={resetSession}>Comenzar de Nuevo</BtnReset>
+          </BodyResult>
+        )
+        : (
+          <BodyResult>
+            <LabelData>RUT: {rut_format}</LabelData>
+            <LabelData>Porcentage correcto: {Math.floor(correctAvg * 100)}%</LabelData>
+            <BtnReset to='/' onClick={resetSession}>Ir al Inicio</BtnReset>
+          </BodyResult>
+        )
+      }
     </ContainerResult>
   )
 )
@@ -77,10 +93,11 @@ const Result = ({correctAvg, saved, rut_format, finishQuestionary, saveResponses
 module.exports.Result = connect(
   (state, props) => ({
     rut_format: state.session.id_format,
+    name: state.session.name,
     finishQuestionary: state.quest.finishQuestionary,
     correctAvg: state.quest.responses.filter(res => res.question.optionCorrect === res.response).length / state.quest.responses.length,
     saved: state.quest.saved === true,
-    saving: state.quest.saving === true,
+    saving: state.quest.saving === true
   }),
   (dispatch, props) => ({
     resetSession: (event) => dispatch({type: 'reset_all'}),
@@ -92,15 +109,15 @@ module.exports.Result = connect(
 
         await dbready
 
-        console.log(state)
-
         const data = {
           name: state.forms_memory.fields.credentials_name,
-          rut: state.session.id,
           date: new Date(),
-          // location,
-          // business,
-          responses: state.quest.responses,
+          rut: state.session.id,
+          name: state.session.name,
+          idCourse: state.session.idCourse,
+          location: state.session.location,
+          business: state.session.business,
+          responses: state.quest.responses
         }
 
         console.dir(data)
@@ -108,9 +125,7 @@ module.exports.Result = connect(
         await db.responses.put(data)
 
         dispatch({type: 'save_response_saved'})
-
       })
     }
   })
 )(Result)
-

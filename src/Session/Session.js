@@ -131,7 +131,7 @@ const RenderSesssion = ({logged, handleLogout, tmp_location_valid, tmp_business_
           </ContainerFieldElement>
 
         <ContainerFieldElement>
-          <BTNLink to='/quest'>Ir a las preguntas</BTNLink>
+          <BTNLink to='/quest'>Iniciar Cuestionario</BTNLink>
           <BTN onClick={handleLogout}>Cerrar Sesión</BTN>
         </ContainerFieldElement>
       </ContainerBody>
