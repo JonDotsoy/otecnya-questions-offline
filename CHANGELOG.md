@@ -5,6 +5,7 @@
 - ([dfe5117][]) Update the cache control to not remove cache under similar domains on Github.
 - ([ac5b4a2][]) Page to show all questions
 - ([fd08633][]) Added karma to run test
+- ([8a830ac][]) Autocomplete to input location and business
 
 ### Changed
 - ([e709cb9][]) Update react@15 to react@16
@@ -57,3 +58,4 @@
 [b771814]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/b771814
 [fd08633]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/fd08633
 [ec2706d]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/ec2706d
+[8a830ac]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/8a830ac
