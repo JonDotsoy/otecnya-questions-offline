@@ -91,10 +91,10 @@ const LabelDonwloadReports = styled(Link)`
   margin: 0px;
 `
 
-const BTN = styled.a `${styledButton}`
-const BTNLink = styled(Link) `${styledButton}`
-const BTNLoginOFF = styled.a `${styledButton}`
-const BTNLoginON = styled.a `${styledButton}`
+const BTN = styled.a`${styledButton}`
+const BTNLink = styled(Link)`${styledButton}`
+const BTNLoginOFF = styled.a`${styledButton}`
+const BTNLoginON = styled.a`${styledButton}`
 
 const disableSubmitForm = (event) => {
   event.preventDefault()
@@ -102,87 +102,141 @@ const disableSubmitForm = (event) => {
 
 const RenderSesssion = ({logged, handleLogout, tmp_location_valid, tmp_business_valid, tmp_rut_valid, tmp_name_valid, isValidToContinue, handleChangeName, generalHandleChange, handleChangeRut, id, handleLogin, name, rut, idCourse, location, business}) => (
   logged
-  ?
-    <ContainerSession>
-      <ContainerBody>
-        <ContainerFieldElement>
-          <h3>Sesión Actual</h3>
-        </ContainerFieldElement>
+  ? <ContainerSession>
+    <ContainerBody>
+      <ContainerFieldElement>
+        <h3>Sesión Actual</h3>
+      </ContainerFieldElement>
 
-        <ContainerFieldElement>
-            <LabelToInput>Nombre</LabelToInput>
-            <Input name='name' disabled defaultValue={name}/>
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            <LabelToInput>RUT</LabelToInput>
-            <Input name='rut' disabled defaultValue={rut}/>
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            <LabelToInput>Identificador del Curso</LabelToInput>
-            <Input name='idCourse' disabled defaultValue={idCourse}/>
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            <LabelToInput>Localidad Actual</LabelToInput>
-            <Input name='location' data-decorator='text-titlecase' disabled defaultValue={location}/>
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            <LabelToInput>Empresa</LabelToInput>
-            <Input name='business' disabled defaultValue={business}/>
-          </ContainerFieldElement>
+      <ContainerFieldElement>
+        <LabelToInput>Nombre</LabelToInput>
+        <Input name='name' disabled defaultValue={name} />
+      </ContainerFieldElement>
+      <ContainerFieldElement>
+        <LabelToInput>RUT</LabelToInput>
+        <Input name='rut' disabled defaultValue={rut} />
+      </ContainerFieldElement>
+      <ContainerFieldElement>
+        <LabelToInput>Identificador del Curso</LabelToInput>
+        <Input name='idCourse' disabled defaultValue={idCourse} />
+      </ContainerFieldElement>
+      <ContainerFieldElement>
+        <LabelToInput>Localidad Actual</LabelToInput>
+        <Input name='location' data-decorator='text-titlecase' disabled defaultValue={location} />
+      </ContainerFieldElement>
+      <ContainerFieldElement>
+        <LabelToInput>Empresa</LabelToInput>
+        <Input name='business' disabled defaultValue={business} />
+      </ContainerFieldElement>
 
+      <ContainerFieldElement>
+        <BTNLink to='/quest'>Iniciar Cuestionario</BTNLink>
+        <BTN onClick={handleLogout}>Cerrar Sesión</BTN>
+      </ContainerFieldElement>
+    </ContainerBody>
+  </ContainerSession>
+  : <ContainerSession>
+    <ContainerBody>
+      <form name='credentials' onSubmit={disableSubmitForm}>
         <ContainerFieldElement>
-          <BTNLink to='/quest'>Iniciar Cuestionario</BTNLink>
-          <BTN onClick={handleLogout}>Cerrar Sesión</BTN>
+          <LabelToInput>Nombre</LabelToInput>
+          <Input name='name' data-validate={tmp_name_valid} onChange={generalHandleChange} defaultValue={name} />
         </ContainerFieldElement>
-      </ContainerBody>
-    </ContainerSession>
-  :
-    <ContainerSession>
-      <ContainerBody>
-        <form name='credentials' onSubmit={disableSubmitForm}>
-          <ContainerFieldElement>
-            <LabelToInput>Nombre</LabelToInput>
-            <Input name='name' data-validate={tmp_name_valid} onChange={generalHandleChange} defaultValue={name}/>
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            <LabelToInput>RUT</LabelToInput>
-            <Input name='rut' data-validate={tmp_rut_valid} onChange={generalHandleChange} defaultValue={rut}/>
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            <LabelToInput>Identificador del Curso</LabelToInput>
-            <Input name='idCourse' type='number' min='0' onChange={generalHandleChange} defaultValue={idCourse}/>
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            <LabelToInput>Localidad Actual</LabelToInput>
-            <Input name='location' data-decorator='text-titlecase' data-validate={tmp_location_valid} onChange={generalHandleChange} defaultValue={location}/>
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            <LabelToInput>Empresa</LabelToInput>
-            <Input name='business' data-validate={tmp_business_valid} onChange={generalHandleChange} defaultValue={business}/>
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            {
+        <ContainerFieldElement>
+          <LabelToInput>RUT</LabelToInput>
+          <Input name='rut' data-validate={tmp_rut_valid} onChange={generalHandleChange} defaultValue={rut} />
+        </ContainerFieldElement>
+        <ContainerFieldElement>
+          <LabelToInput>Identificador del Curso</LabelToInput>
+          <Input name='idCourse' type='number' min='0' onChange={generalHandleChange} defaultValue={idCourse} />
+        </ContainerFieldElement>
+        <ContainerFieldElement>
+          <LabelToInput>Localidad Actual</LabelToInput>
+          <Input name='location' list='locationsdata' data-decorator='text-titlecase' data-validate={tmp_location_valid} onChange={generalHandleChange} defaultValue={location} />
+        </ContainerFieldElement>
+        <ContainerFieldElement>
+          <LabelToInput>Empresa</LabelToInput>
+          <Input name='business' list='businesslist' data-validate={tmp_business_valid} onChange={generalHandleChange} defaultValue={business} />
+        </ContainerFieldElement>
+        <ContainerFieldElement>
+          {
               isValidToContinue
               ? <BTN onClick={handleLogin}>Ingresar</BTN>
               : <BTN disabled>Ingresar</BTN>
             }
-          </ContainerFieldElement>
-          <ContainerFieldElement>
-            <LabelDonwloadReports to='/register'>Registros</LabelDonwloadReports>
-          </ContainerFieldElement>
-        </form>
-      </ContainerBody>
-      <ContainerFieldElement maxWidth='400px'>
-        <InfoMetaDataLine>Version v{process.env.npm_package_version} {
+        </ContainerFieldElement>
+        <ContainerFieldElement>
+          <LabelDonwloadReports to='/register'>Registros</LabelDonwloadReports>
+        </ContainerFieldElement>
+
+        {/* Data Lists */}
+        <datalist id='locationsdata'>
+          <option value='Alto Hospicio' />
+          <option value='Antofagasta' />
+          <option value='Arica' />
+          <option value='Calama' />
+          <option value='Chañaral' />
+          <option value='Copiapó' />
+          <option value='María Elena' />
+          <option value='Mejillones' />
+          <option value='San Pedro de Atacama' />
+          <option value='Tierra Amarilla' />
+          <option value='Tocopilla' />
+        </datalist>
+
+        <datalist id='businesslist'>
+          <option value='KOMATSU CHILE SOCIEDAD ANONIMA' />
+          <option value='MOVIC CONSTRUCCIÓN VIVIENDAS MODULARES' />
+          <option value='SQM INDUSTRIAL SOCIEDAD ANONIMA' />
+          <option value='KOMATSU REMAN CENTER CHILE SOCIEDAD ANON' />
+          <option value='KOMATSU CUMMINS CHILE LIMITADA' />
+          <option value='SODEXO CHILE SOCIEDAD ANONIMA' />
+          <option value='BROADSPECTRUM CHILE SPA' />
+          <option value='SODEXO CHILE SOCIEDAD ANONIMA' />
+          <option value='MARIA DEL PILAR NAVEA IGLESIAS' />
+          <option value='SODEXO CHILE SOCIEDAD ANONIMA' />
+          <option value='GONZALEZ ACKERKNECHT LIMITADA' />
+          <option value='GONZALEZ ACKERKNECHT LIMITADA' />
+          <option value='CORPORACION NACIONAL FORESTAL' />
+          <option value='SOCIEDAD DE  SERVICIOS INGENIERIA Y' />
+          <option value='ACCOR CHILE SOCIEDAD ANONIMA' />
+          <option value='SOCIEDAD DE  SERVICIOS INGENIERIA Y' />
+          <option value='GONZALEZ ACKERKNECHT LIMITADA' />
+          <option value='TRANSPORTE SOTRABUS SA' />
+          <option value='GONZALEZ ACKERKNECHT LIMITADA' />
+          <option value='DIAZ SIU Y TORRES LTDA' />
+          <option value='JUNTA NACIONAL DE JARDINES INFANTILES' />
+          <option value='KOMATSU CHILE SOCIEDAD ANONIMA' />
+          <option value='HIGHSERVICE INGENIERIA Y CONSTRUCCION' />
+          <option value='STEEL INGENIERIA SOCIEDAD ANONIMA' />
+          <option value='CORPORACION NACIONAL FORESTAL' />
+          <option value='TECNET SOCIEDAD ANONIMA' />
+          <option value='EMPRESA NACIONAL DE MINERIA' />
+          <option value='EMPRESA NACIONAL DE MINERIA' />
+          <option value='EULEN CHILE SOCIEDAD ANONIMA' />
+          <option value='EULEN CHILE SOCIEDAD ANONIMA' />
+          <option value='FAM AMERICA LATINA MAQUINARIAS LTDA' />
+          <option value='FAM AMERICA LATINA MAQUINARIAS LTDA' />
+          <option value='SODEXO CHILE SOCIEDAD ANONIMA' />
+          <option value='SQM SALAR S A' />
+          <option value='FRUTICOLA Y EXPORTADORA ATACAMA LIMITADA' />
+          <option value='MELON HORMIGONES S.A' />
+          <option value='SILVIO CUEVAS SUAREZ' />
+        </datalist>
+
+      </form>
+    </ContainerBody>
+    <ContainerFieldElement maxWidth='400px'>
+      <InfoMetaDataLine>Version v{process.env.npm_package_version} {
           process.env.npm_package_gitHead &&
           <LinkToCommit target='_blank' href={`https://github.com/JonDotsoy/otecnya-questions-offline/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 7)})</LinkToCommit>}
-        </InfoMetaDataLine>
-      </ContainerFieldElement>
-    </ContainerSession>
+      </InfoMetaDataLine>
+    </ContainerFieldElement>
+  </ContainerSession>
 )
 
 module.exports.Session = connect(
-  (state, props) => ( /* console.log(isLogin(state)), */ {
+  (state, props) => (/* console.log(isLogin(state)), */ {
     logged: isLogin(state),
     id: state.session.id,
     rut: state.session.id_format,
@@ -199,11 +253,11 @@ module.exports.Session = connect(
     name: state.session.name,
     idCourse: state.session.idCourse,
     location: state.session.location,
-    business: state.session.business,
+    business: state.session.business
   }),
   (dispatch, props) => ({
     handleLogout: () => dispatch({
-      type: 'session_logout',
+      type: 'session_logout'
     }),
     handleLogin () {
       dispatch((dispatch, getState) => {
@@ -215,7 +269,7 @@ module.exports.Session = connect(
           name: state.forms_memory.fields.credentials_name,
           location: state.forms_memory.fields.credentials_location,
           business: state.forms_memory.fields.credentials_business,
-          idCourse: state.forms_memory.fields.credentials_idCourse,
+          idCourse: state.forms_memory.fields.credentials_idCourse
         })
       })
     },

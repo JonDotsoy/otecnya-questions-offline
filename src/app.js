@@ -37,14 +37,14 @@ require('./registerServiceWorker')({
 })
 .catch(console.error)
 
-store.dispatch({
-  type: 'sessin_login',
-  rut: '111111111',
-  name: 'John',
-  location: 'atacama',
-  business: 'achs',
-  idCourse: '12345'
-})
+// store.dispatch({
+//   type: 'sessin_login',
+//   rut: '111111111',
+//   name: 'John',
+//   location: 'atacama',
+//   business: 'achs',
+//   idCourse: '12345'
+// })
 
 ReactDOM.render((
   <div>

@@ -46,7 +46,7 @@ self.addEventListener('fetch', function (event) {
     const {request} = event
     const {pathname} = url.parse(request.url)
 
-    return await fetch(request)
+    // return await fetch(request)
 
     const response = await cache.match(request)
 
