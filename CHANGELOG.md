@@ -2,6 +2,7 @@
 
 ## Added
 - ([4314ac0][]) Service to save data on the cloud
+- ([598d4d3][]) README file created
 
 ## [2.0.0][] — 2017-10-04
 
@@ -66,3 +67,4 @@
 [ec2706d]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/ec2706d
 [8a830ac]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/8a830ac
 [4314ac0]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/4314ac0
+[598d4d3]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/598d4d3
