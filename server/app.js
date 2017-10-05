@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const express = require('express')
 const {Response} = require('./models/Response')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const url = require('url')
 
 const mongoOption = {
@@ -47,6 +48,7 @@ async function Server () {
 async function configeApi (app) {
   const router = new express.Router()
 
+  router.use(cors())
   router.use(bodyParser.json())
 
   router.get('/responses', (req, res, next) => {

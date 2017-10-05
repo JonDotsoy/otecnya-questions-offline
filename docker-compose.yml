@@ -5,6 +5,8 @@ services:
     image: "mongo:3.4.9"
     volumes:
       - "otecnyadatadb:/data/db"
+    ports:
+      - "27017:27017"
 
   managerdocs:
     image: "otecnya_question:${npm_package_version}"
