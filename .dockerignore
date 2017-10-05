@@ -1,0 +1,6 @@
+node_modules
+.docs
+www
+src
+test
+.storybook

@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  db:
+    image: "mongo:3.4.9"
+    volumes:
+      - "otecnyadatadb:/data/db"
+
+  managerdocs:
+    image: "otecnya_question:${npm_package_version}"
+    build: .
+    links:
+      - "db:db"
+    environment:
+      - "DB_HOST=db"
+    ports:
+      - "3000:3000"
+
+volumes:
+  otecnyadatadb:
+    external: true

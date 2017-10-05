@@ -1,5 +1,8 @@
 ## [Unreleased][]
 
+## Added
+- Service to save data on the cloud
+
 ## [2.0.0][] — 2017-10-04
 
 ### Added
