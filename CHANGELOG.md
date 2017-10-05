@@ -1,7 +1,7 @@
 ## [Unreleased][]
 
 ## Added
-- Service to save data on the cloud
+- ([4314ac0][]) Service to save data on the cloud
 
 ## [2.0.0][] — 2017-10-04
 
@@ -65,3 +65,4 @@
 [fd08633]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/fd08633
 [ec2706d]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/ec2706d
 [8a830ac]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/8a830ac
+[4314ac0]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/4314ac0
