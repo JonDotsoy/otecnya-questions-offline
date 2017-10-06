@@ -1,14 +1,20 @@
 ## [Unreleased][]
+## [2.0.1][] — 2017-10-04
 
-## Added
+### Added
 - ([4314ac0][]) Service to save data on the cloud
 - ([598d4d3][]) README file created
+- ([352e180][]) The register page have a button to sync local data with cloud data
+- ([352e180][]) The register page have a button to download data in the cloud
+
+### Changed
+- ([352e180][]) the file downloaded with the register, now have the business, location, and id course fields. 
 
 ## [2.0.0][] — 2017-10-04
 
 ### Added
 - ([f06b6d9][]) Show a message with new version available
-- ([dfe5117][]) Update the cache control to not remove cache under similar domains on Github.
+- ([dfe5117][]) Update the cache control to not remove cache under similar domains on Github
 - ([ac5b4a2][]) Page to show all questions
 - ([fd08633][]) Added karma to run test
 - ([8a830ac][]) Autocomplete to input location and business
@@ -68,3 +74,4 @@
 [8a830ac]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/8a830ac
 [4314ac0]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/4314ac0
 [598d4d3]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/598d4d3
+[352e180]: https://github.com/JonDotsoy/otecnya-questions-offline/commit/352e180
