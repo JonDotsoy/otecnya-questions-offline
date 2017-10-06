@@ -1,5 +1,5 @@
 ## [Unreleased][]
-## [2.0.1][] — 2017-10-04
+## [2.0.1][] — 2017-10-05
 
 ### Added
 - ([4314ac0][]) Service to save data on the cloud
