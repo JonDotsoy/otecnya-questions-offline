@@ -25,10 +25,7 @@ function resourceLink (resourceName, query) {
     configs.link,
     url.format({
       pathname: `./${resourceName}`,
-      query: [{}, Object.keys(query)].reduce((total, elm) => {
-        total[elm] = JSON.stringify(query[elm])
-        return total
-      }),
+      query,
     })
   )
 }

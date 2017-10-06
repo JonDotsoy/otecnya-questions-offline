@@ -32,15 +32,28 @@ describe('Data Test', () => {
 
     describe('Responses', () => {
 
-      it('pull resources', async () => {
+      // it('pull resources', async () => {
 
-        console.log(
+      //   console.log(
+      //     await responses.get()
+      //   )
 
-          await responses.get()
+      //   expect(await responses.get()).to.be.a("Array")
 
-        )
+      // })
 
-      })
+      // it('put resource', async () => {
+
+      //   console.log(
+      //     await responses.put({
+      //       rut: '1111111',
+      //       responses: [
+      //         'a', 'b'
+      //       ]
+      //     })
+      //   )
+
+      // })
 
     })
 

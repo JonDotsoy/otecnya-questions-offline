@@ -34,6 +34,38 @@ const initialStateRegistre = {
 }
 module.exports.registre = function (state = initialStateRegistre, action) {
   switch (action.type) {
+    case 'end_sync': {
+      return {
+        ...state,
+        state: 'ok',
+        responses_unsync: action.responses_unsync,
+      }
+    }
+    case 'start_sync': {
+      return {
+        ...state,
+        state: 'sync_load'
+      }
+    }
+    case 'update_progress': {
+      return {
+        ...state,
+        progress_in: action.in,
+        progress_to: action.to,
+      }
+    }
+    case 'downloading_data_full_loading': {
+      return {
+        ...state,
+        state: 'downloading_data',
+      }
+    }
+    case 'downloading_data_full_loaded': {
+      return {
+        ...state,
+        state: '',
+      }
+    }
     case 'download_data_loading': {
       return {
         ...state,
@@ -75,7 +107,8 @@ module.exports.registre = function (state = initialStateRegistre, action) {
       return {
         ...state,
         state: 'pulled',
-        responses: action.responses
+        responses: action.responses,
+        responses_unsync: action.responses_unsync,
       }
     }
     default: return state
