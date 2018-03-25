@@ -1,3 +1,4 @@
+/* global Blob */
 const json2csv = require('json2csv')
 const questions = require('../questions')
 const {ready: dbready, db} = require('../db')
@@ -68,10 +69,10 @@ class Register extends React.Component {
   }
 
   render () {
-    const {downloadFullRegisters, responses_unsync, state, responses, downloadRegistre, downloadLiteRegistre, handleSyncRegisters, progress_in, progress_to} = this.props
+    const {downloadFullRegisters, responses_unsync: responsesUnsync, state, responses, downloadRegistre, downloadLiteRegistre, handleSyncRegisters, progress_in: progressIn, progress_to: progressTo} = this.props
 
     if (state === 'sync_load') {
-      return <Container><div role='loading'>Sincronizando ({progress_in}/{progress_to})...</div></Container>
+      return <Container><div role='loading'>Sincronizando ({progressIn}/{progressTo})...</div></Container>
     }
 
     if (state === 'downloading_data') {
@@ -89,7 +90,7 @@ class Register extends React.Component {
           <BTNBack to='/session'>Volver</BTNBack>
           <BTNLink onClick={downloadLiteRegistre}>Descargar SCV</BTNLink>
 
-          <BTNLink onClick={handleSyncRegisters}>Sincronizar {responses_unsync} registros</BTNLink>
+          <BTNLink onClick={handleSyncRegisters}>Sincronizar {responsesUnsync} registros</BTNLink>
 
           <BTNLink onClick={downloadFullRegisters}>Descargar SCV completo</BTNLink>
 
@@ -129,45 +130,45 @@ module.exports.Register = connect(
   (dispatch, props) => ({
     downloadFullRegisters: () => {
       // if (confirm('Esto puede tardar un tiempo. ¿Realmente quiere descargar todos los registros?')) {
-      if (true) {
-        dispatch({type: 'downloading_data_full_loading'})
+      // if (true) {
+      dispatch({type: 'downloading_data_full_loading'})
 
-        dispatch(async (dispatch, getState) => {
-          try {
-            const responses = await synchronization.responses.get({})
+      dispatch(async (dispatch, getState) => {
+        try {
+          const responses = await synchronization.responses.get({})
 
-            const bodyfile = json2csv({
-              fields: ['name', 'rut', 'idCourse', 'location', 'business', 'date', 'corrects'],
-              data: responses.map(({rut, name, location, idCourse, business, date, responses}) => ({
-                name,
-                rut: RUT.format(rut),
-                idCourse,
-                location,
-                business,
-                date: date.toLocaleString(),
-                corrects: `${Math.floor((responses.filter(({question, response}) => question.optionCorrect === response).length / responses.length) * 100)}%`
-              }))
-            })
+          const bodyfile = json2csv({
+            fields: ['name', 'rut', 'idCourse', 'location', 'business', 'date', 'corrects'],
+            data: responses.map(({rut, name, location, idCourse, business, date, responses}) => ({
+              name,
+              rut: RUT.format(rut),
+              idCourse,
+              location,
+              business,
+              date: date.toLocaleString(),
+              corrects: `${Math.floor((responses.filter(({question, response}) => question.optionCorrect === response).length / responses.length) * 100)}%`
+            }))
+          })
 
-            const fl = new Blob([bodyfile], {type: 'text/csv'})
+          const fl = new Blob([bodyfile], {type: 'text/csv'})
 
-            const linkFile = window.URL.createObjectURL(fl)
+          const linkFile = window.URL.createObjectURL(fl)
 
-            const htmla = window.document.createElement('a')
-            htmla.href = linkFile
+          const htmla = window.document.createElement('a')
+          htmla.href = linkFile
 
-            htmla.download = `registry_${(new Date()).toLocaleString().replace(/[^a-z0-9]/ig, '-')}.csv`
+          htmla.download = `registry_${(new Date()).toLocaleString().replace(/[^a-z0-9]/ig, '-')}.csv`
 
-            document.body.appendChild(htmla)
-            htmla.click()
-            document.body.removeChild(htmla)
-          } catch (ex) {
-            console.error(ex)
-          }
+          document.body.appendChild(htmla)
+          htmla.click()
+          document.body.removeChild(htmla)
+        } catch (ex) {
+          console.error(ex)
+        }
 
-          dispatch({type: 'downloading_data_full_loaded'})
-        })
-      }
+        dispatch({type: 'downloading_data_full_loaded'})
+      })
+      // }
     },
     downloadLiteRegistre: () => {
       dispatch(async (dispatch, getState) => {

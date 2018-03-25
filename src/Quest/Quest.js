@@ -88,7 +88,7 @@ export const Question = ({title, options, onClickOption}) => (
   </BodyQuestion>
 )
 
-const Quest = ({finishQuestionary, rut, rut_format, question, currentQuestion, countQuestions, nextQuestion, name}) => (
+const Quest = ({finishQuestionary, rut, rut_format: rutFormat, question, currentQuestion, countQuestions, nextQuestion, name}) => (
   !rut
     ? <Redirect to='/session' />
     : finishQuestionary === true
@@ -97,7 +97,7 @@ const Quest = ({finishQuestionary, rut, rut_format, question, currentQuestion, c
         <Container>
           <ContainerBody>
             <HeaderContent>
-              <ShowName>{name}</ShowName> — RUT {rut_format} — {currentQuestion + 1} de {countQuestions} preguntas.
+              <ShowName>{name}</ShowName> — RUT {rutFormat} — {currentQuestion + 1} de {countQuestions} preguntas.
             </HeaderContent>
             <BodyQuestion>
               <TitleQuestion>{question.title}</TitleQuestion>

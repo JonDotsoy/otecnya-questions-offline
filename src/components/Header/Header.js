@@ -6,6 +6,6 @@ const HeaderContainer = styled.div`
   height: 200px;
 `
 
-module.exports.Header = ({}) => (
+module.exports.Header = () => (
   <HeaderContainer></HeaderContainer>
 )

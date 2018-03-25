@@ -11,11 +11,11 @@ class RegisterDetaills extends React.Component {
   }
 
   render () {
-    const {pull_state} = this.props
+    const {pull_state: pullState} = this.props
 
-    console.log(pull_state)
+    console.log(pullState)
 
-    if (pull_state === 'pulling') {
+    if (pullState === 'pulling') {
       return <div role='loading'>Cargando...</div>
     }
 

@@ -63,7 +63,7 @@ const styleBtn = `
 const BtnSave = styled.button`${styleBtn}`
 const BtnReset = styled(Link)`${styleBtn}`
 
-const Result = ({correctAvg, saved, rut_format, finishQuestionary, saveResponses, saving, resetSession, name}) => (
+const Result = ({correctAvg, saved, rut_format: rutFormat, finishQuestionary, saveResponses, saving, resetSession, name}) => (
   finishQuestionary === false ? <Redirect to='/' />
     : (
       saving ? <div role='loading'>Guardando...</div>
@@ -72,7 +72,7 @@ const Result = ({correctAvg, saved, rut_format, finishQuestionary, saveResponses
             !saved
               ? (
                 <BodyResult>
-                  <LabelData><ShowName>{name}</ShowName> — RUT: {rut_format}</LabelData>
+                  <LabelData><ShowName>{name}</ShowName> — RUT: {rutFormat}</LabelData>
                   <LabelData>Porcentage correcto: {Math.floor(correctAvg * 100)}%</LabelData>
                   <BtnSave disabled={saved === true} onClick={saveResponses}>{saved ? 'Ya a sido guardado' : 'Guardar Registro'}</BtnSave>
                   <BtnReset to='/quest' onClick={resetSession}>Comenzar de Nuevo</BtnReset>
@@ -80,7 +80,7 @@ const Result = ({correctAvg, saved, rut_format, finishQuestionary, saveResponses
               )
               : (
                 <BodyResult>
-                  <LabelData>RUT: {rut_format}</LabelData>
+                  <LabelData>RUT: {rutFormat}</LabelData>
                   <LabelData>Porcentage correcto: {Math.floor(correctAvg * 100)}%</LabelData>
                   <BtnReset to='/' onClick={resetSession}>Ir al Inicio</BtnReset>
                 </BodyResult>
@@ -110,7 +110,7 @@ module.exports.Result = connect(
         await dbready
 
         const data = {
-          name: state.forms_memory.fields.credentials_name,
+          // name: state.forms_memory.fields.credentials_name,
           date: new Date(),
           rut: state.session.id,
           name: state.session.name,

@@ -60,7 +60,7 @@ const styledButton = `
   text-decoration: none;
   cursor: pointer;
   display: inline-block;
-  
+
   &:hover {
     box-shadow:
       0px 0px 4px rgba(0, 0, 0, 0.24),
@@ -100,7 +100,7 @@ const disableSubmitForm = (event) => {
   event.preventDefault()
 }
 
-const RenderSesssion = ({logged, handleLogout, tmp_location_valid, tmp_business_valid, tmp_rut_valid, tmp_name_valid, isValidToContinue, handleChangeName, generalHandleChange, handleChangeRut, id, handleLogin, name, rut, idCourse, location, business}) => (
+const RenderSesssion = ({logged, handleLogout, tmp_location_valid: tmpLocationValid, tmp_business_valid: tmpBusinessValid, tmp_rut_valid: tmpRutValid, tmp_name_valid: tmpNameValid, isValidToContinue, handleChangeName, generalHandleChange, handleChangeRut, id, handleLogin, name, rut, idCourse, location, business}) => (
   logged
     ? <ContainerSession>
       <ContainerBody>
@@ -140,11 +140,11 @@ const RenderSesssion = ({logged, handleLogout, tmp_location_valid, tmp_business_
         <form name='credentials' onSubmit={disableSubmitForm}>
           <ContainerFieldElement>
             <LabelToInput>Nombre</LabelToInput>
-            <Input name='name' data-validate={tmp_name_valid} onChange={generalHandleChange} defaultValue={name} />
+            <Input name='name' data-validate={tmpNameValid} onChange={generalHandleChange} defaultValue={name} />
           </ContainerFieldElement>
           <ContainerFieldElement>
             <LabelToInput>RUT</LabelToInput>
-            <Input name='rut' data-validate={tmp_rut_valid} onChange={generalHandleChange} defaultValue={rut} />
+            <Input name='rut' data-validate={tmpRutValid} onChange={generalHandleChange} defaultValue={rut} />
           </ContainerFieldElement>
           <ContainerFieldElement>
             <LabelToInput>Identificador del Curso</LabelToInput>
@@ -152,11 +152,11 @@ const RenderSesssion = ({logged, handleLogout, tmp_location_valid, tmp_business_
           </ContainerFieldElement>
           <ContainerFieldElement>
             <LabelToInput>Localidad Actual</LabelToInput>
-            <Input name='location' list='locationsdata' data-decorator='text-titlecase' data-validate={tmp_location_valid} onChange={generalHandleChange} defaultValue={location} />
+            <Input name='location' list='locationsdata' data-decorator='text-titlecase' data-validate={tmpLocationValid} onChange={generalHandleChange} defaultValue={location} />
           </ContainerFieldElement>
           <ContainerFieldElement>
             <LabelToInput>Empresa</LabelToInput>
-            <Input name='business' list='businesslist' data-validate={tmp_business_valid} onChange={generalHandleChange} defaultValue={business} />
+            <Input name='business' list='businesslist' data-validate={tmpBusinessValid} onChange={generalHandleChange} defaultValue={business} />
           </ContainerFieldElement>
           <ContainerFieldElement>
             {
