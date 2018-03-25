@@ -17,7 +17,7 @@ function formatQuestion ({stag, options, title, sort}) {
     stag,
     title,
     optionCorrect,
-    options: optionsOut,
+    options: optionsOut
   }
 }
 

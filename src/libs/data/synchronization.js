@@ -2,8 +2,8 @@ const {resourceLink} = require('./connector')
 const fetch = require('isomorphic-fetch')
 
 const responses = module.exports.responses = {
-  async put ( response ) {
-    return await fetch(
+  async put (response) {
+    return fetch(
       resourceLink('responses'),
       {
         headers: {
@@ -11,20 +11,18 @@ const responses = module.exports.responses = {
           'Content-Type': 'application/json'
         },
         method: 'POST',
-        body: JSON.stringify(response),
+        body: JSON.stringify(response)
       }
     )
-    .then(r=>r.json())
+      .then(r => r.json())
   },
 
   async get (query = {}) {
-
-    return await fetch(
+    return fetch(
       resourceLink('responses', {
         find: JSON.stringify(query)
       })
     )
-    .then(r => r.json())
-
-  },
+      .then(r => r.json())
+  }
 }

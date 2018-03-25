@@ -21,7 +21,7 @@ module.exports = async function registerServiceWorker ({store}) {
 function storeInspectWaiting (store, registration) {
   if (registration.waiting !== null) {
     store.dispatch({
-      type: 'APP_STEP_WAITING',
+      type: 'APP_STEP_WAITING'
     })
   }
 }

@@ -6,7 +6,7 @@ const {Question} = require('../Quest/Quest')
 const {connect} = require('react-redux')
 const {default: styled} = require('styled-components')
 
-const Container = styled.div `
+const Container = styled.div`
   background-color: white;
   width: 100%;
   height: 100vh;
@@ -15,7 +15,7 @@ const Container = styled.div `
   position: relative;
 `
 
-const QuestionContainer = styled.div `
+const QuestionContainer = styled.div`
   padding: 20px;
   padding-top: 80px;
 `
@@ -29,7 +29,7 @@ const GoodOption = styled.span`
   }
 `
 
-const PanelControl = styled.div `
+const PanelControl = styled.div`
   position: fixed;
   width: 100%;
   top: 0px;
@@ -43,7 +43,7 @@ const PanelControl = styled.div `
 `
 
 class Questions extends React.Component {
-  componentWillMount() {
+  componentWillMount () {
     this.props.pullQuestions()
   }
 
@@ -70,7 +70,7 @@ class Questions extends React.Component {
             {showCorrect &&
               <GoodOption>{question.optionCorrect}</GoodOption>
             }
-            {/*<pre>{util.inspect(question, { showHidden: true, depth: null, colors: false })}</pre>*/}
+            {/* <pre>{util.inspect(question, { showHidden: true, depth: null, colors: false })}</pre> */}
           </QuestionContainer>
         ))
       }
@@ -82,7 +82,7 @@ module.exports.Questions = connect(
   (state, props) => ({
     state: state.questions.state,
     questions: state.questions.questions,
-    showCorrect: state.questions.showCorrect,
+    showCorrect: state.questions.showCorrect
   }),
   (dispatch, props) => ({
     pullQuestions: () => {
@@ -96,13 +96,13 @@ module.exports.Questions = connect(
     },
     checkShowCorrectResponse: (event) => {
       if (event.target.checked) {
-        dispatch({type:'SHOW_CORRECT_OPTION'})
+        dispatch({type: 'SHOW_CORRECT_OPTION'})
       } else {
-        dispatch({type:'HIDE_CORRECT_OPTION'})
+        dispatch({type: 'HIDE_CORRECT_OPTION'})
       }
     },
     goToHome: (event) => {
       props.history.replace('/')
-    },
+    }
   })
 )(Questions)

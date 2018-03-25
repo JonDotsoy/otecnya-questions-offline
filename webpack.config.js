@@ -14,7 +14,7 @@ const moduleBabel = {
           ['env', {
             exclude: ['transform-regenerator']
           }],
-          'stage-0',
+          'stage-1',
           'react'
         ]
       }

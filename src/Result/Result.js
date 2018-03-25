@@ -31,7 +31,7 @@ const LabelData = styled.div`
   
 `
 
-const ShowName = styled.span `
+const ShowName = styled.span`
   text-transform: capitalize;
 `
 
@@ -65,29 +65,29 @@ const BtnReset = styled(Link)`${styleBtn}`
 
 const Result = ({correctAvg, saved, rut_format, finishQuestionary, saveResponses, saving, resetSession, name}) => (
   finishQuestionary === false ? <Redirect to='/' />
-  : (
-    saving ? <div>Guardando...</div>
-    : <ContainerResult>
-      {
-        !saved
-        ? (
-          <BodyResult>
-            <LabelData><ShowName>{name}</ShowName> — RUT: {rut_format}</LabelData>
-            <LabelData>Porcentage correcto: {Math.floor(correctAvg * 100)}%</LabelData>
-            <BtnSave disabled={saved === true} onClick={saveResponses}>{saved ? 'Ya a sido guardado' : 'Guardar Registro'}</BtnSave>
-            <BtnReset to='/quest' onClick={resetSession}>Comenzar de Nuevo</BtnReset>
-          </BodyResult>
-        )
-        : (
-          <BodyResult>
-            <LabelData>RUT: {rut_format}</LabelData>
-            <LabelData>Porcentage correcto: {Math.floor(correctAvg * 100)}%</LabelData>
-            <BtnReset to='/' onClick={resetSession}>Ir al Inicio</BtnReset>
-          </BodyResult>
-        )
-      }
-    </ContainerResult>
-  )
+    : (
+      saving ? <div>Guardando...</div>
+        : <ContainerResult>
+          {
+            !saved
+              ? (
+                <BodyResult>
+                  <LabelData><ShowName>{name}</ShowName> — RUT: {rut_format}</LabelData>
+                  <LabelData>Porcentage correcto: {Math.floor(correctAvg * 100)}%</LabelData>
+                  <BtnSave disabled={saved === true} onClick={saveResponses}>{saved ? 'Ya a sido guardado' : 'Guardar Registro'}</BtnSave>
+                  <BtnReset to='/quest' onClick={resetSession}>Comenzar de Nuevo</BtnReset>
+                </BodyResult>
+              )
+              : (
+                <BodyResult>
+                  <LabelData>RUT: {rut_format}</LabelData>
+                  <LabelData>Porcentage correcto: {Math.floor(correctAvg * 100)}%</LabelData>
+                  <BtnReset to='/' onClick={resetSession}>Ir al Inicio</BtnReset>
+                </BodyResult>
+              )
+          }
+        </ContainerResult>
+    )
 )
 
 module.exports.Result = connect(

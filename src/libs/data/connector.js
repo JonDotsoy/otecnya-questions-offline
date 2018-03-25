@@ -1,5 +1,6 @@
 const url = require('url')
 const querystring = require('querystring')
+const mapValues = require('lodash/mapValues')
 
 const configs = module.exports.configs = {
   host: 'jon.soy',
@@ -13,20 +14,19 @@ const configs = module.exports.configs = {
       slashes: true,
       port: this.port,
       hostname: this.host,
-      pathname: this.pathname,
+      pathname: this.pathname
     })
   }
 }
 
+module.exports.resourceLink = function resourceLink (resourceName, query) {
+  query = mapValues(query, data => JSON.stringify(data))
 
-const resourceLink = module.exports.resourceLink = 
-function resourceLink (resourceName, query) {
   return url.resolve(
     configs.link,
     url.format({
       pathname: `./${resourceName}`,
-      query,
+      query
     })
   )
 }
-

@@ -38,7 +38,7 @@ module.exports.registre = function (state = initialStateRegistre, action) {
       return {
         ...state,
         state: 'ok',
-        responses_unsync: action.responses_unsync,
+        responses_unsync: action.responses_unsync
       }
     }
     case 'start_sync': {
@@ -51,19 +51,19 @@ module.exports.registre = function (state = initialStateRegistre, action) {
       return {
         ...state,
         progress_in: action.in,
-        progress_to: action.to,
+        progress_to: action.to
       }
     }
     case 'downloading_data_full_loading': {
       return {
         ...state,
-        state: 'downloading_data',
+        state: 'downloading_data'
       }
     }
     case 'downloading_data_full_loaded': {
       return {
         ...state,
-        state: '',
+        state: ''
       }
     }
     case 'download_data_loading': {
@@ -108,7 +108,7 @@ module.exports.registre = function (state = initialStateRegistre, action) {
         ...state,
         state: 'pulled',
         responses: action.responses,
-        responses_unsync: action.responses_unsync,
+        responses_unsync: action.responses_unsync
       }
     }
     default: return state
@@ -187,17 +187,17 @@ const initialStateSession = {
   tmp_rut_valid: false,
   tmp_name_valid: false,
   tmp_location_valid: false,
-  tmp_business_valid: false,
+  tmp_business_valid: false
   // tmp_name: null
 }
 
 module.exports.session = function (state = initialStateSession, action) {
   switch (action.type) {
-    /*case 'reset_all': {
+    /* case 'reset_all': {
       return {
         ...initialStateSession
       }
-    }*/
+    } */
     case 'form_memory_update': {
       if (action.form === 'credentials') {
         switch (action.name) {
@@ -228,7 +228,7 @@ module.exports.session = function (state = initialStateSession, action) {
         name: null,
         idCourse: null,
         location: null,
-        business: null,
+        business: null
       }
     }
     case 'sessin_login': {
@@ -239,7 +239,7 @@ module.exports.session = function (state = initialStateSession, action) {
         name: action.name,
         idCourse: action.idCourse,
         location: action.location,
-        business: action.business,
+        business: action.business
       }
     }
     default: return state
@@ -258,7 +258,7 @@ export function forms_memory (state = initialStateFormMemory, action) {
         ...state,
         fields: {
           ...state.fields,
-          [`${form}_${name}`]: value,
+          [`${form}_${name}`]: value
         }
       }
     }
@@ -269,7 +269,7 @@ export function forms_memory (state = initialStateFormMemory, action) {
 const initialStateQuestions = {
   state: null,
   questions: [],
-  showCorrect: false,
+  showCorrect: false
 }
 
 export function questions (state = initialStateQuestions, action) {
@@ -277,23 +277,23 @@ export function questions (state = initialStateQuestions, action) {
     case 'PULL_QUESTIONS': {
       return {
         ...state,
-        state: 'loading',
+        state: 'loading'
       }
     }
     case 'SHOW_CORRECT_OPTION': {
       return {
         ...state,
-        showCorrect: true,
+        showCorrect: true
       }
     }
     case 'HIDE_CORRECT_OPTION': {
       return {
         ...state,
-        showCorrect: false,
+        showCorrect: false
       }
     }
     case 'SET_QUESTIONS': {
-      if (!Array.isArray(action.questions)) throw new TypeError(`action.questions is no a array`)
+      if (!Array.isArray(action.questions)) throw new TypeError('action.questions is no a array')
 
       return {
         ...state,
@@ -304,4 +304,3 @@ export function questions (state = initialStateQuestions, action) {
     default: return state
   }
 }
-

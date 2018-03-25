@@ -20,7 +20,7 @@ const DialogText = styled.div`
   padding: 10px 60px;
 `
 
-const LinkOfAction = styled.a `
+const LinkOfAction = styled.a`
   text-decoration: underline;
 `
 
@@ -51,13 +51,13 @@ const ResolveMessageLogger = ({appState}) => {
 
 const Logger = ({handleDiscard, appState}) => (
   appState === 'unchange' ? null
-  : <ContainerLogger>
-    <DialogText>
-      <ResolveMessageLogger
-        appState={appState} />
-    </DialogText>
-    <BtnClose onClick={handleDiscard}>Cerrar</BtnClose>
-  </ContainerLogger>
+    : <ContainerLogger>
+      <DialogText>
+        <ResolveMessageLogger
+          appState={appState} />
+      </DialogText>
+      <BtnClose onClick={handleDiscard}>Cerrar</BtnClose>
+    </ContainerLogger>
 )
 
 module.exports.Logger = connect(

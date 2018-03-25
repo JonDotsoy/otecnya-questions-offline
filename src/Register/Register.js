@@ -128,13 +128,11 @@ module.exports.Register = connect(
   }),
   (dispatch, props) => ({
     downloadFullRegisters: () => {
-
       // if (confirm('Esto puede tardar un tiempo. ¿Realmente quiere descargar todos los registros?')) {
       if (true) {
         dispatch({type: 'downloading_data_full_loading'})
 
         dispatch(async (dispatch, getState) => {
-
           try {
             const responses = await synchronization.responses.get({})
 
@@ -163,15 +161,12 @@ module.exports.Register = connect(
             document.body.appendChild(htmla)
             htmla.click()
             document.body.removeChild(htmla)
-
           } catch (ex) {
             console.error(ex)
           }
 
           dispatch({type: 'downloading_data_full_loaded'})
-
         })
-
       }
     },
     downloadLiteRegistre: () => {
@@ -218,19 +213,19 @@ module.exports.Register = connect(
         fields: ['rut', 'name', 'date', 'corrects', 'total', ...questions.map(e => e.title)],
         data: responses.map(
           ({rut, name, date, responses}) =>
-          (
-            {
-              name,
-              rut,
-              date,
-              total: responses.length,
-              corrects: responses.filter(({response, question: {optionCorrect}}) => optionCorrect === response).length,
-              ...[{}, ...responses].reduce((c, next) => {
-                c[next.question.title] = next.response
-                return c
-              })
-            }
-          )
+            (
+              {
+                name,
+                rut,
+                date,
+                total: responses.length,
+                corrects: responses.filter(({response, question: {optionCorrect}}) => optionCorrect === response).length,
+                ...[{}, ...responses].reduce((c, next) => {
+                  c[next.question.title] = next.response
+                  return c
+                })
+              }
+            )
         )
       })
 

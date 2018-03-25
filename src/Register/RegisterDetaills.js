@@ -25,10 +25,9 @@ class RegisterDetaills extends React.Component {
   }
 }
 
-
 module.exports.RegisterDetaills = connect(
   (state, props) => ({
-    pull_state: state.registre.showReport.state,
+    pull_state: state.registre.showReport.state
   }),
   (dispatch, props) => ({
     pullData: () => {
@@ -43,5 +42,5 @@ module.exports.RegisterDetaills = connect(
         dispatch({type: 'pulled_registre', registre})
       })
     }
-  }),
+  })
 )(RegisterDetaills)

@@ -35,7 +35,7 @@ injectGlobal`
 require('./registerServiceWorker')({
   store
 })
-.catch(console.error)
+  .catch(console.error)
 
 // store.dispatch({
 //   type: 'sessin_login',
@@ -65,6 +65,6 @@ ReactDOM.render((
       </div>
     </Provider>
   </div>
-  ),
-  document.querySelector('#app')
+),
+document.querySelector('#app')
 )

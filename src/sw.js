@@ -40,7 +40,6 @@ self.addEventListener('install', function (event) {
 
 self.addEventListener('fetch', function (event) {
   event.respondWith((async () => {
-
     const cache = await caches.open(versionCache)
 
     const {request} = event
@@ -59,6 +58,5 @@ self.addEventListener('fetch', function (event) {
         return new Response(`Not found "${pathname}".`, {status: 404})
       }
     }
-
   })())
 })

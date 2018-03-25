@@ -39,7 +39,7 @@ const ContainerBody = styled.div`
   }
 `
 
-const ShowName = styled.span `
+const ShowName = styled.span`
   text-transform: capitalize;
 `
 
@@ -83,28 +83,28 @@ export const Question = ({title, options, onClickOption}) => (
     <BodyResponses>
       {Array.isArray(options) && options.map((option, index) => (
         <BTNResponse key={`${title}-${option}`} onClick={onClickOption} data-nrequest={index} data-value={option}>{option}</BTNResponse>
-    ))}
+      ))}
     </BodyResponses>
   </BodyQuestion>
 )
 
 const Quest = ({finishQuestionary, rut, rut_format, question, currentQuestion, countQuestions, nextQuestion, name}) => (
   !rut
-  ? <Redirect to='/session' />
+    ? <Redirect to='/session' />
     : finishQuestionary === true
-  ? <Redirect to='/results' />
+      ? <Redirect to='/results' />
       : (
         <Container>
           <ContainerBody>
             <HeaderContent>
-            <ShowName>{name}</ShowName> — RUT {rut_format} — {currentQuestion + 1} de {countQuestions} preguntas.
-          </HeaderContent>
+              <ShowName>{name}</ShowName> — RUT {rut_format} — {currentQuestion + 1} de {countQuestions} preguntas.
+            </HeaderContent>
             <BodyQuestion>
               <TitleQuestion>{question.title}</TitleQuestion>
               <BodyResponses>
                 {question.options.map((option, index) => (
                   <BTNResponse key={`${question.title}-${option}`} onClick={nextQuestion} data-nrequest={index} data-value={option}>{option}</BTNResponse>
-              ))}
+                ))}
               </BodyResponses>
             </BodyQuestion>
           </ContainerBody>

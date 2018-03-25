@@ -1,3 +1,4 @@
+/* global describe, it */
 
 const util = require('util')
 const {expect} = require('chai')
