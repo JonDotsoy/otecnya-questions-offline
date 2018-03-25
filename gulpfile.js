@@ -1,3 +1,4 @@
+const config = require('./config')
 const gulp = require('gulp')
 const webpackConfig = require('./webpack.config.js')
 const merge = require('lodash/merge')
@@ -8,10 +9,10 @@ gulp.task('watch', ['static-files:watch'], () => (
     .pipe(
       require('webpack-stream')({
         config: webpackConfig.config,
-        watch: true
+        watch: true,
       })
     )
-    .pipe(gulp.dest('./www/otecnya-questions-offline'))
+    .pipe(gulp.dest(`./www/${config.START_PATH}`))
 ))
 
 gulp.task('build_prev', ['static-files'], () => (
@@ -19,10 +20,10 @@ gulp.task('build_prev', ['static-files'], () => (
     .src(['./src/app.js', './src/sw.js'])
     .pipe(
       require('webpack-stream')({
-        config: webpackConfig.config
+        config: webpackConfig.config,
       })
     )
-    .pipe(gulp.dest('./www/otecnya-questions-offline'))
+    .pipe(gulp.dest(`./www/${config.START_PATH}`))
 ))
 
 gulp.task('static-files:watch', ['static-files'], () => {
@@ -38,10 +39,10 @@ gulp.task('static-files', () => (
       console.log(err.toString())
       this.emit('end')
     })
-    .pipe(gulp.dest('./www/otecnya-questions-offline'))
+    .pipe(gulp.dest(`./www/${config.START_PATH}`))
     .pipe(webpackConfig.browserSync.stream())
 ))
 
 gulp.task('build', ['build_prev'], () => (
-  gulp.src(['./www/otecnya-questions-offline/*']).pipe(gulp.dest('./docs'))
+  gulp.src([`./www/${config.START_PATH}/*`]).pipe(gulp.dest('./docs'))
 ))

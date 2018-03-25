@@ -120,11 +120,11 @@ module.exports.Quest = connect(
     question: props.quest.questions[props.quest.currentQuestion],
     currentQuestion: props.quest.currentQuestion,
     countQuestions: props.quest.questions.length,
-    finishQuestionary: props.quest.finishQuestionary
+    finishQuestionary: props.quest.finishQuestionary,
   }),
   (dispatch, props) => ({
     nextQuestion: ({target: {dataset: {value, nrequest}}}) => {
       dispatch({type: 'response_question', response: value, index_question: nrequest})
-    }
+    },
   })
 )(Quest)

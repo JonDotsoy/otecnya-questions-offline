@@ -1,6 +1,7 @@
 
 /* global location, afterEach, beforeEach, indexedDB, localStorage, after, before, describe, it */
 
+const config = require('../config')
 const puppeteer = require('puppeteer')
 const ms = require('ms')
 const path = require('path')
@@ -17,7 +18,7 @@ describe('Function test', async function () {
   beforeEach(async () => {
     const page = await _page
 
-    await page.goto('http://localhost:3000/otecnya-questions-offline/')
+    await page.goto(`http://localhost:3000/${config.START_PATH}/`)
   })
 
   afterEach(async () => {

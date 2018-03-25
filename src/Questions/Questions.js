@@ -82,7 +82,7 @@ module.exports.Questions = connect(
   (state, props) => ({
     state: state.questions.state,
     questions: state.questions.questions,
-    showCorrect: state.questions.showCorrect
+    showCorrect: state.questions.showCorrect,
   }),
   (dispatch, props) => ({
     pullQuestions: () => {
@@ -90,7 +90,7 @@ module.exports.Questions = connect(
       dispatch(async (dispatch, getState) => {
         dispatch({
           type: 'SET_QUESTIONS',
-          questions: questions.map(formatQuestion)
+          questions: questions.map(formatQuestion),
         })
       })
     },
@@ -103,6 +103,6 @@ module.exports.Questions = connect(
     },
     goToHome: (event) => {
       props.history.replace('/')
-    }
+    },
   })
 )(Questions)

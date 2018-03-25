@@ -33,7 +33,7 @@ injectGlobal`
 
 // Load service worker
 require('./registerServiceWorker')({
-  store
+  store,
 })
   .catch(console.error)
 

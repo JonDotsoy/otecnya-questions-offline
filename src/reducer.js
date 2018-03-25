@@ -1,9 +1,9 @@
-
+/* eslint camelcase: off */
 const {loadQuestions} = require('./util/lodasSamples')
 const RUT = require('rut.js')
 
 const initialStateAppStatus = {
-  state: 'unchange'
+  state: 'unchange',
 }
 
 module.exports.appStatus = function (state = initialStateAppStatus, action) {
@@ -11,13 +11,13 @@ module.exports.appStatus = function (state = initialStateAppStatus, action) {
     case 'APP_STEP_DISCARD': {
       return {
         ...state,
-        ...initialStateAppStatus
+        ...initialStateAppStatus,
       }
     }
     case 'APP_STEP_WAITING': {
       return {
         ...state,
-        state: 'waiting'
+        state: 'waiting',
       }
     }
     default: return state
@@ -29,8 +29,8 @@ const initialStateRegistre = {
   responses: [],
   showReport: {
     state: 'no_load',
-    registre_id: null
-  }
+    registre_id: null,
+  },
 }
 module.exports.registre = function (state = initialStateRegistre, action) {
   switch (action.type) {
@@ -38,44 +38,44 @@ module.exports.registre = function (state = initialStateRegistre, action) {
       return {
         ...state,
         state: 'ok',
-        responses_unsync: action.responses_unsync
+        responses_unsync: action.responses_unsync,
       }
     }
     case 'start_sync': {
       return {
         ...state,
-        state: 'sync_load'
+        state: 'sync_load',
       }
     }
     case 'update_progress': {
       return {
         ...state,
         progress_in: action.in,
-        progress_to: action.to
+        progress_to: action.to,
       }
     }
     case 'downloading_data_full_loading': {
       return {
         ...state,
-        state: 'downloading_data'
+        state: 'downloading_data',
       }
     }
     case 'downloading_data_full_loaded': {
       return {
         ...state,
-        state: ''
+        state: '',
       }
     }
     case 'download_data_loading': {
       return {
         ...state,
-        state: 'downloading_data'
+        state: 'downloading_data',
       }
     }
     case 'download_data_loaded': {
       return {
         ...state,
-        state: ''
+        state: '',
       }
     }
     case 'pulling_registre': {
@@ -83,8 +83,8 @@ module.exports.registre = function (state = initialStateRegistre, action) {
         ...state,
         showReport: {
           ...state.showReport,
-          state: 'pulling'
-        }
+          state: 'pulling',
+        },
       }
     }
     case 'pulled_registre': {
@@ -93,14 +93,14 @@ module.exports.registre = function (state = initialStateRegistre, action) {
         showReport: {
           ...state.showReport,
           state: 'pulled',
-          registre: action.registre
-        }
+          registre: action.registre,
+        },
       }
     }
     case 'pulling_registers': {
       return {
         ...state,
-        state: 'pulling'
+        state: 'pulling',
       }
     }
     case 'end_pulling_registers': {
@@ -108,7 +108,7 @@ module.exports.registre = function (state = initialStateRegistre, action) {
         ...state,
         state: 'pulled',
         responses: action.responses,
-        responses_unsync: action.responses_unsync
+        responses_unsync: action.responses_unsync,
       }
     }
     default: return state
@@ -119,7 +119,7 @@ const initialStateQuest = {
   currentQuestion: 0,
   questions: loadQuestions(),
   responses: [],
-  finishQuestionary: false
+  finishQuestionary: false,
 }
 
 module.exports.quest = function (state = initialStateQuest, action) {
@@ -127,21 +127,21 @@ module.exports.quest = function (state = initialStateQuest, action) {
     case 'reset_all': {
       return {
         ...initialStateQuest,
-        questions: loadQuestions()
+        questions: loadQuestions(),
       }
     }
     case 'save_response_saving': {
       return {
         ...state,
         saving: true,
-        saved: false
+        saved: false,
       }
     }
     case 'save_response_saved': {
       return {
         ...state,
         saving: false,
-        saved: true
+        saved: true,
       }
     }
     case 'response_question': {
@@ -154,9 +154,9 @@ module.exports.quest = function (state = initialStateQuest, action) {
             ...state.responses,
             {
               question: state.questions[state.currentQuestion],
-              response: action.response
-            }
-          ]
+              response: action.response,
+            },
+          ],
         }
       } else {
         return {
@@ -166,9 +166,9 @@ module.exports.quest = function (state = initialStateQuest, action) {
             ...state.responses,
             {
               question: state.questions[state.currentQuestion],
-              response: action.response
-            }
-          ]
+              response: action.response,
+            },
+          ],
         }
       }
     }
@@ -187,7 +187,7 @@ const initialStateSession = {
   tmp_rut_valid: false,
   tmp_name_valid: false,
   tmp_location_valid: false,
-  tmp_business_valid: false
+  tmp_business_valid: false,
   // tmp_name: null
 }
 
@@ -204,7 +204,7 @@ module.exports.session = function (state = initialStateSession, action) {
           case 'rut': {
             return {
               ...state,
-              tmp_rut_valid: RUT.validate(RUT.clean(action.value))
+              tmp_rut_valid: RUT.validate(RUT.clean(action.value)),
             }
           }
           case 'location':
@@ -212,7 +212,7 @@ module.exports.session = function (state = initialStateSession, action) {
           case 'name': {
             return {
               ...state,
-              [`tmp_${action.name}_valid`]: action.value !== ''
+              [`tmp_${action.name}_valid`]: action.value !== '',
             }
           }
         }
@@ -228,7 +228,7 @@ module.exports.session = function (state = initialStateSession, action) {
         name: null,
         idCourse: null,
         location: null,
-        business: null
+        business: null,
       }
     }
     case 'sessin_login': {
@@ -239,7 +239,7 @@ module.exports.session = function (state = initialStateSession, action) {
         name: action.name,
         idCourse: action.idCourse,
         location: action.location,
-        business: action.business
+        business: action.business,
       }
     }
     default: return state
@@ -247,7 +247,7 @@ module.exports.session = function (state = initialStateSession, action) {
 }
 
 const initialStateFormMemory = {
-  fields: {}
+  fields: {},
 }
 export function forms_memory (state = initialStateFormMemory, action) {
   switch (action.type) {
@@ -258,8 +258,8 @@ export function forms_memory (state = initialStateFormMemory, action) {
         ...state,
         fields: {
           ...state.fields,
-          [`${form}_${name}`]: value
-        }
+          [`${form}_${name}`]: value,
+        },
       }
     }
     default: return state
@@ -269,7 +269,7 @@ export function forms_memory (state = initialStateFormMemory, action) {
 const initialStateQuestions = {
   state: null,
   questions: [],
-  showCorrect: false
+  showCorrect: false,
 }
 
 export function questions (state = initialStateQuestions, action) {
@@ -277,19 +277,19 @@ export function questions (state = initialStateQuestions, action) {
     case 'PULL_QUESTIONS': {
       return {
         ...state,
-        state: 'loading'
+        state: 'loading',
       }
     }
     case 'SHOW_CORRECT_OPTION': {
       return {
         ...state,
-        showCorrect: true
+        showCorrect: true,
       }
     }
     case 'HIDE_CORRECT_OPTION': {
       return {
         ...state,
-        showCorrect: false
+        showCorrect: false,
       }
     }
     case 'SET_QUESTIONS': {
@@ -298,7 +298,7 @@ export function questions (state = initialStateQuestions, action) {
       return {
         ...state,
         state: 'with_questions',
-        questions: action.questions
+        questions: action.questions,
       }
     }
     default: return state

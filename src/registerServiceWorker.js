@@ -1,6 +1,6 @@
 
 module.exports = async function registerServiceWorker ({store}) {
-  const registration = await navigator.serviceWorker.register('/otecnya-questions-offline/sw.js')
+  const registration = await navigator.serviceWorker.register(`/${process.env.START_PATH}/sw.js`)
 
   storeInspectWaiting(store, registration)
 
@@ -21,7 +21,7 @@ module.exports = async function registerServiceWorker ({store}) {
 function storeInspectWaiting (store, registration) {
   if (registration.waiting !== null) {
     store.dispatch({
-      type: 'APP_STEP_WAITING'
+      type: 'APP_STEP_WAITING',
     })
   }
 }

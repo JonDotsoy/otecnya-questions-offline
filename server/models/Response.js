@@ -8,7 +8,7 @@ const ResponseShema = module.exports.ResponseShema = new mongoose.Schema({
   rut: String,
   responses: Array,
   location: String,
-  business: String
+  business: String,
 })
 
 module.exports.Response = mongoose.model('Response', ResponseShema)

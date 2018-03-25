@@ -8,10 +8,10 @@ const responses = module.exports.responses = {
       {
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         method: 'POST',
-        body: JSON.stringify(response)
+        body: JSON.stringify(response),
       }
     )
       .then(r => r.json())
@@ -20,9 +20,9 @@ const responses = module.exports.responses = {
   async get (query = {}) {
     return fetch(
       resourceLink('responses', {
-        find: JSON.stringify(query)
+        find: JSON.stringify(query),
       })
     )
       .then(r => r.json())
-  }
+  },
 }

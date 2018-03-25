@@ -9,7 +9,7 @@
     "build": "gulp build",
     "lint": "eslint .",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "test": "nodemon -w www -w test -x mocha"
+    "test": "nodemon -r config -w www -w test -x mocha"
   },
   "keywords": [],
   "author": "",
@@ -71,11 +71,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JonDotsoy/otecnya-questions-offline.git"
+    "url": "git+https://github.com/JonDotsoy/otecnya-questions-4x4-offline.git"
   },
   "bugs": {
-    "url": "https://github.com/JonDotsoy/otecnya-questions-offline/issues"
+    "url": "https://github.com/JonDotsoy/otecnya-questions-4x4-offline/issues"
   },
-  "homepage": "https://github.com/JonDotsoy/otecnya-questions-offline#readme",
+  "homepage": "https://github.com/JonDotsoy/otecnya-questions-4x4-offline#readme",
   "description": ""
 }

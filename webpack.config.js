@@ -1,3 +1,4 @@
+const config = require('./config')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const url = require('url')
 const InlineEnvironmentVariablesPlugin = require('inline-environment-variables-webpack-plugin')
@@ -12,29 +13,29 @@ const moduleBabel = {
       options: {
         presets: [
           ['env', {
-            exclude: ['transform-regenerator']
+            exclude: ['transform-regenerator'],
           }],
           'stage-1',
-          'react'
-        ]
-      }
-    }
-  ]
+          'react',
+        ],
+      },
+    },
+  ],
 }
 
 const bs = new BrowserSyncPlugin({
   host: 'localhost',
   port: '3000',
   server: {
-    baseDir: 'www'
+    baseDir: 'www',
   },
   middleware: [],
-  startPath: '/otecnya-questions-offline'
+  startPath: `/${config.START_PATH}`,
 })
 
 const plugins = [
   bs,
-  new InlineEnvironmentVariablesPlugin()
+  new InlineEnvironmentVariablesPlugin(),
 ]
 
 module.exports.config = [
@@ -45,8 +46,8 @@ module.exports.config = [
     plugins,
     devtool: 'source-map',
     output: {
-      filename: 'app.js'
-    }
+      filename: 'app.js',
+    },
   },
   // sw.js
   {
@@ -55,9 +56,9 @@ module.exports.config = [
     plugins,
     devtool: 'source-map',
     output: {
-      filename: 'sw.js'
-    }
-  }
+      filename: 'sw.js',
+    },
+  },
 ]
 
 module.exports.browserSync = bs.browserSync

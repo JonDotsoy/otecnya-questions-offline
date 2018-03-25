@@ -10,8 +10,8 @@ const mongoOption = {
   connect: {
     hostname: process.env.DB_HOST || '192.168.99.100',
     port: process.env.DB_PORT || '27017',
-    dbName: process.env.DB_NAME || 'otecnya'
-  }
+    dbName: process.env.DB_NAME || 'otecnya',
+  },
 }
 
 mongoOption.connect.uri = url.format({
@@ -19,7 +19,7 @@ mongoOption.connect.uri = url.format({
   slashes: true,
   hostname: mongoOption.connect.hostname,
   port: mongoOption.connect.port,
-  pathname: mongoOption.connect.dbName
+  pathname: mongoOption.connect.dbName,
 })
 
 mongoose.Promise = global.Promise
@@ -77,8 +77,8 @@ async function configeApi (app) {
       ok: false,
       error: {
         name: error.name,
-        message: error.message
-      }
+        message: error.message,
+      },
     })
   })
 

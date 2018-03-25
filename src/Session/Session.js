@@ -229,7 +229,7 @@ const RenderSesssion = ({logged, handleLogout, tmp_location_valid: tmpLocationVa
       <ContainerFieldElement maxWidth='400px'>
         <InfoMetaDataLine>Version v{process.env.npm_package_version} {
           process.env.npm_package_gitHead &&
-          <LinkToCommit target='_blank' href={`https://github.com/JonDotsoy/otecnya-questions-offline/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 7)})</LinkToCommit>}
+          <LinkToCommit target='_blank' href={`https://github.com/JonDotsoy/${process.env.START_PATH}/commit/${process.env.npm_package_gitHead}`}>({process.env.npm_package_gitHead.slice(0, 7)})</LinkToCommit>}
         </InfoMetaDataLine>
       </ContainerFieldElement>
     </ContainerSession>
@@ -253,11 +253,11 @@ module.exports.Session = connect(
     name: state.session.name,
     idCourse: state.session.idCourse,
     location: state.session.location,
-    business: state.session.business
+    business: state.session.business,
   }),
   (dispatch, props) => ({
     handleLogout: () => dispatch({
-      type: 'session_logout'
+      type: 'session_logout',
     }),
     handleLogin () {
       dispatch((dispatch, getState) => {
@@ -269,7 +269,7 @@ module.exports.Session = connect(
           name: state.forms_memory.fields.credentials_name,
           location: state.forms_memory.fields.credentials_location,
           business: state.forms_memory.fields.credentials_business,
-          idCourse: state.forms_memory.fields.credentials_idCourse
+          idCourse: state.forms_memory.fields.credentials_idCourse,
         })
       })
     },
@@ -279,6 +279,6 @@ module.exports.Session = connect(
       const form = event.target.form && event.target.form.getAttribute('name')
 
       dispatch({type: 'form_memory_update', value, name, form})
-    }
+    },
   })
 )(RenderSesssion)

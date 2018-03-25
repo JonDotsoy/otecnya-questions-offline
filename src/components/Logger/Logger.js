@@ -62,13 +62,13 @@ const Logger = ({handleDiscard, appState}) => (
 
 module.exports.Logger = connect(
   (state, props) => ({
-    appState: state.appStatus.state
+    appState: state.appStatus.state,
   }),
   (dispatch, props) => ({
     handleDiscard: () => {
       return dispatch({
-        type: 'APP_STEP_DISCARD'
+        type: 'APP_STEP_DISCARD',
       })
-    }
+    },
   })
 )(Logger)

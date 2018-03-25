@@ -14,9 +14,9 @@ const configs = module.exports.configs = {
       slashes: true,
       port: this.port,
       hostname: this.host,
-      pathname: this.pathname
+      pathname: this.pathname,
     })
-  }
+  },
 }
 
 module.exports.resourceLink = function resourceLink (resourceName, query) {
@@ -26,7 +26,7 @@ module.exports.resourceLink = function resourceLink (resourceName, query) {
     configs.link,
     url.format({
       pathname: `./${resourceName}`,
-      query
+      query,
     })
   )
 }

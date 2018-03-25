@@ -13,7 +13,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/**/*.js'
+      'test/**/*.js',
     ],
 
     // list of files to exclude
@@ -23,7 +23,7 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/**/*.js': ['webpack']
+      'test/**/*.js': ['webpack'],
     },
 
     webpack: {
@@ -36,19 +36,19 @@ module.exports = function (config) {
             options: {
               presets: [
                 ['env', {
-                  exclude: ['transform-regenerator']
+                  exclude: ['transform-regenerator'],
                 }],
                 'stage-0',
-                'react'
-              ]
-            }
-          }
-        ]
-      }
+                'react',
+              ],
+            },
+          },
+        ],
+      },
     },
 
     webpackMiddleware: {
-      stats: 'errors-only'
+      stats: 'errors-only',
     },
 
     // test results reporter to use
@@ -79,6 +79,6 @@ module.exports = function (config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
   })
 }

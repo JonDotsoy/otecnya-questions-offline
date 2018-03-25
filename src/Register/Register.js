@@ -125,7 +125,7 @@ module.exports.Register = connect(
     responses: state.registre.responses,
     progress_in: state.registre.progress_in,
     progress_to: state.registre.progress_to,
-    responses_unsync: state.registre.responses_unsync
+    responses_unsync: state.registre.responses_unsync,
   }),
   (dispatch, props) => ({
     downloadFullRegisters: () => {
@@ -146,8 +146,8 @@ module.exports.Register = connect(
               location,
               business,
               date: date.toLocaleString(),
-              corrects: `${Math.floor((responses.filter(({question, response}) => question.optionCorrect === response).length / responses.length) * 100)}%`
-            }))
+              corrects: `${Math.floor((responses.filter(({question, response}) => question.optionCorrect === response).length / responses.length) * 100)}%`,
+            })),
           })
 
           const fl = new Blob([bodyfile], {type: 'text/csv'})
@@ -185,8 +185,8 @@ module.exports.Register = connect(
             location,
             business,
             date: date.toLocaleString(),
-            corrects: `${Math.floor((responses.filter(({question, response}) => question.optionCorrect === response).length / responses.length) * 100)}%`
-          }))
+            corrects: `${Math.floor((responses.filter(({question, response}) => question.optionCorrect === response).length / responses.length) * 100)}%`,
+          })),
         })
 
         const fl = new Blob([bodyfile], {type: 'text/csv'})
@@ -224,10 +224,10 @@ module.exports.Register = connect(
                 ...[{}, ...responses].reduce((c, next) => {
                   c[next.question.title] = next.response
                   return c
-                })
+                }),
               }
             )
-        )
+        ),
       })
 
       const fl = new Blob([bodyfile], {type: 'text/csv'})
@@ -276,7 +276,7 @@ module.exports.Register = connect(
               date: response.date,
               location: response.location,
               business: response.business,
-              responses: response.responses
+              responses: response.responses,
             })
 
             console.log(`response ${responseCloud.id} sync`, responseCloud)
@@ -289,6 +289,6 @@ module.exports.Register = connect(
 
         dispatch({type: 'end_sync', responses_unsync: (await db.responses.toArray()).filter(el => el._sync !== true).length})
       })
-    }
+    },
   })
 )(Register)

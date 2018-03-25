@@ -4,12 +4,12 @@ const db = new Dexie('responses')
 
 const dbReadyV1 = db.version(1)
   .stores({
-    responses: '++id,rut,date,responses'
+    responses: '++id,rut,date,responses',
   })
 
 const dbReadyV2 = db.version(2)
   .stores({
-    responses: '++id,rut,date,responses,location,business'
+    responses: '++id,rut,date,responses,location,business',
   })
   .upgrade(function (trans) {
     trans.responses.toCollection().modify(function (response) {
@@ -20,7 +20,7 @@ const dbReadyV2 = db.version(2)
 
 const dbReadyV3 = db.version(3)
   .stores({
-    responses: '++id,rut,date,responses,location,business'
+    responses: '++id,rut,date,responses,location,business',
   })
   .upgrade(function (trans) {
     trans.responses.toCollection().modify(function (response) {
@@ -33,7 +33,7 @@ const dbReadyV3 = db.version(3)
 
 const dbReadyV4 = db.version(4)
   .stores({
-    responses: '++id,rut,date,responses,location,business,_sync'
+    responses: '++id,rut,date,responses,location,business,_sync',
   })
   .upgrade(function (trans) {
     trans.responses.toCollection().modify(function (response) {
@@ -44,7 +44,7 @@ const dbReadyV4 = db.version(4)
 
 const dbReadyV5 = db.version(5)
   .stores({
-    responses: '++id,rut,date,responses,location,business,_sync,_cloud_id'
+    responses: '++id,rut,date,responses,location,business,_sync,_cloud_id',
   })
   .upgrade(function (trans) {
     trans.responses.toCollection().modify(function (response) {

@@ -97,7 +97,7 @@ module.exports.Result = connect(
     finishQuestionary: state.quest.finishQuestionary,
     correctAvg: state.quest.responses.filter(res => res.question.optionCorrect === res.response).length / state.quest.responses.length,
     saved: state.quest.saved === true,
-    saving: state.quest.saving === true
+    saving: state.quest.saving === true,
   }),
   (dispatch, props) => ({
     resetSession: (event) => dispatch({type: 'reset_all'}),
@@ -117,7 +117,7 @@ module.exports.Result = connect(
           idCourse: state.session.idCourse,
           location: state.session.location,
           business: state.session.business,
-          responses: state.quest.responses
+          responses: state.quest.responses,
         }
 
         console.dir(data)
@@ -126,6 +126,6 @@ module.exports.Result = connect(
 
         dispatch({type: 'save_response_saved'})
       })
-    }
+    },
   })
 )(Result)

@@ -4,8 +4,8 @@ const url = require('url')
 
 const versionCache = `${process.env.npm_package_name}-${process.env.npm_package_version}-6`
 const filesOnCache = [
-  '/otecnya-questions-offline/',
-  '/otecnya-questions-offline/app.js'
+  `/${process.env.START_PATH}/`,
+  `/${process.env.START_PATH}/app.js`,
 ]
 
 self.addEventListener('activate', function (event) {
@@ -26,7 +26,9 @@ self.addEventListener('activate', function (event) {
   )
 })
 
-// self.skipWaiting()
+if (process.env.NODE_ENV !== 'production') {
+  self.skipWaiting()
+}
 
 self.addEventListener('install', function (event) {
   event.waitUntil((
