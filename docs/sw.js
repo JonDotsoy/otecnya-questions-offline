@@ -76,7 +76,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var url = __webpack_require__(1);
 
-var versionCache = "question" + '-' + "2.0.1" + '-6';
+var versionCache = "question" + '-' + "2.0.2" + '-6';
 var filesOnCache = ['/' + "otecnya-questions-offline" + '/', '/' + "otecnya-questions-offline" + '/app.js'];
 
 self.addEventListener('activate', function (event) {
@@ -101,7 +101,7 @@ self.addEventListener('activate', function (event) {
   })());
 });
 
-if (true) {
+if (false) {
   self.skipWaiting();
 }
 
