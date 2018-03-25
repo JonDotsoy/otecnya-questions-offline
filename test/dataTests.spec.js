@@ -5,10 +5,6 @@ const {expect} = require('chai')
 const {configs, resourceLink} = require('../src/libs/data/connector')
 const {responses} = require('../src/libs/data/synchronization')
 
-console.log(
-  global._ = require('lodash')
-)
-
 const log = console.log
 
 describe('Data Test', () => {
@@ -17,7 +13,7 @@ describe('Data Test', () => {
       expect(configs.link).to.be.equal('https://jon.soy/services/question/api/')
     })
 
-    it('check resource to load', () => {      
+    it('check resource to load', () => {
       expect(
         resourceLink('responses', {find: {a: 3}})
       ).to.be.equal(

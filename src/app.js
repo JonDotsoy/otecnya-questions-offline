@@ -46,25 +46,23 @@ require('./registerServiceWorker')({
 //   idCourse: '12345'
 // })
 
-ReactDOM.render((
-  <div>
-    <Provider store={store}>
-      <div>
-        <Logger />
-        <Router>
-          <Switch>
-            <Route exact path='/' component={() => <Redirect to='/session' />} />
-            <Route exact path='/quest' component={Quest} />
-            <Route exact path='/questions' component={Questions} />
-            <Route exact path='/session' component={Session} />
-            <Route exact path='/results' component={Result} />
-            <Route exact path='/register' component={Register} />
-            <Route exact path='/register/:idRegistre' component={RegisterDetaills} />
-          </Switch>
-        </Router>
-      </div>
-    </Provider>
-  </div>
-),
-document.querySelector('#app')
-)
+const app = <div>
+  <Provider store={store}>
+    <div>
+      <Logger />
+      <Router>
+        <Switch>
+          <Route exact path='/' component={() => <Redirect to='/session' />} />
+          <Route exact path='/quest' component={Quest} />
+          <Route exact path='/questions' component={Questions} />
+          <Route exact path='/session' component={Session} />
+          <Route exact path='/results' component={Result} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/register/:idRegistre' component={RegisterDetaills} />
+        </Switch>
+      </Router>
+    </div>
+  </Provider>
+</div>
+
+ReactDOM.render(app, document.querySelector('#app'))

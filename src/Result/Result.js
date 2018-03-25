@@ -28,7 +28,7 @@ const BodyResult = styled.div`
 `
 
 const LabelData = styled.div`
-  
+
 `
 
 const ShowName = styled.span`
@@ -66,7 +66,7 @@ const BtnReset = styled(Link)`${styleBtn}`
 const Result = ({correctAvg, saved, rut_format, finishQuestionary, saveResponses, saving, resetSession, name}) => (
   finishQuestionary === false ? <Redirect to='/' />
     : (
-      saving ? <div>Guardando...</div>
+      saving ? <div role='loading'>Guardando...</div>
         : <ContainerResult>
           {
             !saved

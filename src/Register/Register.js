@@ -71,20 +71,20 @@ class Register extends React.Component {
     const {downloadFullRegisters, responses_unsync, state, responses, downloadRegistre, downloadLiteRegistre, handleSyncRegisters, progress_in, progress_to} = this.props
 
     if (state === 'sync_load') {
-      return <Container><div>Sincronizando ({progress_in}/{progress_to})...</div></Container>
+      return <Container><div role='loading'>Sincronizando ({progress_in}/{progress_to})...</div></Container>
     }
 
     if (state === 'downloading_data') {
-      return <Container><div>Descargando datos...</div></Container>
+      return <Container><div role='loading'>Descargando datos...</div></Container>
     }
 
     if (state === 'pulling') {
-      return <Container><div>Cargando...</div></Container>
+      return <Container><div role='loading'>Cargando...</div></Container>
     }
 
     return (
       <Container>
-        <ContainerRegistre>
+        <ContainerRegistre role='registers'>
 
           <BTNBack to='/session'>Volver</BTNBack>
           <BTNLink onClick={downloadLiteRegistre}>Descargar SCV</BTNLink>
@@ -97,7 +97,7 @@ class Register extends React.Component {
 
           {
             responses.map((response, n) => (
-              <ROW key={n}>
+              <ROW key={n} role='register'>
                 <DataLavel flex='1'><span>{response.name}</span></DataLavel>
                 <DataLavel flex='1'><span>{response.idCourse}</span></DataLavel>
                 <DataLavel flex='1'><span>{response.location}</span></DataLavel>

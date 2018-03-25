@@ -51,7 +51,7 @@ class Questions extends React.Component {
     const {goToHome, state, questions, pullQuestions, checkShowCorrectResponse, showCorrect} = this.props
 
     if (state === 'loading') {
-      return <div>Cargando...</div>
+      return <div role='loading'>Cargando...</div>
     }
 
     return <Container>

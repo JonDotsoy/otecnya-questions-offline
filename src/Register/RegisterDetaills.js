@@ -16,7 +16,7 @@ class RegisterDetaills extends React.Component {
     console.log(pull_state)
 
     if (pull_state === 'pulling') {
-      return <div>Cargando...</div>
+      return <div role='loading'>Cargando...</div>
     }
 
     return (
