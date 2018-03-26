@@ -4,7 +4,14 @@ const tagVERDADEROFALSO = 'VERDADERO O FALSO'
 const sortAsc = (a, b) => a > b
 const sortAlwaysEnd = (opt) => (a, b) => a === opt ? 1 : 0
 
-module.exports = [
+/**
+ * @typedef {{title:string,options:string[],sort?:Function,stag?:string}} Question
+ */
+
+ /**
+ * @type {Question[]}
+ */
+const questions = [
   {
     title: '¿En cuál de las siguientes situaciones se realiza manejo manual de carga?',
     options: [
@@ -378,3 +385,5 @@ module.exports = [
     ],
   },
 ]
+
+module.exports = questions
