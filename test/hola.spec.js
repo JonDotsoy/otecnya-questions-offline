@@ -18,8 +18,7 @@ describe('Function test', async function () {
   beforeEach(async () => {
     const page = await _page
 
-    await page.goto(`https://jondotsoy.github.io/otecnya-questions-offline/`)
-    // await page.goto(`http://localhost:3000/${config.START_PATH}/`)
+    await page.goto(`http://localhost:3000/${config.START_PATH}/`)
   })
 
   afterEach(async () => {
