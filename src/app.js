@@ -1,3 +1,5 @@
+/* global localStorage */
+
 console.info(`${process.env.npm_package_name} v${process.env.npm_package_version} ${process.env.npm_package_gitHead && `(${process.env.npm_package_gitHead.slice(0, 7)})`}`)
 
 const React = require('react')
@@ -37,14 +39,16 @@ require('./registerServiceWorker')({
 })
   .catch(console.error)
 
-// store.dispatch({
-//   type: 'sessin_login',
-//   rut: '111111111',
-//   name: 'John',
-//   location: 'atacama',
-//   business: 'achs',
-//   idCourse: '12345'
-// })
+if (/^(true|1)$/i.test(localStorage.autologin)) {
+  store.dispatch({
+    type: localStorage.autologin_type || 'sessin_login',
+    rut: localStorage.autologin_rut || '111111111',
+    name: localStorage.autologin_name || 'John',
+    location: localStorage.autologin_location || 'atacama',
+    business: localStorage.autologin_business || 'achs',
+    idCourse: localStorage.autologin_idCourse || '12345',
+  })
+}
 
 const app = <div>
   <Provider store={store}>

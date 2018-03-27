@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const ContainerBody = styled.div`
   width: 800px;
-  
+
   background-color: #FFFFFF;
   box-sizing: border-box;
   border-radius: 5px;
@@ -51,7 +51,7 @@ const IDRUTLabelHeader = styled.div`
 `
 
 const BodyQuestion = styled.div`
-  
+
 `
 
 const TitleQuestion = styled.h1`
