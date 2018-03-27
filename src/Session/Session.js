@@ -7,6 +7,13 @@ const {isLogin} = require('../util/sessionControl')
 const {Redirect, Link} = require('react-router-dom')
 const {Input} = require('../components/Input/Input')
 
+const HeaderTitle = styled.div`
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 2em;
+  font-weight: 500;
+`
+
 const ContainerSession = styled.div`
   min-height: 100vh;
   background-color: #F0F0F0;
@@ -136,6 +143,7 @@ const RenderSesssion = ({logged, handleLogout, tmp_location_valid: tmpLocationVa
       </ContainerBody>
     </ContainerSession>
     : <ContainerSession>
+      <HeaderTitle>Base</HeaderTitle>
       <ContainerBody>
         <form name='credentials' onSubmit={disableSubmitForm}>
           <ContainerFieldElement>
