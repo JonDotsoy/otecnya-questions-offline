@@ -11218,7 +11218,7 @@ function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defi
 
 /* global localStorage */
 
-console.info("question" + ' v' + "2.0.2" + ' ' + ("5eba6e9c286fcec49a6050e213811ecf092e6549" && '(' + "5eba6e9c286fcec49a6050e213811ecf092e6549".slice(0, 7) + ')'));
+console.info("question" + ' v' + "2.0.2" + ' ' + ("b560b040d8d8c2d31265835cbb42f3ed6dbd3bff" && '(' + "b560b040d8d8c2d31265835cbb42f3ed6dbd3bff".slice(0, 7) + ')'));
 
 var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(91);
@@ -19526,14 +19526,15 @@ var withRouter = function withRouter(Component) {
 "use strict";
 
 
-var _templateObject = _taggedTemplateLiteral(['\n  min-height: 100vh;\n  background-color: #F0F0F0;\n  width: 100%;\n\n  @media (min-width: 401px) {\n    padding: 20px 0px;\n  }\n\n  @media (max-width: 400px) {\n    background-color: white;\n  }\n'], ['\n  min-height: 100vh;\n  background-color: #F0F0F0;\n  width: 100%;\n\n  @media (min-width: 401px) {\n    padding: 20px 0px;\n  }\n\n  @media (max-width: 400px) {\n    background-color: white;\n  }\n']),
-    _templateObject2 = _taggedTemplateLiteral(['\n  background-color: white;\n\n  @media (min-width: 401px) {\n    border-radius: 6px;\n    margin: auto;\n    width: 400px;\n    box-shadow:\n      0px 0px 6px 0px rgba(0, 0, 0, 0.24),\n      0px 4px 6px 0px rgba(0, 0, 0, 0.12);\n  }\n'], ['\n  background-color: white;\n\n  @media (min-width: 401px) {\n    border-radius: 6px;\n    margin: auto;\n    width: 400px;\n    box-shadow:\n      0px 0px 6px 0px rgba(0, 0, 0, 0.24),\n      0px 4px 6px 0px rgba(0, 0, 0, 0.12);\n  }\n']),
-    _templateObject3 = _taggedTemplateLiteral(['\n  ', '\n  padding: 10px 20px;\n  ', '\n'], ['\n  ', '\n  padding: 10px 20px;\n  ', '\n']),
-    _templateObject4 = _taggedTemplateLiteral(['\n  color: black;\n  text-decoration: none;\n'], ['\n  color: black;\n  text-decoration: none;\n']),
-    _templateObject5 = _taggedTemplateLiteral(['\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n  padding-bottom: 5px;\n'], ['\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n  padding-bottom: 5px;\n']),
-    _templateObject6 = _taggedTemplateLiteral(['\n  font-size: 11px;\n'], ['\n  font-size: 11px;\n']),
-    _templateObject7 = _taggedTemplateLiteral(['\n  font-size: 12px;\n  text-decoration: underline;\n  border: none;\n  background-color: transparent;\n  padding: 0px;\n  color: black;\n  margin: 0px;\n'], ['\n  font-size: 12px;\n  text-decoration: underline;\n  border: none;\n  background-color: transparent;\n  padding: 0px;\n  color: black;\n  margin: 0px;\n']),
-    _templateObject8 = _taggedTemplateLiteral(['', ''], ['', '']);
+var _templateObject = _taggedTemplateLiteral(['\n  text-align: center;\n  margin-bottom: 1em;\n  font-size: 2em;\n  font-weight: 500;\n'], ['\n  text-align: center;\n  margin-bottom: 1em;\n  font-size: 2em;\n  font-weight: 500;\n']),
+    _templateObject2 = _taggedTemplateLiteral(['\n  min-height: 100vh;\n  background-color: #F0F0F0;\n  width: 100%;\n\n  @media (min-width: 401px) {\n    padding: 20px 0px;\n  }\n\n  @media (max-width: 400px) {\n    background-color: white;\n  }\n'], ['\n  min-height: 100vh;\n  background-color: #F0F0F0;\n  width: 100%;\n\n  @media (min-width: 401px) {\n    padding: 20px 0px;\n  }\n\n  @media (max-width: 400px) {\n    background-color: white;\n  }\n']),
+    _templateObject3 = _taggedTemplateLiteral(['\n  background-color: white;\n\n  @media (min-width: 401px) {\n    border-radius: 6px;\n    margin: auto;\n    width: 400px;\n    box-shadow:\n      0px 0px 6px 0px rgba(0, 0, 0, 0.24),\n      0px 4px 6px 0px rgba(0, 0, 0, 0.12);\n  }\n'], ['\n  background-color: white;\n\n  @media (min-width: 401px) {\n    border-radius: 6px;\n    margin: auto;\n    width: 400px;\n    box-shadow:\n      0px 0px 6px 0px rgba(0, 0, 0, 0.24),\n      0px 4px 6px 0px rgba(0, 0, 0, 0.12);\n  }\n']),
+    _templateObject4 = _taggedTemplateLiteral(['\n  ', '\n  padding: 10px 20px;\n  ', '\n'], ['\n  ', '\n  padding: 10px 20px;\n  ', '\n']),
+    _templateObject5 = _taggedTemplateLiteral(['\n  color: black;\n  text-decoration: none;\n'], ['\n  color: black;\n  text-decoration: none;\n']),
+    _templateObject6 = _taggedTemplateLiteral(['\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n  padding-bottom: 5px;\n'], ['\n  font-size: 16px;\n  font-family: \'Roboto\', sans-serif;\n  padding-bottom: 5px;\n']),
+    _templateObject7 = _taggedTemplateLiteral(['\n  font-size: 11px;\n'], ['\n  font-size: 11px;\n']),
+    _templateObject8 = _taggedTemplateLiteral(['\n  font-size: 12px;\n  text-decoration: underline;\n  border: none;\n  background-color: transparent;\n  padding: 0px;\n  color: black;\n  margin: 0px;\n'], ['\n  font-size: 12px;\n  text-decoration: underline;\n  border: none;\n  background-color: transparent;\n  padding: 0px;\n  color: black;\n  margin: 0px;\n']),
+    _templateObject9 = _taggedTemplateLiteral(['', ''], ['', '']);
 
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -19557,11 +19558,13 @@ var _require4 = __webpack_require__(14),
 var _require5 = __webpack_require__(187),
     Input = _require5.Input;
 
-var ContainerSession = styled.div(_templateObject);
+var HeaderTitle = styled.div(_templateObject);
 
-var ContainerBody = styled.div(_templateObject2);
+var ContainerSession = styled.div(_templateObject2);
 
-var ContainerFieldElement = styled.div(_templateObject3, function (_ref) {
+var ContainerBody = styled.div(_templateObject3);
+
+var ContainerFieldElement = styled.div(_templateObject4, function (_ref) {
   var _ref$align = _ref.align,
       align = _ref$align === undefined ? 'left' : _ref$align;
   return 'text-align: ' + align + ';';
@@ -19570,20 +19573,20 @@ var ContainerFieldElement = styled.div(_templateObject3, function (_ref) {
   return maxWidth && 'margin: auto; max-width: ' + maxWidth + ';';
 });
 
-var LinkToCommit = styled.a(_templateObject4);
+var LinkToCommit = styled.a(_templateObject5);
 
-var LabelToInput = styled.div(_templateObject5);
+var LabelToInput = styled.div(_templateObject6);
 
 var styledButton = '\n  padding: 10px 20px;\n  font-family: \'Roboto\', sans-serif;\n  border: solid 1px #aaa;\n  background-color: #ddd;\n  color: #333;\n  text-decoration: none;\n  cursor: pointer;\n  display: inline-block;\n\n  &:hover {\n    box-shadow:\n      0px 0px 4px rgba(0, 0, 0, 0.24),\n      0px 2px 4px rgba(0, 0, 0, 0.12)\n    ;\n  }\n\n  &[disabled] {\n    cursor: default;\n    padding: 10px 20px;\n    border: solid 1px #eee;\n    background-color: #eee;\n    color: #aaa;\n  }\n';
 
-var InfoMetaDataLine = styled.div(_templateObject6);
+var InfoMetaDataLine = styled.div(_templateObject7);
 
-var LabelDonwloadReports = styled(Link)(_templateObject7);
+var LabelDonwloadReports = styled(Link)(_templateObject8);
 
-var BTN = styled.a(_templateObject8, styledButton);
-var BTNLink = styled(Link)(_templateObject8, styledButton);
-var BTNLoginOFF = styled.a(_templateObject8, styledButton);
-var BTNLoginON = styled.a(_templateObject8, styledButton);
+var BTN = styled.a(_templateObject9, styledButton);
+var BTNLink = styled(Link)(_templateObject9, styledButton);
+var BTNLoginOFF = styled.a(_templateObject9, styledButton);
+var BTNLoginON = styled.a(_templateObject9, styledButton);
 
 var disableSubmitForm = function disableSubmitForm(event) {
   event.preventDefault();
@@ -19835,11 +19838,11 @@ var RenderSesssion = function RenderSesssion(_ref3) {
         'Version v',
         "2.0.2",
         ' ',
-        "5eba6e9c286fcec49a6050e213811ecf092e6549" && React.createElement(
+        "b560b040d8d8c2d31265835cbb42f3ed6dbd3bff" && React.createElement(
           LinkToCommit,
-          { target: '_blank', href: 'https://github.com/JonDotsoy/' + "otecnya-questions-offline" + '/commit/' + "5eba6e9c286fcec49a6050e213811ecf092e6549" },
+          { target: '_blank', href: 'https://github.com/JonDotsoy/' + "otecnya-questions-offline" + '/commit/' + "b560b040d8d8c2d31265835cbb42f3ed6dbd3bff" },
           '(',
-          "5eba6e9c286fcec49a6050e213811ecf092e6549".slice(0, 7),
+          "b560b040d8d8c2d31265835cbb42f3ed6dbd3bff".slice(0, 7),
           ')'
         )
       )
